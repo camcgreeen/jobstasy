@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Login from "./components/LogIn";
+import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Jobs from "./components/Jobs";
 import Likes from "./components/Likes";
@@ -25,9 +26,7 @@ const routing = (
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <React.StrictMode>{routing}</React.StrictMode>,
   document.getElementById("root")
 );
 
