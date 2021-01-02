@@ -1,0 +1,15 @@
+nav {
+  margin: 0;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  ul.right {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+}
