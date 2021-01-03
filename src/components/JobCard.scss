@@ -1,0 +1,75 @@
+@import "../utilities/variables.scss";
+
+.job-card {
+  border: solid #ecedf3 1px;
+  padding: 40px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    // box-shadow: 4px 4px 24px #c9cad1;
+    box-shadow: 0 4px 6px rgba(64, 70, 104, 0.03),
+      0 10px 15px rgba(64, 70, 104, 0.05);
+  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &__left {
+    display: flex;
+    flex-direction: row;
+    &__img {
+      align-self: flex-start;
+      margin-right: 40px;
+      width: 40px;
+      height: 40px;
+    }
+    &__info {
+      &__title {
+        color: $color-title;
+        font-weight: 500;
+      }
+      &__company {
+        margin-top: 20px;
+        color: $color-title;
+        font-weight: bold;
+        // font-size: 0.8rem;
+      }
+      &__tags {
+        margin-top: 20px;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        li {
+          font-size: 0.75rem;
+          margin-right: 10px;
+          background-color: #edebfe;
+          color: #5521b5;
+          padding: 8px 16px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+  &__right {
+    &__view {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 10px;
+      font-weight: bold;
+      align-items: center;
+      &__text {
+        margin-right: 10px;
+        color: $color-body;
+        transition: color 0.2s ease-in-out;
+        // &:hover {
+        //   color: $color-accent;
+        // }
+      }
+      &__svg {
+        // transition: fill 0.2s ease-in-out;
+      }
+    }
+  }
+}

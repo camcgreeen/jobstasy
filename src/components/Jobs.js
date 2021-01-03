@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import "./main.scss";
+import "./Jobs.scss";
 import Navbar from "./Navbar";
 import SearchField from "./SearchField";
 import ListInformation from "./ListInformation";
@@ -12,8 +14,10 @@ class Jobs extends React.Component {
       <>
         <Navbar />
         <SearchField />
-        <ListInformation />
-        <JobList />
+        <div className="container">
+          <ListInformation />
+          <JobList />
+        </div>
         <Footer />
       </>
     );

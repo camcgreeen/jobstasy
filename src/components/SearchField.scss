@@ -1,0 +1,107 @@
+@import "../utilities/variables.scss";
+
+.search-field-bg {
+  background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  border-radius: 0 0 42px 42px;
+}
+.search-field {
+  margin: 0 auto;
+  width: 65vw;
+}
+.h1 {
+  padding-top: 80px;
+  color: $color-title;
+  font-weight: 500;
+  margin-bottom: 40px;
+  font-size: 3rem;
+}
+.h2 {
+  margin-top: 20px;
+  font-weight: 500;
+  &__company {
+    color: $color-accent;
+    text-decoration: none;
+    &:hover {
+      color: darken($color-accent, 10%);
+    }
+  }
+}
+.inputs {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(50%);
+  &__description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: white;
+    width: 25vw;
+    box-shadow: 4px 4px 59px #edeef4;
+    &__img {
+      width: 24px;
+      height: 24px;
+    }
+    &__input {
+      border: none;
+      margin-left: 20px;
+      width: calc(100% - 20px);
+      &::placeholder {
+        color: $color-body;
+        opacity: 0.75;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+  &__location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: white;
+    width: 25vw;
+    box-shadow: 4px 4px 59px #edeef4;
+    &__img {
+      width: 24px;
+      height: 24px;
+    }
+    &__input {
+      border: none;
+      margin-left: 20px;
+      width: calc(100% - 20px);
+      &::placeholder {
+        color: $color-body;
+        opacity: 0.75;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.btn {
+  &--search {
+    background-color: $color-button;
+    color: white;
+    border: none;
+    font-weight: 500;
+    padding: 16px 32px;
+    border-radius: 8px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 4px 4px 24px #c9cad1;
+      background-color: $color-button;
+      border: none;
+    }
+  }
+}

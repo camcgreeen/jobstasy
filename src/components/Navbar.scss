@@ -1,15 +1,40 @@
+@import "../utilities/variables.scss";
+
 nav {
+  background-color: $bg-color-primary;
+  font-weight: bold;
   margin: 0;
   padding: 40px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  ul.right {
+  ul.links {
     list-style: none;
     display: flex;
     flex-direction: row;
     margin: 0;
+    align-items: center;
+    li {
+      margin-left: 40px;
+      &:hover {
+        cursor: pointer;
+        color: darken($color-body, 25%);
+      }
+    }
+  }
+}
+
+.btn {
+  font-weight: bold;
+  border-radius: 4px;
+  background-color: white;
+  border: solid $color-body 1px;
+  padding: 4px 16px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-body;
+    border-color: white;
+    color: white;
   }
 }

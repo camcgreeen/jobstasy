@@ -1,0 +1,22 @@
+@import "../utilities/variables.scss";
+
+.footer {
+  background-color: #131520;
+  // width: 100%;
+  margin-top: 80px;
+  padding: 40px 10vw;
+  &__img {
+    margin-bottom: 40px;
+  }
+  &__links {
+    list-style: none;
+    li {
+      color: white;
+      margin-bottom: 16px;
+      display: inline-block;
+      &:hover {
+        color: darken(white, 20%) !important;
+      }
+    }
+  }
+}

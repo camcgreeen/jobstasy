@@ -1,0 +1,35 @@
+@import "../utilities/variables.scss";
+
+.list-info {
+  // background-color: yellow;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.job-number {
+  font-weight: bold;
+  // font-size: 1.25rem;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: #faeded;
+  }
+  &__img {
+  }
+  &__text {
+    margin-left: 10px;
+    color: $color-accent;
+  }
+}
