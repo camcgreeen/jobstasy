@@ -1,9 +1,30 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import Navbar from "./Navbar";
+import ListInformation from "./ListInformation";
+import JobList from "./JobList";
+import Footer from "./Footer";
+import "./main.scss";
+import "./Likes.scss";
 
 class Likes extends React.Component {
   render() {
-    return <h1>Likes</h1>;
+    return (
+      <>
+        <Navbar />
+        <div className="likes-bg">
+          <div className="likes-bg__profile">
+            <p className="likes-bg__profile__text">X</p>
+          </div>
+          <h1 className="likes-bg__h1">X's Likes</h1>
+        </div>
+        <div className="container">
+          <ListInformation />
+          <JobList />
+        </div>
+        <Footer />
+      </>
+    );
   }
 }
 

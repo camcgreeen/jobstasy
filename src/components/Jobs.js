@@ -28,10 +28,11 @@ class Jobs extends React.Component {
   // THIS WILL NEED REVISION BEFORE DEPLOYMENT
   // USING CORS WORK-AROUND
   searchJobs = async (query) => {
+    console.log(query);
     const response = await fetch(
       `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=${query}`
     );
-    return await response.json();
+    return await response;
   };
 }
 

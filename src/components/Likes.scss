@@ -1,0 +1,31 @@
+@import "../utilities/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.likes-bg {
+  background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  border-radius: 0 0 42px 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__profile {
+    margin-top: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-family: "Roboto", sans-serif;
+    background-color: #da4f7a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    &__text {
+      color: white;
+      font-size: 1.5rem;
+    }
+  }
+  &__h1 {
+    margin-bottom: 40px;
+    color: $color-title;
+    font-size: 3rem;
+  }
+}

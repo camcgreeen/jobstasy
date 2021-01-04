@@ -6,6 +6,9 @@ class JobList extends React.Component {
   render() {
     return (
       <>
+        {
+          // !!IMPORTANT!! - used for both JobList and Likes so list should be fed in via props
+        }
         <Link to={`/jobs/job1`} style={{ textDecoration: "none" }}>
           <JobCard />
         </Link>
