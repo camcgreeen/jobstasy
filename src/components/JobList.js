@@ -6,21 +6,20 @@ class JobList extends React.Component {
   render() {
     return (
       <>
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        <Link to={`/jobs/job1`} style={{ textDecoration: "none" }}>
+          <JobCard />
+        </Link>
+        <Link to={`/jobs/job2`} style={{ textDecoration: "none" }}>
+          <JobCard />
+        </Link>
+        <Link to={`/jobs/job3`} style={{ textDecoration: "none" }}>
+          <JobCard />
+        </Link>
+        <Link to={`/jobs/job4`} style={{ textDecoration: "none" }}>
+          <JobCard />
+        </Link>
       </>
     );
-    // return <h1>JobList</h1>;
     //should the pagination part go here or in a separate component?
   }
 }

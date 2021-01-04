@@ -9,18 +9,21 @@ import SignUp from "./components/SignUp";
 import Jobs from "./components/Jobs";
 import Likes from "./components/Likes";
 import JobDetail from "./components/JobDetail";
+import ScrollToTop from "./components/ScrollToTop";
 
 const routing = (
   <Router>
     <div id="routing-container">
-      <Route exact path="/">
-        <Redirect to="/login" />
-      </Route>
-      <Route path="/login" component={LogIn}></Route>
-      <Route path="/signup" component={SignUp}></Route>
-      <Route path="/jobs" exact component={Jobs}></Route>
-      <Route path="/likes" component={Likes}></Route>
-      <Route path="/jobs/:id" component={JobDetail}></Route>
+      <ScrollToTop>
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+        <Route path="/login" component={LogIn}></Route>
+        <Route path="/signup" component={SignUp}></Route>
+        <Route path="/jobs" exact component={Jobs}></Route>
+        <Route path="/likes" component={Likes}></Route>
+        <Route path="/jobs/:id" component={JobDetail}></Route>
+      </ScrollToTop>
     </div>
   </Router>
 );

@@ -13,7 +13,7 @@ class SearchField extends React.Component {
             // LINK TO COMPANY URLs HERE
           }
           <h2 className="h2">
-            Land a job at companies like{" "}
+            Get a job at companies like{" "}
             <a
               href="https://vonq.io/3mTLc4w"
               target="_blank"
