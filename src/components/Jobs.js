@@ -12,13 +12,13 @@ class Jobs extends React.Component {
   render() {
     return (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         <SearchField />
         <div className="container">
           <ListInformation />
           <JobList />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }

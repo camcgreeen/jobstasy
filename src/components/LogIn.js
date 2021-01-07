@@ -15,59 +15,61 @@ class LogIn extends React.Component {
   }
   render() {
     return (
-      <div className="container-authentication">
-        <Link to="/jobs">
-          <img
-            className="logo-text"
-            src="https://svgshare.com/i/SkP.svg"
-            alt=""
-          />
-        </Link>
-        <button
-          type="submit"
-          className="btn-authentication btn-authentication--demo"
-          onClick={this.createAndLoginDemoUser}
-        >
-          Log in as a demo user
-        </button>
-        <h4 className="h4-form">
-          No email or password is required to log in as a demo user
-        </h4>
-        <span class="separator-row">
-          <span class="separator-row__horizontal-line"></span>
-          <span class="separator-row__label">or</span>
-          <span class="separator-row__horizontal-line"></span>
-        </span>
-        <form onSubmit={(e) => this.submitLogin(e)}>
-          <input
-            // autoFocus
-            type="text"
-            placeholder="Email"
-            className="input input--email"
-            onChange={(e) => this.userTyping("email", e)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="input input--password-confirmation"
-            onChange={(e) => this.userTyping("password", e)}
-          />
-          <h4 className="error-text">
-            {this.state.loginError ? this.state.loginError : null}
-          </h4>
+      <div className="bg-authentication">
+        <div className="container-authentication">
+          <Link to="/login">
+            <img
+              className="logo-text"
+              src="https://svgshare.com/i/Sub.svg"
+              alt=""
+            />
+          </Link>
           <button
             type="submit"
-            className="btn-authentication btn-authentication--log-in"
+            className="btn-authentication btn-authentication--demo"
+            onClick={this.createAndLoginDemoUser}
           >
-            Log in
+            Log in as a demo user
           </button>
-        </form>
-        <h5 className="h5-form">
-          Don't have an account?{" "}
-          <Link to="/signup" className="h5-form__link">
-            Sign up
-          </Link>
-        </h5>
+          <h4 className="h4-form">
+            No email or password is required to log in as a demo user
+          </h4>
+          <span class="separator-row">
+            <span class="separator-row__horizontal-line"></span>
+            <span class="separator-row__label">or</span>
+            <span class="separator-row__horizontal-line"></span>
+          </span>
+          <form onSubmit={(e) => this.submitLogin(e)}>
+            <input
+              // autoFocus
+              type="text"
+              placeholder="Email"
+              className="input input--email"
+              onChange={(e) => this.userTyping("email", e)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="input input--password-confirmation"
+              onChange={(e) => this.userTyping("password", e)}
+            />
+            <h4 className="error-text">
+              {this.state.loginError ? this.state.loginError : null}
+            </h4>
+            <button
+              type="submit"
+              className="btn-authentication btn-authentication--log-in"
+            >
+              Log in
+            </button>
+          </form>
+          <h5 className="h5-form">
+            Don't have an account?{" "}
+            <Link to="/signup" className="h5-form__link">
+              Sign up
+            </Link>
+          </h5>
+        </div>
       </div>
     );
   }

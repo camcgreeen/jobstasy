@@ -3,10 +3,15 @@
 .search-field-bg {
   background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
   border-radius: 0 0 42px 42px;
+  transform: translateY(-120px);
+  z-index: -10000;
+  position: relative;
+  padding-top: 120px;
 }
 .search-field {
   margin: 0 auto;
   width: 65vw;
+  z-index: -100;
 }
 .h1 {
   padding-top: 80px;

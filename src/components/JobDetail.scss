@@ -23,7 +23,8 @@
   &__title {
     margin-bottom: 40px;
     color: $color-title;
-    font-size: 3rem;
+    font-size: 3.5rem;
+    font-weight: 400;
   }
   &__company {
     margin-bottom: 40px;
@@ -122,9 +123,11 @@
       margin-bottom: 20px;
       font-size: 1.25rem;
       color: $color-title;
+      font-weight: 500;
     }
     p {
       margin: 20px 0;
+      font-weight: 400;
       br {
         display: block; /* makes it have a width */
         content: ""; /* clears default height */

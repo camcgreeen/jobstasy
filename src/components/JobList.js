@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import JobCard from "./JobCard";
+import "./main.scss";
 
 class JobList extends React.Component {
   render() {

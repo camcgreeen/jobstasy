@@ -10,11 +10,15 @@ import Jobs from "./components/Jobs";
 import Likes from "./components/Likes";
 import JobDetail from "./components/JobDetail";
 import ScrollToTop from "./components/ScrollToTop";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const routing = (
   <Router>
     <div id="routing-container">
+      {/* <Navbar /> */}
       <ScrollToTop>
+        <Navbar />
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
@@ -23,6 +27,7 @@ const routing = (
         <Route path="/jobs" exact component={Jobs}></Route>
         <Route path="/likes" component={Likes}></Route>
         <Route path="/jobs/:id" component={JobDetail}></Route>
+        <Footer />
       </ScrollToTop>
     </div>
   </Router>

@@ -16,7 +16,7 @@ class JobDetail extends React.Component {
             src="https://svgshare.com/i/SpD.svg"
             alt=""
           />
-          <h1 className="job-detail-bg__title">User Experience Design</h1>
+          <h1 className="job-detail-bg__title">Product Operations Analyst</h1>
           <h2 className="job-detail-bg__company">Patreon</h2>
         </div>
         <div className="job-detail-info">

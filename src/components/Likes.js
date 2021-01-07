@@ -11,7 +11,7 @@ class Likes extends React.Component {
   render() {
     return (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="likes-bg">
           <div className="likes-bg__profile">
             <p className="likes-bg__profile__text">X</p>
@@ -22,7 +22,7 @@ class Likes extends React.Component {
           <ListInformation />
           <JobList />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }

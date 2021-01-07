@@ -6,75 +6,86 @@ $centre-margin: 50px;
 // $color-primary: #2e2e2e;
 // $color-secondary: #75e1c0;
 // $color-tertiary: #9c9fad;
-$fade-duration: 0.4s;
+// $fade-duration: 0.4s;
 
-*,
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Manrope", sans-serif;
-  color: $color-title;
+// *,
+// html,
+// body {
+//   margin: 0;
+//   padding: 0;
+//   font-family: "Manrope", sans-serif;
+//   color: $color-title;
 
-  animation: fadeIn ease-in-out $fade-duration;
-  -webkit-animation: fadeIn ease-in-out $fade-duration;
-  -moz-animation: fadeIn ease-in-out $fade-duration;
-  -o-animation: fadeIn ease-in-out $fade-duration;
-  -ms-animation: fadeIn ease-in-out $fade-duration;
-}
+//   animation: fadeIn ease-in-out $fade-duration;
+//   -webkit-animation: fadeIn ease-in-out $fade-duration;
+//   -moz-animation: fadeIn ease-in-out $fade-duration;
+//   -o-animation: fadeIn ease-in-out $fade-duration;
+//   -ms-animation: fadeIn ease-in-out $fade-duration;
+// }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
 
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @-moz-keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @-webkit-keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
 
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @-o-keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
 
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+// @-ms-keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+.bg-authentication {
+  background-color: $color-bg-1;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 body {
   // background-color: #f6f8f9;
-  background-color: $bg-color-primary;
-  overflow-x: hidden;
+  // background-color: $bg-color-primary;
+  // overflow-x: hidden;
 }
 
 .container-authentication {
+  // z-index: 10;
   padding: $container-padding;
 
   width: 400px;
@@ -120,31 +131,31 @@ body {
 
   &--demo {
     width: 100%;
-    background-color: $color-button;
+    background-color: $color-action;
 
     &:hover {
       cursor: pointer;
-      background-color: darken($color-button, 4%);
+      background-color: darken($color-action, 4%);
     }
   }
 
   &--log-in {
     width: 100%;
-    background-color: $color-body;
+    background-color: $color-supplemental;
 
     &:hover {
       cursor: pointer;
-      background-color: darken($color-body, 4%);
+      background-color: darken($color-supplemental, 4%);
     }
   }
 
   &--sign-up {
     width: 100%;
-    background-color: $color-button;
+    background-color: $color-action;
 
     &:hover {
       cursor: pointer;
-      background-color: #5bc0a2;
+      background-color: darken($color-action, 4%);
     }
   }
 }
@@ -164,7 +175,7 @@ body {
   }
 
   &__label {
-    color: #b0b8be !important;
+    color: $color-placeholder !important;
     margin: 0 8px;
   }
 }
@@ -179,16 +190,16 @@ form {
   width: 100%;
   padding: 10px;
 
-  border-radius: 12px;
+  border-radius: 8px;
   box-sizing: border-box;
 
-  border: 1px solid rgba(177, 177, 177, 0.5);
+  border: 1px solid $color-primary;
   transition: all 0.2s ease-in-out;
 
   &:focus {
     outline: none !important;
-    border: 1px solid $color-title;
-    box-shadow: 0 0 10px $bg-color-primary;
+    border: 1px solid $color-action;
+    box-shadow: 0 0 10px $color-bg-1;
   }
 }
 
@@ -220,7 +231,7 @@ form {
 .error-text {
   margin-bottom: calc(#{$login-margin} / 2);
   margin-bottom: $login-margin;
-  color: red;
+  color: $color-danger;
   opacity: 0.5;
   font-weight: 400;
   font-size: 0.8rem;
@@ -242,47 +253,47 @@ form {
   }
 }
 
-@media only screen and (max-width: 600px) {
-  $login-margin: 35px;
-  *,
-  html,
-  body {
-  }
-  .container {
-    width: calc(100vw - 2 * #{$container-padding});
+// @media only screen and (max-width: 600px) {
+//   $login-margin: 35px;
+//   *,
+//   html,
+//   body {
+//   }
+//   .container {
+//     width: calc(100vw - 2 * #{$container-padding});
 
-    margin: 0;
-    height: calc(100% - 2 * #{$container-padding});
-    min-height: 600px;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(0%);
-  }
+//     margin: 0;
+//     height: calc(100% - 2 * #{$container-padding});
+//     min-height: 600px;
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%) translateY(0%);
+//   }
 
-  .logo-text {
-    width: calc(35px * 0.9);
-    height: calc(35px * 0.9);
-  }
+//   .logo-text {
+//     width: calc(35px * 0.9);
+//     height: calc(35px * 0.9);
+//   }
 
-  input,
-  input::-webkit-input-placeholder {
-    font-size: 0.8rem;
-  }
+//   input,
+//   input::-webkit-input-placeholder {
+//     font-size: 0.8rem;
+//   }
 
-  .input,
-  .btn,
-  .logo-text,
-  .h1-form,
-  .h4-form,
-  .h5-form {
-    margin-bottom: $login-margin;
-  }
-}
+//   .input,
+//   .btn,
+//   .logo-text,
+//   .h1-form,
+//   .h4-form,
+//   .h5-form {
+//     margin-bottom: $login-margin;
+//   }
+// }
 
-@media only screen and (max-height: 750px) {
-  .container {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(0%);
-  }
-}
+// @media only screen and (max-height: 750px) {
+//   .container {
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%) translateY(0%);
+//   }
+// }
