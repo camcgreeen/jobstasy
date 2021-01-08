@@ -8,8 +8,11 @@
 */
 
 .job-detail-bg {
-  background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
+  transform: translateY(-120px);
+  z-index: 5;
+  padding-top: 120px;
   display: flex;
   flex-direction: column;
   // justify-content: center;
@@ -22,75 +25,46 @@
   }
   &__title {
     margin-bottom: 40px;
-    color: $color-title;
+    color: $color-primary;
     font-size: 3.5rem;
     font-weight: 400;
   }
   &__company {
     margin-bottom: 40px;
-    color: $color-accent;
+    color: $color-highlight;
+    font-weight: 400;
+    &__location {
+      color: $color-secondary;
+    }
   }
 }
 .job-detail-info {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 80px;
+  // margin-top: 80px;
   &__left {
     margin-right: 80px;
-    width: 35vw;
+    width: 20vw;
     // flex: 1 1 250px;
     order: 1;
     display: flex;
     flex-direction: column;
-    &__apply {
-      background-color: $bg-color-tertiary;
-      border-radius: 8px;
-      padding: 32px 40px;
-      &__section {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 40px;
-        &__now {
-          color: $color-accent;
-          font-size: 1.5rem;
-          &__btn {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: white;
-            border: solid $color-accent 1px;
-            border-radius: 4px;
-            // padding: 4px 8px;
-            padding: 6px 16px;
-            &:hover {
-              cursor: pointer;
-            }
-            &__apply {
-              // font-size: 0.8rem;
-              color: $color-accent;
-            }
-            &__arrow {
-              margin-left: 10px;
-              width: 16px;
-              height: 16px;
-            }
-          }
-        }
-      }
-    }
     &__about {
-      margin-top: 80px;
-      background-color: $bg-color-tertiary;
+      // margin-top: 80px;
+      // background-color: $bg-color-tertiary;
+      border: solid $color-primary 1px;
       border-radius: 8px;
       // padding: 20px;
       padding: 32px 40px;
       &__h1 {
-        color: $color-title;
+        color: $color-primary;
         font-size: 1.5rem;
         margin-bottom: 40px;
+        font-weight: 500;
+      }
+      &__line {
+        margin: 40px 0;
       }
       &__grid {
         display: grid;
@@ -98,8 +72,8 @@
         grid-row-gap: 20px;
         // font-weight: bold !important;
         p.key {
-          font-weight: bold;
-          color: $color-title;
+          font-weight: 400;
+          color: $color-primary;
         }
         // grid-template-rows: repeat(3, minmax(0, 1fr));
         // &__key {
@@ -111,27 +85,58 @@
         //     grid-column-end: 3;
         // }
       }
+      &__timezones {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        li {
+          margin-right: 20px;
+          background-color: $color-bg-special;
+          border-radius: 8px;
+          padding: 4px 8px;
+          color: $color-primary;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+      }
     }
   }
-  &__description {
-    // flex: 4 1 250px;
+  &__right {
     width: 40vw;
     order: 2;
-    // background-color: orange;
-    padding: 0 20px 20px 20px;
-    h1 {
+    display: flex;
+    flex-direction: column;
+    &__posted-applications {
       margin-bottom: 20px;
-      font-size: 1.25rem;
-      color: $color-title;
-      font-weight: 500;
     }
-    p {
-      margin: 20px 0;
-      font-weight: 400;
-      br {
-        display: block; /* makes it have a width */
-        content: ""; /* clears default height */
-        margin-top: 20px; /* change this to whatever height you want it */
+    &__description {
+      // flex: 4 1 250px;
+      // width: 40vw;
+      // order: 2;
+      // background-color: orange;
+      // padding: 0 20px 20px 20px;
+      h1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: $color-primary;
+        font-weight: 400;
+      }
+      ul {
+        list-style-position: outside;
+        margin-left: 13px;
+        li {
+          // margin-left: 15px;
+        }
+      }
+      p {
+        // margin: 20px 0;
+        font-weight: 400;
+        br {
+          display: block; /* makes it have a width */
+          content: ""; /* clears default height */
+          margin-top: 20px; /* change this to whatever height you want it */
+        }
       }
     }
   }
@@ -148,8 +153,9 @@
     // justify-content: center;
     color: red;
     // margin: 0;
-    &__description {
+    &__right {
       margin: 0;
+      order: 1;
       // width: 65vw;
       width: 100%;
       order: 1;
@@ -158,17 +164,12 @@
     &__left {
       margin: 0;
       width: 100%;
-      &__apply {
-        // width: 65vw;
-        width: calc(100% - 80px);
-        order: 2;
-        align-self: center;
-        color: yellow;
-      }
+      order: 2;
       &__about {
+        margin-top: 40px;
         // width: 65vw;
         width: calc(100% - 80px);
-        order: 3;
+        // order: 2;
         align-self: center;
       }
     }

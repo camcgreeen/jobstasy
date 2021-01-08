@@ -37,7 +37,7 @@ body {
   font-family: "Euclid Circular A", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
   // background-color: white;
-  color: $color-body;
+  color: $color-secondary;
   animation: fadeIn ease-in-out $fade-duration;
   -webkit-animation: fadeIn ease-in-out $fade-duration;
   -moz-animation: fadeIn ease-in-out $fade-duration;
@@ -47,7 +47,7 @@ body {
 
 body {
   background-color: white;
-  min-width: 100vw;
+  max-width: 100vw;
 }
 
 @keyframes fadeIn {

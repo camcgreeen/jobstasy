@@ -5,13 +5,14 @@ import ListInformation from "./ListInformation";
 import JobList from "./JobList";
 import Footer from "./Footer";
 import "./main.scss";
+import "./Jobs.scss";
 import "./Likes.scss";
 
 class Likes extends React.Component {
   render() {
     return (
       <>
-        {/* <Navbar /> */}
+        <Navbar />
         <div className="likes-bg">
           <div className="likes-bg__profile">
             <p className="likes-bg__profile__text">X</p>
@@ -22,7 +23,7 @@ class Likes extends React.Component {
           <ListInformation />
           <JobList />
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </>
     );
   }

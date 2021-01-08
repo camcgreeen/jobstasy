@@ -2,7 +2,7 @@
 
 .list-info {
   // background-color: yellow;
-  margin-top: 80px;
+  // margin-top: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .job-number {
-  font-weight: bold;
+  font-weight: 400;
   // font-size: 1.25rem;
 }
 
@@ -24,12 +24,12 @@
   transition: background-color 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
-    background-color: #faeded;
+    background-color: $color-bg-special;
   }
   &__img {
   }
   &__text {
     margin-left: 10px;
-    color: $color-accent;
+    color: $color-action;
   }
 }

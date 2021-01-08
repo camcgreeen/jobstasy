@@ -11,7 +11,7 @@ class ListInformation extends React.Component {
         <div className="filters">
           <img
             className="filters__img"
-            src="https://svgshare.com/i/So3.svg"
+            src="https://svgshare.com/i/SxK.svg"
             alt="filter"
           />
           <p className="filters__text">Filters</p>

@@ -2,11 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .likes-bg {
-  background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
   transform: translateY(-120px);
-  z-index: -10000;
-  position: relative;
+  z-index: 5;
   padding-top: 120px;
   display: flex;
   flex-direction: column;
@@ -17,7 +16,7 @@
     height: 60px;
     border-radius: 50%;
     font-family: "Roboto", sans-serif;
-    background-color: #da4f7a;
+    background-color: $color-highlight;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +27,9 @@
     }
   }
   &__h1 {
+    color: $color-primary;
+    font-weight: 400;
     margin-bottom: 40px;
-    color: $color-title;
     font-size: 3rem;
   }
 }

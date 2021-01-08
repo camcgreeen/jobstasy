@@ -131,6 +131,9 @@ class Navbar extends React.Component {
       this.setState({ menuOpen: false });
     }
   };
+  componentDidUpdate = () => {
+    console.log(this.state);
+  };
 }
 
 export default Navbar;

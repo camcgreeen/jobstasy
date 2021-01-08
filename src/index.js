@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -18,7 +23,7 @@ const routing = (
     <div id="routing-container">
       {/* <Navbar /> */}
       <ScrollToTop>
-        <Navbar />
+        {/* <Navbar /> */}
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
@@ -27,11 +32,43 @@ const routing = (
         <Route path="/jobs" exact component={Jobs}></Route>
         <Route path="/likes" component={Likes}></Route>
         <Route path="/jobs/:id" component={JobDetail}></Route>
-        <Footer />
+        {/* <Footer /> */}
       </ScrollToTop>
     </div>
   </Router>
 );
+
+// const AuthenticatedRoutes = () => {
+//   return (
+//     <>
+//       <Navbar />
+//       <Router>
+//         <Route path="/jobs" exact component={Jobs}></Route>
+//         <Route path="/likes" component={Likes}></Route>
+//         <Route path="/jobs/:id" component={JobDetail}></Route>
+//       </Router>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// const routing = (
+//   <Router>
+//     <div id="routing-container">
+//       {/* <Navbar /> */}
+//       <ScrollToTop>
+//         <Navbar />
+//         <Route exact path="/">
+//           <Redirect to="/login" />
+//         </Route>
+//         <Route path="/login" component={LogIn}></Route>
+//         <Route path="/signup" component={SignUp}></Route>
+//         <Route component={AuthenticatedRoutes} />
+//         <Footer />
+//       </ScrollToTop>
+//     </div>
+//   </Router>
+// );
 
 ReactDOM.render(
   <React.StrictMode>{routing}</React.StrictMode>,

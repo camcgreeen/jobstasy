@@ -1,33 +1,57 @@
 @import "../utilities/variables.scss";
 
 .search-field-bg {
-  background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  // position: relative;
+  background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
   transform: translateY(-120px);
-  z-index: -10000;
-  position: relative;
+  z-index: 5;
+  // position: relative;
   padding-top: 120px;
+  // &::before {
+  //   content: "";
+  //   background: linear-gradient(180deg, $bg-color-primary, $bg-color-secondary);
+  //   border-radius: 0 0 42px 42px;
+  //   width: 100vw;
+  // }
+  // &::before {
+  //   content: "";
+  //   background-color: yellow;
+  //   color: red;
+  //   font-weight: bold;
+  //   display: block;
+  //   margin: 0;
+  //   padding: 0;
+  //   // position: absolute;
+  //   // top: 120px;
+  //   // left: 0;
+  //   // width: calc(100vw - );
+  //   // width: 100vw;
+  //   // height: 100px;
+  //   transform: translateX(-17.5vw);
+  // }
 }
 .search-field {
   margin: 0 auto;
-  width: 65vw;
-  z-index: -100;
+  // width: 65vw;
+  // z-index: -100;
 }
 .h1 {
   padding-top: 80px;
-  color: $color-title;
-  font-weight: 500;
+  color: $color-primary;
+  font-weight: 400;
   margin-bottom: 40px;
   font-size: 3rem;
 }
 .h2 {
   margin-top: 20px;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 1.25rem;
   &__company {
-    color: $color-accent;
+    color: $color-highlight;
     text-decoration: none;
     &:hover {
-      color: darken($color-accent, 10%);
+      color: darken($color-highlight, 10%);
     }
   }
 }
@@ -57,7 +81,7 @@
       margin-left: 20px;
       width: calc(100% - 20px);
       &::placeholder {
-        color: $color-body;
+        color: $color-placeholder;
         opacity: 0.75;
       }
       &:focus {
@@ -84,7 +108,7 @@
       margin-left: 20px;
       width: calc(100% - 20px);
       &::placeholder {
-        color: $color-body;
+        color: $color-placeholder;
         opacity: 0.75;
       }
       &:focus {
@@ -96,7 +120,7 @@
 
 .btn {
   &--search {
-    background-color: $color-button;
+    background-color: $color-action;
     color: white;
     border: none;
     font-weight: 500;
@@ -105,7 +129,7 @@
     &:hover {
       cursor: pointer;
       box-shadow: 4px 4px 24px #c9cad1;
-      background-color: $color-button;
+      background-color: $color-action;
       border: none;
     }
   }
