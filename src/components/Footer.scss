@@ -4,19 +4,43 @@
   background-color: #131520;
   // width: 100%;
   margin-top: 80px;
-  padding: 40px 10vw;
+  padding: 40px 17.5vw;
   &__img {
     margin-bottom: 40px;
   }
   &__links {
     list-style: none;
+    &__contact {
+      color: white !important;
+      // &:hover {
+      //   color: white !important;
+      // }
+    }
     li {
+      a {
+        color: white;
+        cursor: pointer;
+        &:hover {
+          color: darken(white, 20%);
+        }
+      }
+      font-size: 1.25rem;
       color: white;
       margin-bottom: 16px;
       // display: inline-block;
+      // a {
+      //   text-decoration: none;
+      //   font-size: 1.5rem;
+      // }
       &:hover {
-        color: darken(white, 20%) !important;
+        color: darken(white, 20%);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer {
+    padding: 40px 10vw;
   }
 }

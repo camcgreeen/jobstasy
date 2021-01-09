@@ -20,34 +20,49 @@
     display: flex;
     flex-direction: row;
     &__img {
-      align-self: flex-start;
+      align-self: center;
       margin-right: 40px;
       width: 40px;
       height: 40px;
     }
     &__info {
       &__title {
-        color: $color-title;
-        font-weight: 500;
+        color: $color-primary;
+        font-weight: 400;
       }
-      &__company {
-        margin-top: 20px;
-        color: $color-title;
-        font-weight: bold;
-        // font-size: 0.8rem;
-      }
-      &__tags {
-        margin-top: 20px;
-        list-style: none;
+      &__details {
         display: flex;
         flex-direction: row;
-        li {
-          font-size: 0.75rem;
-          margin-right: 10px;
-          background-color: #edebfe;
-          color: #5521b5;
-          padding: 8px 16px;
-          border-radius: 8px;
+        margin-top: 20px;
+        // justify-content: center;
+        align-items: center;
+        &__company {
+          // margin-top: 20px;
+          margin-right: 40px;
+          color: $color-primary;
+          font-weight: 500;
+          // font-size: 0.8rem;
+        }
+        &__salary {
+          // align-self: center;
+          margin-right: 40px;
+          &__coins {
+            margin-right: 10px;
+          }
+        }
+        &__tags {
+          // margin-top: 20px;
+          list-style: none;
+          display: flex;
+          flex-direction: row;
+          li {
+            font-size: 0.75rem;
+            margin-right: 10px;
+            background-color: $color-bg-special;
+            color: $color-action;
+            padding: 4px 8px;
+            border-radius: 8px;
+          }
         }
       }
     }
@@ -69,6 +84,53 @@
       }
       &__svg {
         // transition: fill 0.2s ease-in-out;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .job-card {
+    flex-direction: column;
+    &__left {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      &__img {
+        margin: 0;
+        align-self: flex-start;
+      }
+      &__info {
+        &__title {
+          margin-left: 0;
+          align-self: flex-start;
+          margin-top: 20px;
+        }
+        &__details {
+          flex-direction: column;
+          margin-top: 0;
+          &__company {
+            margin-left: 0;
+            margin-top: 20px;
+            align-self: flex-start;
+            // margin-top: 10px;
+          }
+          &__salary {
+            align-self: flex-start;
+            margin-top: 20px;
+            display: none;
+          }
+          &__tags {
+            align-self: flex-start;
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+    &__right {
+      &__timestamp {
+        margin-top: 20px;
+        display: none;
       }
     }
   }

@@ -11,3 +11,9 @@
   // padding: 0 100px;
   // background-color: white;
 }
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    width: 80vw;
+  }
+}

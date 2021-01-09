@@ -196,7 +196,7 @@ $translateX: 0;
   nav {
     img {
       // width: 20px;
-      height: 16px;
+      height: 32px;
     }
     ul.collapsible__links {
       width: 200px;
@@ -210,7 +210,7 @@ $translateX: 0;
       }
     }
   }
-  $height-icon-res: 10px;
+  $height-icon-res: 16px;
   $width-line-res: (2 * $height-icon-res);
   $height-line-res: ($height-icon-res / 6.25);
   $translateY-res: ($height-icon-res / 2);

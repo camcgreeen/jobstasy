@@ -80,6 +80,7 @@ body {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     font-weight: 500;
     padding: 16px 32px;
+    // height: 100%;
   }
   &--apply {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -113,10 +114,10 @@ body {
     }
   }
   &--like {
-    // background-color: none !important;
+    background-color: white !important;
     // color: none !important;
     margin: 20px 0;
-    background-color: white;
+    // background-color: white;
     // width: 28px;
     // height: 28px;
     // padding: 0;
@@ -125,10 +126,10 @@ body {
     // padding: 10px;
     svg {
       width: 18px;
-      height: 18px;
+      // height: 16px;
     }
     padding: 0;
-    border: solid $color-action 1px;
+    border: solid $color-primary 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,19 +137,21 @@ body {
     svg path {
       transition: fill 0.2s ease-in-out;
     }
-    &:hover {
-      border: solid $color-highlight 1px;
-      background-color: $color-highlight;
+    &:hover,
+    &:focus {
+      outline: 0;
+      border: solid $color-action 1px;
+      // background-color: $color-highlight;
       svg path {
-        fill: white;
+        stroke: $color-action;
       }
     }
-    &--liked {
-      background-color: $color-action !important;
-      svg path {
-        fill: white !important;
-      }
-    }
+    // &--liked {
+    //   background-color: $color-action !important;
+    //   svg path {
+    //     fill: white !important;
+    //   }
+    // }
     // padding: 20px;
     // color: $color-action;
     // svg rect {
@@ -173,6 +176,16 @@ body {
     box-shadow: none;
     &:hover {
       box-shadow: 0px 4px 16px $color-primary;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .btn {
+    &--search {
+      margin-top: 20px;
+      // margin-bottom: 120px;
+      width: calc(100%);
     }
   }
 }
