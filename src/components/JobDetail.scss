@@ -10,7 +10,7 @@
 .job-detail-bg {
   background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
-  transform: translateY(-120px);
+  transform: translateY(-125px);
   z-index: 5;
   padding-top: 120px;
   display: flex;
@@ -54,7 +54,7 @@
       // margin-top: 80px;
       // background-color: $bg-color-tertiary;
       border: solid $color-primary 1px;
-      border-radius: 8px;
+      border-radius: 4px;
       // padding: 20px;
       padding: 32px 40px;
       &__h1 {

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./FormAuthentication.scss";
+import "./main.scss";
 // import { generateRandomString, createDefaultNotes } from "../helpers";
 // const firebase = require("firebase");
 
@@ -26,7 +27,7 @@ class LogIn extends React.Component {
           </Link>
           <button
             type="submit"
-            className="btn-authentication btn-authentication--demo"
+            className="btn btn--authentication"
             onClick={this.createAndLoginDemoUser}
           >
             Log in as a demo user
@@ -58,7 +59,7 @@ class LogIn extends React.Component {
             </h4>
             <button
               type="submit"
-              className="btn-authentication btn-authentication--log-in"
+              className="btn btn--authentication btn--login"
             >
               Log in
             </button>

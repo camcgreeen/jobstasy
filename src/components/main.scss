@@ -50,6 +50,133 @@ body {
   max-width: 100vw;
 }
 
+.btn {
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: $color-action;
+  color: white;
+  // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+  //   box-shadow 0.2s ease-in-out;
+  &:hover {
+    background-color: darken($color-action, 4%);
+  }
+  &--authentication {
+    margin-bottom: 40px;
+    width: 100%;
+    padding: 20px;
+    font-size: 1rem;
+  }
+  &--login {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    background-color: $color-supplemental;
+    &:hover {
+      background-color: darken($color-supplemental, 4%);
+    }
+  }
+  &--search {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    font-weight: 500;
+    padding: 16px 32px;
+  }
+  &--apply {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    background-color: white;
+    color: $color-action;
+    border: solid $color-action 1px;
+    transform: translateY(50%);
+    font-size: 1.5rem;
+    padding: 10px 100px;
+    // margin-top: -50%;
+    margin-top: 24px;
+    position: relative;
+    // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    svg {
+      width: 28px;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translate(-50%, -50%);
+    }
+    svg path {
+      transition: fill 0.2s ease-in-out;
+      fill: $color-action;
+    }
+    &:hover {
+      background-color: $color-action;
+      color: white;
+      svg path {
+        fill: white;
+      }
+    }
+  }
+  &--like {
+    // background-color: none !important;
+    // color: none !important;
+    margin: 20px 0;
+    background-color: white;
+    // width: 28px;
+    // height: 28px;
+    // padding: 0;
+    width: 36px;
+    height: 36px;
+    // padding: 10px;
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+    padding: 0;
+    border: solid $color-action 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+    svg path {
+      transition: fill 0.2s ease-in-out;
+    }
+    &:hover {
+      border: solid $color-highlight 1px;
+      background-color: $color-highlight;
+      svg path {
+        fill: white;
+      }
+    }
+    &--liked {
+      background-color: $color-action !important;
+      svg path {
+        fill: white !important;
+      }
+    }
+    // padding: 20px;
+    // color: $color-action;
+    // svg rect {
+    //   stroke: $color-action;
+    // }
+    // svg path {
+    //   fill: $color-action;
+    // }
+    // &:hover {
+    //   // background-color: $color-highlight;
+    //   // color: white;
+    //   svg rect {
+    //     stroke: $color-highlight;
+    //   }
+    //   // svg path {
+    //   //   fill: $color-highlight;
+    //   // }
+    // }
+  }
+  &--contact {
+    border-radius: 50%;
+    box-shadow: none;
+    &:hover {
+      box-shadow: 0px 4px 16px $color-primary;
+    }
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

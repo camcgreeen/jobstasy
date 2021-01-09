@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./FormAuthentication.scss";
+import "./main.scss";
 // import { generateRandomString, createDefaultNotes } from "../helpers";
 // const firebase = require("firebase");
 
@@ -46,13 +47,16 @@ class SignUp extends React.Component {
               className="input input--password-confirmation"
               onChange={(e) => this.userTyping("passwordConfirmation", e)}
             />
+            <input
+              type="text"
+              placeholder="Nickname"
+              className="input input--nickname"
+              onChange={(e) => this.userTyping("nickname", e)}
+            />
             <h4 className="error-text">
               {this.state.signupError ? this.state.signupError : null}
             </h4>
-            <button
-              type="submit"
-              className="btn-authentication btn-authentication--sign-up"
-            >
+            <button type="submit" className="btn btn--authentication">
               Sign up
             </button>
           </form>

@@ -217,7 +217,7 @@ form {
 
 .h4-form {
   margin-bottom: $login-margin;
-  opacity: 0.5;
+  // opacity: 0.5;
   font-weight: 400;
   font-size: 0.8rem;
   text-align: center;
@@ -239,7 +239,8 @@ form {
 }
 
 .h5-form {
-  opacity: 0.5;
+  // opacity: 0.5;
+  color: $color-placeholder;
   font-weight: 400;
   text-align: center;
   font-size: 0.8rem;
@@ -249,51 +250,53 @@ form {
   -o-animation: none !important;
   -ms-animation: none !important;
   &__link {
+    // color: $color-placeholder;
     font-size: 0.8rem;
   }
 }
 
-// @media only screen and (max-width: 600px) {
-//   $login-margin: 35px;
-//   *,
-//   html,
-//   body {
-//   }
-//   .container {
-//     width: calc(100vw - 2 * #{$container-padding});
+@media only screen and (max-width: 600px) {
+  $login-margin: 35px;
+  *,
+  html,
+  body {
+  }
+  .container-authentication {
+    width: calc(100vw - 2 * #{$container-padding});
 
-//     margin: 0;
-//     height: calc(100% - 2 * #{$container-padding});
-//     min-height: 600px;
-//     top: 0;
-//     left: 50%;
-//     transform: translateX(-50%) translateY(0%);
-//   }
+    margin: 0;
+    height: calc(100% - 2 * #{$container-padding});
+    min-height: 600px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0%);
+  }
 
-//   .logo-text {
-//     width: calc(35px * 0.9);
-//     height: calc(35px * 0.9);
-//   }
+  .logo-text {
+    // width: calc(35px * 0.9);
+    // height: calc(35px * 0.9);
+    height: 30px;
+  }
 
-//   input,
-//   input::-webkit-input-placeholder {
-//     font-size: 0.8rem;
-//   }
+  input,
+  input::-webkit-input-placeholder {
+    font-size: 0.8rem;
+  }
 
-//   .input,
-//   .btn,
-//   .logo-text,
-//   .h1-form,
-//   .h4-form,
-//   .h5-form {
-//     margin-bottom: $login-margin;
-//   }
-// }
+  .input,
+  .btn,
+  .logo-text,
+  .h1-form,
+  .h4-form,
+  .h5-form {
+    margin-bottom: $login-margin;
+  }
+}
 
-// @media only screen and (max-height: 750px) {
-//   .container {
-//     top: 0;
-//     left: 50%;
-//     transform: translateX(-50%) translateY(0%);
-//   }
-// }
+@media only screen and (max-height: 750px) {
+  .container-authentication {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0%);
+  }
+}

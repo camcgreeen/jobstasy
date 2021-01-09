@@ -4,7 +4,7 @@
   // position: relative;
   background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
-  transform: translateY(-120px);
+  transform: translateY(-125px);
   z-index: 5;
   // position: relative;
   padding-top: 120px;
@@ -67,7 +67,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 20px;
     background-color: white;
     width: 25vw;
@@ -94,7 +94,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 20px;
     background-color: white;
     width: 25vw;
@@ -118,19 +118,19 @@
   }
 }
 
-.btn {
-  &--search {
-    background-color: $color-action;
-    color: white;
-    border: none;
-    font-weight: 500;
-    padding: 16px 32px;
-    border-radius: 8px;
-    &:hover {
-      cursor: pointer;
-      box-shadow: 4px 4px 24px #c9cad1;
-      background-color: $color-action;
-      border: none;
-    }
-  }
-}
+// .btn {
+//   &--search {
+//     background-color: $color-action;
+//     color: white;
+//     border: none;
+//     font-weight: 500;
+//     padding: 16px 32px;
+//     border-radius: 8px;
+//     &:hover {
+//       cursor: pointer;
+//       box-shadow: 4px 4px 24px #c9cad1;
+//       background-color: $color-action;
+//       border: none;
+//     }
+//   }
+// }
