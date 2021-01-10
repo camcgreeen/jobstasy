@@ -91,6 +91,9 @@ body {
   width: 400px;
   position: absolute;
   top: 50%;
+  // top: 200px;
+  // margin-top: 50%;
+  // margin-top: 0px;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background-color: white;
@@ -255,14 +258,14 @@ form {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
   $login-margin: 35px;
   *,
   html,
   body {
   }
   .container-authentication {
-    width: calc(100vw - 2 * #{$container-padding});
+    // width: calc(100vw - 2 * #{$container-padding});
 
     margin: 0;
     height: calc(100% - 2 * #{$container-padding});
@@ -284,7 +287,7 @@ form {
   }
 
   .input,
-  .btn,
+  // .btn,
   .logo-text,
   .h1-form,
   .h4-form,
@@ -293,10 +296,16 @@ form {
   }
 }
 
-@media only screen and (max-height: 750px) {
+@media only screen and (max-width: 650px) {
   .container-authentication {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(0%);
+    width: calc(100vw - 2 * #{$container-padding});
   }
 }
+
+// @media only screen and (max-height: 750px) {
+//   .container-authentication {
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%) translateY(0%);
+//   }
+// }

@@ -11,21 +11,21 @@ class JobCard extends React.Component {
     };
   }
   render() {
+    const { job } = this.props;
     return (
       <div className="job-card">
         <div className="job-card__left">
           <img
             className="job-card__left__img"
-            src="https://svgshare.com/i/Sxk.svg"
+            // src="https://svgshare.com/i/Sxk.svg"
+            src={job.company_logo}
             alt=""
           />
           <div className="job-card__left__info">
-            <div className="job-card__left__info__title">
-              Product Operations Analyst
-            </div>
+            <div className="job-card__left__info__title">{job.title}</div>
             <div className="job-card__left__info__details">
               <div className="job-card__left__info__details__company">
-                Apple
+                {job.company}
               </div>
               <div className="job-card__left__info__details__salary">
                 <svg
@@ -45,11 +45,11 @@ class JobCard extends React.Component {
                     fill="#5D6598"
                   />
                 </svg>
-                65k-85k GBP
+                {job.salary_min}-{job.salary_max} GBP
               </div>
               <ul className="job-card__left__info__details__tags">
-                <li>Full Time</li>
-                <li>Senior Level</li>
+                <li>{job.type}</li>
+                <li>{job.location.split(/\s|\,/gm)[0]}</li>
               </ul>
             </div>
           </div>
@@ -84,7 +84,7 @@ class JobCard extends React.Component {
               />
             </svg>
           </div> */}
-          <p className="job-card__right__timestamp">1 day ago</p>
+          <p className="job-card__right__timestamp">X minutes ago</p>
         </div>
       </div>
     );

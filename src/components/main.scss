@@ -88,14 +88,14 @@ body {
     color: $color-action;
     border: solid $color-action 1px;
     transform: translateY(50%);
-    font-size: 1.5rem;
-    padding: 10px 100px;
+    font-size: 1.25rem;
+    padding: 10px 75px;
     // margin-top: -50%;
     margin-top: 24px;
     position: relative;
     // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     svg {
-      width: 28px;
+      width: 24px;
       position: absolute;
       top: 50%;
       right: 10px;

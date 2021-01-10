@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./main.scss";
+import "./Jobs.scss";
 import "./JobDetail.scss";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -26,6 +27,7 @@ class JobDetail extends React.Component {
             src="https://svgshare.com/i/Sxk.svg"
             alt=""
           /> */}
+          <div className="container"></div>
           <img className="job-detail-bg__img" src={job.company_logo} alt="" />
           <h1 className="job-detail-bg__title">{job.title}</h1>
           <h2 className="job-detail-bg__company">
@@ -251,7 +253,9 @@ class JobDetail extends React.Component {
                   <p className="key">Job type</p>
                   <p className="value">{job.type}</p>
                   <p className="key">Salary</p>
-                  <p className="value">£65k-85k GBP</p>
+                  <p className="value">
+                    £{job.salary_min}-{job.salary_max} GBP
+                  </p>
                 </div>
                 <hr className="job-detail-info__left__about__line" />
                 <h1 className="job-detail-info__left__about__h1">

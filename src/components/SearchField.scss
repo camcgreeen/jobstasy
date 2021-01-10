@@ -71,7 +71,7 @@
     border-radius: 4px;
     padding: 20px;
     background-color: white;
-    width: calc(32.5vw - 110px);
+    width: calc(40vw - 110px);
     box-shadow: 4px 4px 59px #edeef4;
     &__img {
       width: 24px;
@@ -98,7 +98,7 @@
     border-radius: 4px;
     padding: 20px;
     background-color: white;
-    width: calc(32.5vw - 110px);
+    width: calc(40vw - 110px);
     box-shadow: 4px 4px 59px #edeef4;
     &__img {
       width: 24px;
@@ -135,17 +135,6 @@
 //     }
 //   }
 // }
-
-@media only screen and (max-width: 1300px) {
-  .inputs {
-    &__description {
-      // width: 20vw;
-    }
-    &__location {
-      // width: 20vw;
-    }
-  }
-}
 
 @media only screen and (max-width: 1024px) {
   .search-field-bg {
