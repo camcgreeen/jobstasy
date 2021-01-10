@@ -21,7 +21,7 @@
     margin-top: 40px;
     margin-bottom: 40px;
     width: 100px;
-    height: 100px;
+    // height: 100px;
   }
   &__title {
     margin-bottom: 40px;
@@ -130,7 +130,8 @@
         }
       }
       p {
-        // margin: 20px 0;
+        margin: 20px 0;
+        color: pink;
         font-weight: 400;
         br {
           display: block; /* makes it have a width */

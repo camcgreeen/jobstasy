@@ -5,28 +5,41 @@ import "./JobDetail.scss";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+const parse = require("html-react-parser");
+
 class JobDetail extends React.Component {
   constructor() {
     super();
     this.state = {
       jobLiked: false,
+      job: {},
     };
   }
   render() {
+    const { job } = this.state;
     return (
       <>
         <Navbar />
         <div className="job-detail-bg">
-          <img
+          {/* <img
             className="job-detail-bg__img"
             src="https://svgshare.com/i/Sxk.svg"
             alt=""
-          />
-          <h1 className="job-detail-bg__title">Product Operations Analyst</h1>
+          /> */}
+          <img className="job-detail-bg__img" src={job.company_logo} alt="" />
+          <h1 className="job-detail-bg__title">{job.title}</h1>
           <h2 className="job-detail-bg__company">
-            Apple{" "}
+            <a
+              href={job.company_url}
+              style={{ textDecoration: "none" }}
+              className="job-detail-bg__company"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {job.company + " "}
+            </a>
             <span className="job-detail-bg__company__location">
-              · London, UK
+              · {job.location}
             </span>
           </h2>
           <button className="btn btn--apply">
@@ -72,7 +85,7 @@ class JobDetail extends React.Component {
           <div className="job-detail-info">
             <div className="job-detail-info__right">
               <div className="job-detail-info__right__posted-applications">
-                Posted 8 days ago · 98 applicants
+                Posted X days ago · X applicants
               </div>
               <button className="btn btn--like">
                 <svg
@@ -94,8 +107,8 @@ class JobDetail extends React.Component {
                   />
                 </svg>
               </button>
-              <div className="job-detail-info__right__description">
-                <h1>Job description</h1>
+              {/* <div className="job-detail-info__right__description"> */}
+              {/* <h1>Job description</h1>
                 <br />
                 <p>
                   Our Strategic Partnerships team is growing and our goal is to
@@ -218,8 +231,12 @@ class JobDetail extends React.Component {
                   Silicon Valley and cannabis industry insiders. We're building
                   a world class delivery team and effecient and cannabis
                   industry veterans.{" "}
-                </p>
-              </div>
+                </p> */}
+              {/* {job.description}
+              </div> */}
+              {parse(
+                `<div class='job-detail-info__right__description'>${job.description}</div>`
+              )}
             </div>
             <div className="job-detail-info__left">
               <div className="job-detail-info__left__about">
@@ -230,9 +247,9 @@ class JobDetail extends React.Component {
                   <p className="key">Apply before</p>
                   <p className="value">February 18th, 2021</p>
                   <p className="key">Job posted on</p>
-                  <p className="value">December 20th, 2020</p>
+                  <p className="value">{job.created_at + "FORMAT THIS"}</p>
                   <p className="key">Job type</p>
-                  <p className="value">Full Time</p>
+                  <p className="value">{job.type}</p>
                   <p className="key">Salary</p>
                   <p className="value">£65k-85k GBP</p>
                 </div>
@@ -255,6 +272,10 @@ class JobDetail extends React.Component {
   }
   componentDidMount = () => {
     console.log(`Job ID = ${this.props.match.params.id}`);
+    console.log("props", this.props.location.state.details);
+    this.setState({
+      job: this.props.location.state.details,
+    });
   };
 }
 

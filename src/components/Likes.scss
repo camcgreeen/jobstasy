@@ -33,3 +33,11 @@
     font-size: 3rem;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .likes-bg {
+    padding-top: 60px;
+    // margin-bottom: 0;
+    // height: 10%;
+  }
+}

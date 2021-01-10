@@ -4,8 +4,8 @@ import "./main.scss";
 import "./JobCard.scss";
 
 class JobCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       viewJobHovered: false,
     };
@@ -89,7 +89,8 @@ class JobCard extends React.Component {
       </div>
     );
   }
-  componentDidUpdate = () => {
+  componentDidMount = () => {
+    // console.log(this.state);
     // console.log(this.state);
   };
 }

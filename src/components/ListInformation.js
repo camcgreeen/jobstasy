@@ -4,9 +4,10 @@ import "./main.scss";
 import "./ListInformation.scss";
 
 class ListInformation extends React.Component {
+  // constructor(prosp)
   render() {
     return (
-      <div className="list-info">
+      <div className="list-info" style={{ marginTop: this.props.marginTop }}>
         <p className="job-number">XXX jobs</p>
         <div className="filters">
           <img
