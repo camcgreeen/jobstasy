@@ -45,9 +45,14 @@ body {
   -ms-animation: fadeIn ease-in-out $fade-duration;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 body {
   background-color: white;
   max-width: 100vw;
+  overscroll-behavior-y: none;
 }
 
 .btn {

@@ -31,6 +31,9 @@
   }
   &__company {
     margin-bottom: 40px;
+    // margin: 0 auto 40px auto;
+    // margin: 0 auto;
+    text-align: center;
     color: $color-highlight;
     font-weight: 400;
     &__location {

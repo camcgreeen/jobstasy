@@ -11,6 +11,10 @@
   .mobile-menu__links__link {
     // color: darken(white, 20%);
     font-weight: 500;
+    color: $color-highlight;
+    &:hover {
+      color: darken($color-highlight, 4%) !important;
+    }
   }
 }
 
@@ -98,7 +102,7 @@ nav {
   -o-animation: none !important;
   -ms-animation: none !important;
   opacity: 0;
-  display: none;
+  // display: none;
   padding: 120px 0;
   border-radius: 0 0 20px 20px;
   box-shadow: 0px 4px 29px #404668;
@@ -238,6 +242,7 @@ $translateX: 0;
           rotate($rotation);
         -moz-transform: translateY($translateY) translateX($translateX)
           rotate($rotation);
+        background-color: white;
       }
       .line-2 {
         opacity: 0;
@@ -249,6 +254,13 @@ $translateX: 0;
           rotate($rotation * -1);
         -moz-transform: translateY($translateY * -1) translateX($translateX)
           rotate($rotation * -1);
+        background-color: white;
+      }
+      &:hover {
+        .line-1,
+        .line-3 {
+          background-color: $color-highlight;
+        }
       }
     }
   }
@@ -269,14 +281,14 @@ $translateX: 0;
 // }
 
 @media only screen and (max-width: 1024px) {
-  .mobile-menu {
-    display: block;
-    &__links {
-      &__link {
-        z-index: 200;
-      }
-    }
-  }
+  // .mobile-menu {
+  //   display: block;
+  //   &__links {
+  //     &__link {
+  //       z-index: 200;
+  //     }
+  //   }
+  // }
   .logo {
     // visibility: hidden;
   }
@@ -362,7 +374,7 @@ $translateX: 0;
           rotate($rotation);
         -moz-transform: translateY($translateY-res) translateX($translateX)
           rotate($rotation);
-        background-color: white;
+        // background-color: white;
       }
       .line-2 {
         opacity: 0;
@@ -374,14 +386,14 @@ $translateX: 0;
           translateX($translateX) rotate($rotation * -1);
         -moz-transform: translateY($translateY-res * -1) translateX($translateX)
           rotate($rotation * -1);
-        background-color: white;
+        // background-color: white;
       }
-      &:hover {
-        .line-1,
-        .line-3 {
-          background-color: $color-highlight;
-        }
-      }
+      // &:hover {
+      //   .line-1,
+      //   .line-3 {
+      //     background-color: $color-highlight;
+      //   }
+      // }
     }
   }
 }

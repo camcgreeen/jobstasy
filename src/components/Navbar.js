@@ -15,21 +15,27 @@ class Navbar extends React.Component {
     return (
       <>
         <nav>
-          <NavLink to="/jobs">
+          <NavLink
+            to="/jobs"
+            style={{
+              visibility: this.state.menuOpen ? "hidden" : "visible",
+              pointerEvents: this.state.menuOpen ? "none !important" : "auto",
+              cursor: this.state.menuOpen ? "default" : "pointer",
+            }}
+          >
             <img
               src="https://svgshare.com/i/Sub.svg"
               className="logo"
               alt=""
-              style={{
-                visibility:
-                  this.state.menuOpen && window.innerWidth <= 1024
-                    ? "hidden"
-                    : "visible",
-              }}
+              // style={{
+              //   visibility: this.state.menuOpen ? "hidden" : "visible",
+              //   pointerEvents: this.state.menuOpen ? "none !important" : "auto",
+              //   cursor: this.state.menuOpen ? "default" : "pointer",
+              // }}
             />
           </NavLink>
           <div className="collapsible">
-            <ul
+            {/* <ul
               className={
                 this.state.menuOpen
                   ? "collapsible__links visible"
@@ -41,7 +47,6 @@ class Navbar extends React.Component {
                 style={{
                   textDecoration: "none",
                   display: "inline-block",
-                  // width: "60px",
                 }}
               >
                 <li className="collapsible__links__link">Jobs</li>
@@ -51,7 +56,6 @@ class Navbar extends React.Component {
                   pathname: "/likes",
                   state: { menuOpen: this.state.menuOpen },
                 }}
-                // to="/likes"
                 style={{ textDecoration: "none", display: "inline-block" }}
               >
                 <li className="collapsible__links__link">My Likes</li>
@@ -79,7 +83,6 @@ class Navbar extends React.Component {
                       fill="#5D6598"
                     />
                   </svg>
-                  {/* <p>Source</p> */}
                   Source
                 </li>
               </a>
@@ -100,13 +103,9 @@ class Navbar extends React.Component {
                     fill="#5D6598"
                   />
                 </svg>
-                {/* <p>Source</p> */}
                 Log Out
               </li>
-              {/* <li>
-            <button className="btn btn--log-out">Log Out</button>
-          </li> */}
-            </ul>
+            </ul> */}
             {/* <div
             className="collapsible__menu-btn"
             // style={{ width: "20px", height: "20px" }}

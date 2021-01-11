@@ -1,5 +1,26 @@
 @import "../utilities/variables.scss";
 
+.filter-overlay-bg {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 24px;
+  z-index: 1000;
+  background-color: white;
+  width: 75%;
+  height: 150%;
+  box-shadow: 0px 0px 1px 1000px rgba(160, 174, 192, 0.8);
+  // overflow-y: scroll;
+}
+
+.visible {
+  display: block;
+  opacity: 1;
+}
+
 .list-info {
   // background-color: yellow;
   // margin-top: 80px;
@@ -16,6 +37,7 @@
 }
 
 .filters {
+  // opacity: 0;
   display: flex;
   flex-direction: row;
   background-color: white;
