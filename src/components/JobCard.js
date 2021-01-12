@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./main.scss";
 import "./JobCard.scss";
+import { convertSalary } from "../utilities/helper";
 
 class JobCard extends React.Component {
   constructor(props) {
@@ -45,7 +46,8 @@ class JobCard extends React.Component {
                     fill="#5D6598"
                   />
                 </svg>
-                {job.salary_min}-{job.salary_max} GBP
+                {convertSalary(job.salary_min)}-{convertSalary(job.salary_max)}{" "}
+                GBP
               </div>
               <ul className="job-card__left__info__details__tags">
                 <li>{job.type}</li>

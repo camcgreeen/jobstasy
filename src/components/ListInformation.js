@@ -9,7 +9,7 @@ class ListInformation extends React.Component {
   constructor() {
     super();
     this.state = {
-      filtersOpen: true,
+      filtersOpen: false,
     };
   }
   render() {
@@ -80,17 +80,36 @@ class ListInformation extends React.Component {
               <h2>Salary</h2>
               <RangeSlider />
             </div>
+            <hr />
             <div className="filter-overlay__body__section">
               <h2>Company</h2>
-              <input type="text" />
+              <div className="filter-overlay__body__section__area">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.6875 2.25C4.69111 2.25 2.25 4.69112 2.25 7.6875C2.25 10.6839 4.69111 13.125 7.6875 13.125C8.98363 13.125 10.1751 12.6671 11.1108 11.9062L14.7898 15.5852C14.8416 15.6392 14.9037 15.6823 14.9724 15.712C15.0411 15.7417 15.115 15.7574 15.1899 15.7581C15.2647 15.7589 15.3389 15.7447 15.4082 15.7164C15.4775 15.6881 15.5405 15.6463 15.5934 15.5934C15.6463 15.5405 15.6881 15.4775 15.7164 15.4082C15.7447 15.3389 15.7589 15.2647 15.7581 15.1899C15.7574 15.115 15.7417 15.0411 15.712 14.9724C15.6823 14.9037 15.6392 14.8416 15.5852 14.7898L11.9063 11.1108C12.6671 10.1751 13.125 8.98363 13.125 7.6875C13.125 4.69112 10.6839 2.25 7.6875 2.25ZM7.6875 3.375C10.0759 3.375 12 5.29911 12 7.6875C12 8.85098 11.5411 9.90214 10.7966 10.6765C10.7507 10.7102 10.7102 10.7507 10.6765 10.7966C9.90214 11.5411 8.85098 12 7.6875 12C5.29911 12 3.375 10.0759 3.375 7.6875C3.375 5.29911 5.29911 3.375 7.6875 3.375Z"
+                    fill="#A0AEC0"
+                  />
+                </svg>
+
+                <input type="text" placeholder="Search by company" />
+              </div>
             </div>
+            <hr />
             <div className="filter-overlay__body__section">
               <h2>Type of work</h2>
               <form action="">
-                <input type="checkbox" value="full-time" id="full-time" />
-                <label htmlFor="full-time">Full Time</label>
-                <input type="checkbox" value="part-time" id="part-time" />
-                <label htmlFor="part-time">Part Time</label>
+                <input
+                  type="checkbox"
+                  value="full-time-only"
+                  id="full-time-only"
+                />
+                <label htmlFor="full-time-only">Full Time only</label>
               </form>
             </div>
           </div>

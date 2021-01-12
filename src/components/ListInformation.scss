@@ -46,6 +46,29 @@
       font-size: 1.5rem;
     }
   }
+  &__body {
+    &__section {
+      &__area {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        border: solid $color-primary 1px;
+        border-radius: 4px;
+        input {
+          border: none;
+          margin-left: 20px;
+          width: calc(100% - 8px);
+          &::placeholder {
+            color: $color-placeholder;
+            opacity: 0.75;
+          }
+          &:focus {
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 .visible {

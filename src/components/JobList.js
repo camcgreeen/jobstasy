@@ -34,7 +34,7 @@ class JobList extends React.Component {
       <ul style={{ listStyle: "none" }}>
         {this.state.jobs.map((job) => {
           return (
-            <li>
+            <li key={job.id}>
               <Link
                 to={{
                   pathname: `/jobs/${job.id}`,
@@ -71,8 +71,8 @@ class JobList extends React.Component {
           '<p>Apply on our career site!</p>\n<p><a href="https://paihealth.bamboohr.com/jobs/view.php?id=122">https://paihealth.bamboohr.com/jobs/view.php?id=122</a></p>\n',
         company_logo:
           "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdm1VIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b7ca6a65f7d4184edb73ff81352f5c09395cba99/PAI%20Logo.png",
-        salary_min: "50k",
-        salary_max: "55k",
+        salary_min: 50000,
+        salary_max: 55000,
       },
       {
         id: "65f747a3-4a1f-47b3-8caf-1d92f6d0a39e",
@@ -90,8 +90,8 @@ class JobList extends React.Component {
           '<p>Apply directly through our career page!</p>\n<p><a href="https://paihealth.bamboohr.com/jobs/view.php?id=124">https://paihealth.bamboohr.com/jobs/view.php?id=124</a></p>\n',
         company_logo:
           "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdk9VIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--610dedda3ec8002b2b35934b4f2d7c6d45460449/PAI%20Logo.png",
-        salary_min: "60k",
-        salary_max: "70k",
+        salary_min: 60000,
+        salary_max: 70000,
       },
       {
         id: "6986e1a2-990e-4386-9ca7-80a56293a4b3",
@@ -109,8 +109,8 @@ class JobList extends React.Component {
           '<p>You can apply using this link:\n<a href="https://hasura.info/3rWJvXP">https://hasura.info/3rWJvXP</a></p>\n',
         company_logo:
           "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc3VVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--dae42066003da6174c28bccad65275d46797aee2/logo_black.png",
-        salary_min: "35k",
-        salary_max: "40k",
+        salary_min: 35000,
+        salary_max: 40000,
         // tags: [this.type, this.location.split(" ")[0]],
       },
       {
@@ -129,8 +129,8 @@ class JobList extends React.Component {
           '<p>You can apply by visiting the link:\n<a href="https://hasura.info/3s5OANE">https://hasura.info/3s5OANE</a></p>\n',
         company_logo:
           "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc2FVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--06ada3c68c12dc04e0b1429d8f6da0a4cdf2ea43/logo_black.png",
-        salary_min: "55k",
-        salary_max: "65k",
+        salary_min: 55000,
+        salary_max: 65000,
       },
       {
         id: "37d79e89-f50f-459a-bc29-76e499cd4cba",
@@ -148,11 +148,49 @@ class JobList extends React.Component {
           '<p><a href="https://visione.join.com/jobs/1726380-senior-fullstack-engineer-javascript?pid=357a3b4531918760973f&amp;utm_source=github_jobs&amp;utm_medium=paid&amp;utm_campaign=single%2Bposting&amp;utm_content=senior%2Bfullstack%2Bengineer%2B-%2Bjavascript">https://visione.join.com/jobs/1726380-senior-fullstack-engineer-javascript?pid=357a3b4531918760973f&amp;utm_source=github_jobs&amp;utm_medium=paid&amp;utm_campaign=single%2Bposting&amp;utm_content=senior%2Bfullstack%2Bengineer%2B-%2Bjavascript</a></p>\n',
         company_logo:
           "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcm1VIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--583a643cf1cc2cbba7ecaeb1463e0f3f87551df6/visi%20one.png",
-        salary_min: "45k",
-        salary_max: "55k",
+        salary_min: 45000,
+        salary_max: 55000,
       },
     ];
     this.setState({ jobs });
+  };
+  filterJobsBySalary = (jobs, userMin, userMax) => {
+    return jobs.filter((job) => {
+      return (
+        (job.salary_max >= userMin || job.salary_min >= userMin) &&
+        (job.salary_min <= userMax || job.salary_max <= userMax)
+      );
+    });
+  };
+  filterJobsByCompany = (jobs, searchTerm) => {
+    return jobs.filter((job) => {
+      const keywords = job.company.toLowerCase().split(" ");
+      let matchFound = false;
+      keywords.forEach((keyword) => {
+        if (keyword === searchTerm.toLowerCase()) {
+          matchFound = true;
+          return;
+        }
+      });
+      return matchFound;
+    });
+  };
+  filterJobsByFullTime = (jobs) => {
+    return jobs.filter((job) => job.type === "Full Time");
+  };
+  sortJobs = (jobs, sortBy) => {
+    switch (sortBy) {
+      case "most recent":
+        return jobs.sort(
+          (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+        );
+      case "salary (high to low)":
+        return jobs.sort((a, b) => Number(b.salary_max) - Number(a.salary_max));
+      case "salary (low to high)":
+        return jobs.sort((a, b) => Number(a.salary_min) - Number(b.salary_min));
+      default:
+        return [];
+    }
   };
 }
 
