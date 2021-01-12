@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import ListInformation from "./ListInformation";
 import JobList from "./JobList";
+import Contact from "./Contact";
 import Footer from "./Footer";
 import "./main.scss";
 import "./Jobs.scss";
@@ -23,6 +24,7 @@ class Likes extends React.Component {
           <ListInformation />
           <JobList />
         </div>
+        <Contact />
         <Footer />
       </>
     );

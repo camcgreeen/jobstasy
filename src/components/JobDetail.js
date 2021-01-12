@@ -4,6 +4,7 @@ import "./main.scss";
 import "./Jobs.scss";
 import "./JobDetail.scss";
 import Navbar from "./Navbar";
+import Contact from "./Contact";
 import Footer from "./Footer";
 
 const parse = require("html-react-parser");
@@ -270,6 +271,7 @@ class JobDetail extends React.Component {
             </div>
           </div>
         </div>
+        <Contact />
         <Footer />
       </>
     );

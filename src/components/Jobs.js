@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import SearchField from "./SearchField";
 import ListInformation from "./ListInformation";
 import JobList from "./JobList";
+import Contact from "./Contact";
 import Footer from "./Footer";
 
 class Jobs extends React.Component {
@@ -18,6 +19,7 @@ class Jobs extends React.Component {
           <ListInformation />
           <JobList />
         </div>
+        <Contact />
         <Footer />
       </>
     );
