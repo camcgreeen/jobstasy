@@ -47,12 +47,14 @@ body {
 
 .no-scroll {
   overflow: hidden;
+  pointer-events: none;
 }
 
 body {
   background-color: white;
   max-width: 100vw;
   overscroll-behavior-y: none;
+  pointer-events: all;
 }
 
 .btn {
@@ -86,6 +88,14 @@ body {
     font-weight: 500;
     padding: 16px 32px;
     // height: 100%;
+  }
+  &--apply-filter {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    background-color: $color-action;
+    &:hover,
+    &:focus {
+      background-color: darken($color-action, 4%);
+    }
   }
   &--apply {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;

@@ -45,6 +45,11 @@ class ListInformation extends React.Component {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="filter-overlay__title__close"
+              onClick={() => {
+                this.toggleFilters();
+                this.toggleNoScroll();
+              }}
             >
               <path
                 d="M4.90857 3.51569L20.4649 19.072C20.8552 19.4624 20.8552 20.0959 20.4649 20.4863C20.0746 20.8766 19.441 20.8766 19.0507 20.4863L3.49436 4.9299C3.10403 4.53958 3.10403 3.90601 3.49435 3.51569C3.88468 3.12537 4.51824 3.12537 4.90857 3.51569Z"
@@ -55,12 +60,11 @@ class ListInformation extends React.Component {
                 fill="#404668"
               />
             </svg>
-
             <h1>Filters</h1>
           </div>
           <div className="filter-overlay__body">
             <div className="filter-overlay__body__section">
-              <form action="">
+              <form action="" className="filter-overlay__body__section__sort">
                 <h2>Sort by </h2>
                 <label htmlFor="sortOptions">
                   <select name="sortOptions" id="sortOptions">
@@ -101,7 +105,7 @@ class ListInformation extends React.Component {
               </div>
             </div>
             <hr />
-            <div className="filter-overlay__body__section">
+            <div className="filter-overlay__body__section filter-overlay__body__section__type">
               <h2>Type of work</h2>
               <form action="">
                 <input
@@ -109,9 +113,12 @@ class ListInformation extends React.Component {
                   value="full-time-only"
                   id="full-time-only"
                 />
-                <label htmlFor="full-time-only">Full Time only</label>
+                <label htmlFor="full-time-only">Full time only</label>
               </form>
             </div>
+          </div>
+          <div className="filter-overlay__submit">
+            <button className="btn btn--apply-filter">Confirm</button>
           </div>
         </div>
       </>

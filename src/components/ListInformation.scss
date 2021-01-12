@@ -1,38 +1,64 @@
 @import "../utilities/variables.scss";
 
 .filter-overlay {
-  display: none;
+  // display: none;
+  // visibility: hidden;
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out !important;
   opacity: 0;
   position: fixed;
-  top: 20px;
+  // top: 20px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  border-radius: 24px 24px 0 0;
   border-radius: 24px;
   z-index: 1000;
   background-color: white;
   // width: 75%;
-  width: calc(100% - 40px);
-  height: 150%;
-  box-shadow: 0px 0px 1px 1000px rgba(160, 174, 192, 0.8);
+  // width: calc(100% - 40px);
+  width: 650px;
+  // height: 150%;
+  // height: calc(50% - 20px);
+  height: 75%;
+  box-shadow: 0px 0px 1px 1000px rgba(19, 21, 32, 0.8);
   // overflow-y: scroll;
   &__title {
-    width: calc(100% - 60px);
+    // width: calc(100% - 60px);
     border-radius: 32px 32px 0 0;
     // height: 40px;
-    padding: 30px;
+    // padding: 30px;
+    height: 10%;
+    width: 100%;
     background-color: $color-bg-1;
     position: relative;
     // display: flex;
     // flex-direction: row;
     // justify-content: space-between;
     // align-items: center;
-    svg {
+    &__close {
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        path {
+          transition: fill 0.2s ease-in-out;
+          fill: $color-highlight;
+        }
+      }
+      // svg {
       // justify-self: flex-start;
       // align-self: flex-start;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       left: 20px;
+      // }
     }
     h1 {
       // justify-self: center;
@@ -47,16 +73,56 @@
     }
   }
   &__body {
+    height: 80%;
+    overflow: auto;
+    padding: 0 40px;
+    hr {
+      height: 0;
+      border: 0;
+      border-top: 1px solid #ecedf3;
+      margin: 60px 0;
+      // border-color: #ecedf3;
+      // border-color: red;
+      // border-color: grey;
+      // background-color: #ecedf3;
+      // color: #ecedf3;
+    }
+    h2 {
+      font-weight: 400;
+      color: $color-primary;
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
     &__section {
+      // margin: 20px 0;
+      &__type {
+        margin-bottom: 60px;
+        form {
+          display: flex;
+          align-items: center;
+          input {
+            cursor: pointer;
+            margin-right: 10px;
+          }
+          label {
+          }
+        }
+      }
+      &__sort {
+        margin-top: 60px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
       &__area {
         display: flex;
         align-items: center;
-        padding: 4px;
-        border: solid $color-primary 1px;
+        padding: 10px;
+        border: solid #ecedf3 1px;
         border-radius: 4px;
         input {
           border: none;
-          margin-left: 20px;
+          margin-left: 10px;
           width: calc(100% - 8px);
           &::placeholder {
             color: $color-placeholder;
@@ -67,13 +133,50 @@
           }
         }
       }
+      select {
+        margin-left: calc(1.25rem / 4);
+        text-decoration: underline;
+        transform: translateY(calc(-1.25rem / 2));
+        font-size: 1.25rem;
+        border-width: 0;
+        border-color: #ecedf3;
+        color: $color-highlight !important;
+        cursor: pointer;
+
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        // background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyMCAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj5cYSAgICAgPHBhdGggZD0iTTEzLjMzMzIgMTEuNjY2Nkw5Ljk5OTg0IDguMzMzMjVMNi42NjY1IDExLjY2NjYiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+XGEgICAgIDxwYXRoIGQ9Ik02LjY2NjUgMjAuMzMzM0w5Ljk5OTg0IDIzLjY2NjZMMTMuMzMzMiAyMC4zMzMzIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPlxhICAgICA8L3N2Zz4=);
+        // background-repeat: no-repeat;
+        // background-position-x: 100%;
+        // background-position-y: 50%;
+      }
+    }
+  }
+  &__submit {
+    position: absolute;
+    bottom: 0;
+    // width: calc(100% - 160px);
+    // width: calc(100% - 40px);
+    border-radius: 0 0 24px 24px;
+    // padding: 20px;
+    background-color: $color-bg-1;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      margin-right: 60px;
     }
   }
 }
 
 .visible {
-  display: block;
+  // display: block;
+  // visibility: visible;
   opacity: 1;
+  pointer-events: all;
 }
 
 .list-info {

@@ -20,7 +20,7 @@ class Likes extends React.Component {
           <h1 className="likes-bg__h1">X's Likes</h1>
         </div>
         <div className="container">
-          <ListInformation marginTop="-60px" />
+          <ListInformation />
           <JobList />
         </div>
         <Footer />

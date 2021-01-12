@@ -101,7 +101,8 @@ nav {
   -moz-animation: none !important;
   -o-animation: none !important;
   -ms-animation: none !important;
-  display: none;
+  // display: none;
+  transition: opacity 0.2s ease-in-out !important;
   opacity: 0;
   padding: 120px 0;
   border-radius: 0 0 20px 20px;
@@ -173,8 +174,10 @@ nav {
 }
 
 .visible {
-  display: block;
-  opacity: 1 !important;
+  // display: block;
+  // opacity: 1 !important;
+  opacity: 1;
+  pointer-events: all;
 }
 
 $height-icon: 16px;
