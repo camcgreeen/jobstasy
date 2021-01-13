@@ -54,6 +54,15 @@ class JobList extends React.Component {
     //should the pagination part go here or in a separate component?
   }
   componentDidMount = () => {
+    // setTimeout(2000, () => console.log("hey" + this.props.defaultJobList));
+    // setTimeout(() => (this.props.defaultJobList[0].salary_min = 55000), 1500);
+    // setTimeout(() => console.log(this.props.defaultJobList), 2000);
+    let salariedJobs = [];
+    setTimeout(() => {
+      salariedJobs = this.addSalary(this.props.defaultJobList);
+      console.log(salariedJobs);
+      this.setState({ jobs: salariedJobs });
+    }, 2000);
     const jobs = [
       {
         id: "aa02f7d8-f353-4885-a51d-073613afbc42",
@@ -152,7 +161,7 @@ class JobList extends React.Component {
         salary_max: 55000,
       },
     ];
-    this.setState({ jobs });
+    // this.setState({ jobs });
   };
   filterJobsBySalary = (jobs, userMin, userMax) => {
     return jobs.filter((job) => {
@@ -191,6 +200,14 @@ class JobList extends React.Component {
       default:
         return [];
     }
+  };
+  addSalary = (jobs) => {
+    jobs.forEach((job) => {
+      job.salary_min = 55000;
+      job.salary_max = 65000;
+    });
+    console.log(jobs);
+    return jobs;
   };
 }
 

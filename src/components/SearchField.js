@@ -17,33 +17,34 @@ class SearchField extends React.Component {
             <h2 className="h2">
               Get a job at companies like{" "}
               <a
-                href="https://vonq.io/3mTLc4w"
+                href={this.props.defaultJobList[0].company_url}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="h2__company"
                 // style={{textDecoration}}
               >
-                company1
+                {this.props.defaultJobList[0].company}
               </a>
               ,{" "}
               <a
-                href="https://vonq.io/3mTLc4w"
+                href={this.props.defaultJobList[1].company_url}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="h2__company"
                 // style={{textDecoration}}
               >
-                {"company2 "}
+                {this.props.defaultJobList[1].company + " "}
               </a>
               {"and "}
               <a
-                href="https://vonq.io/3mTLc4w"
+                // href="https://vonq.io/3mTLc4w"
+                href={this.props.defaultJobList[2].company_url}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="h2__company"
                 // style={{textDecoration}}
               >
-                company3
+                {this.props.defaultJobList[2].company}
               </a>
             </h2>
             <div className="inputs">

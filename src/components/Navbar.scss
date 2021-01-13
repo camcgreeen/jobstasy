@@ -103,6 +103,7 @@ nav {
   -ms-animation: none !important;
   // display: none;
   transition: opacity 0.2s ease-in-out !important;
+  pointer-events: none;
   opacity: 0;
   padding: 120px 0;
   border-radius: 0 0 20px 20px;
