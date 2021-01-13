@@ -10,7 +10,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
-    "express": "^4.17.1",
+    "cors": "^2.8.5",
     "html-react-parser": "^1.1.1",
     "install": "^0.13.0",
     "node-sass": "^4.14.1",

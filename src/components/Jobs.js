@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import axios from "axios";
 import "./main.scss";
 import "./Jobs.scss";
 import Navbar from "./Navbar";
@@ -31,10 +32,14 @@ class Jobs extends React.Component {
   // USING CORS WORK-AROUND
   searchJobs = async (query) => {
     console.log(query);
-    const response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=${query}`
-    );
-    return await response;
+    // const response = await fetch(
+    //   `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=${query}`
+    // );
+    // const response = await fetch(`/positions.json?search=${query}`);
+    // return await response;
+    axios(`/positions.json?search=${query}`).then((response) => {
+      console.log(response);
+    });
   };
 }
 
