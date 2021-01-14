@@ -91,8 +91,6 @@ class Filters extends React.Component {
     this.state = {
       filtersOpen: false,
       inputSort: "most recent",
-      inputSalaryMin: 0,
-      inputSalaryMax: 150000,
       inputSalaryValue: [0, 150000],
       inputCompanyTag: "",
       inputFullTimeOnly: false,
@@ -435,15 +433,6 @@ class Filters extends React.Component {
   handleUserCheckbox = (e) => {
     this.setState({ inputFullTimeOnly: e.target.checked });
   };
-  clearFilters = () => {
-    this.setState({
-      inputSort: "most recent",
-      inputSalaryValue: [0, 150000],
-      inputCompanyTag: "",
-      inputFullTimeOnly: false,
-      companyTags: [],
-    });
-  };
   toggleFilters = () => {
     this.state.filtersOpen
       ? this.setState({ filtersOpen: false })
@@ -501,6 +490,15 @@ class Filters extends React.Component {
   };
   filterJobsByFullTime = (jobs) => {
     return jobs.filter((job) => job.type === "Full Time");
+  };
+  clearFilters = () => {
+    this.setState({
+      inputSort: "most recent",
+      inputSalaryValue: [0, 150000],
+      inputCompanyTag: "",
+      inputFullTimeOnly: false,
+      companyTags: [],
+    });
   };
   applyFilters = () => {
     // let filteredJobs = [];
