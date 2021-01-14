@@ -3,10 +3,6 @@ import Slider from "@material-ui/core/Slider";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 const muiTheme = createMuiTheme({
   overrides: {
     MuiSlider: {
@@ -77,7 +73,6 @@ export default function RangeSlider(props) {
           x !== 0 ? Math.round(x / 1000).toString() + "k" : 0
         }
         aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
         color="primary"
         marks={marks}
         min={0}

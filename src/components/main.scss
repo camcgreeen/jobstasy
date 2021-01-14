@@ -67,8 +67,7 @@ body {
   color: white;
   // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
   //   box-shadow 0.2s ease-in-out;
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken($color-action, 10%);
   }
   &--authentication {

@@ -2,8 +2,88 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./main.scss";
 import "./Filters.scss";
-// import Slider from "@material-ui/core/Slider";
-import RangeSlider from "./RangeSlider";
+import Slider from "@material-ui/core/Slider";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const muiTheme = createMuiTheme({
+  overrides: {
+    MuiSlider: {
+      root: {
+        // marginLeft: 20,
+        // marginRight: 20,
+        width: "95%",
+        display: "flex",
+        margin: "0 auto",
+      },
+      markLabel: {
+        marginTop: "10px",
+        marginRight: "10px",
+      },
+      thumb: {
+        color: "white",
+        border: "solid #444cf4  1px",
+        stroke: "#444cf4",
+        height: "30px",
+        width: "30px",
+        transform: "translate(-10px, -10px)",
+        // transform: "translate(-25%, -25%)",
+      },
+      track: {
+        color: "#444cf4",
+      },
+      rail: {
+        color: "#444cf4",
+      },
+    },
+  },
+});
+
+const marks = [
+  {
+    value: 0,
+    label: "£0",
+  },
+  {
+    value: 150000,
+    label: "£150k",
+  },
+];
+
+class SalarySlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: [0, 150000],
+    };
+  }
+  // render() {
+  // return (
+  // <ThemeProvider theme={muiTheme}>
+  //   <Slider
+  //     value={this.state.value}
+  //     onChange={this.handleChange}
+  //     valueLabelDisplay="auto"
+  //     valueLabelFormat={(x) =>
+  //       x !== 0 ? Math.round(x / 1000).toString() + "k" : 0
+  //     }
+  //     aria-labelledby="range-slider"
+  //     color="primary"
+  //     marks={marks}
+  //     min={0}
+  //     max={150000}
+  //     step={5000}
+  //   />
+  // </ThemeProvider>
+  // );
+  // }
+  // handleChange = (e, newVal) => {
+  //   if (newVal[1] > newVal[0]) {
+  //     this.setState({ value: [...newVal] });
+  //     // props.handleChangeSlider(e, newVal);
+  //   }
+  // };
+}
 
 class Filters extends React.Component {
   constructor() {
@@ -13,6 +93,7 @@ class Filters extends React.Component {
       inputSort: "most recent",
       inputSalaryMin: 0,
       inputSalaryMax: 150000,
+      inputSalaryValue: [0, 150000],
       inputCompanyTag: "",
       inputFullTimeOnly: false,
       companyTags: [],
@@ -177,10 +258,22 @@ class Filters extends React.Component {
             <hr />
             <div className="filter-overlay__body__section">
               <h2>Salary</h2>
-              <RangeSlider
-                handleChangeSlider={(e, val) => this.handleChangeSlider(e, val)}
-                resetSlider={this.resetSlider}
-              />
+              <ThemeProvider theme={muiTheme}>
+                <Slider
+                  value={this.state.inputSalaryValue}
+                  onChange={this.handleChangeSlider}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={(x) =>
+                    x !== 0 ? Math.round(x / 1000).toString() + "k" : 0
+                  }
+                  aria-labelledby="range-slider"
+                  color="primary"
+                  marks={marks}
+                  min={0}
+                  max={150000}
+                  step={5000}
+                />
+              </ThemeProvider>
             </div>
             <hr />
             <div className="filter-overlay__body__section filter-overlay__body__section__type">
@@ -198,7 +291,12 @@ class Filters extends React.Component {
             </div>
           </div>
           <div className="filter-overlay__submit">
-            <button className="btn btn--clear-filter">Clear</button>
+            <button
+              className="btn btn--clear-filter"
+              onClick={this.clearFilters}
+            >
+              Clear
+            </button>
             <button className="btn btn--apply-filter">Confirm</button>
           </div>
         </div>
@@ -206,16 +304,8 @@ class Filters extends React.Component {
     );
   }
   handleChangeSlider = (e, val) => {
-    const newSalaryMin = val[0];
-    const newSalaryMax = val[1];
-    this.setState({
-      inputSalaryMin: newSalaryMin,
-      inputSalaryMax: newSalaryMax,
-    });
+    this.setState({ inputSalaryValue: [...val] });
   };
-  // resetSlider = () => {
-  //   setValue([0, 150000]);
-  // }
   handleChangeSort = (e) => {
     this.setState({ inputSort: e.target.value });
   };
@@ -237,6 +327,15 @@ class Filters extends React.Component {
   };
   handleUserCheckbox = (e) => {
     this.setState({ inputFullTimeOnly: e.target.checked });
+  };
+  clearFilters = () => {
+    this.setState({
+      inputSort: "most recent",
+      inputSalaryValue: [0, 150000],
+      inputCompanyTag: "",
+      inputFullTimeOnly: false,
+      companyTags: [],
+    });
   };
   toggleFilters = () => {
     this.state.filtersOpen
