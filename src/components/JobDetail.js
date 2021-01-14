@@ -45,7 +45,11 @@ class JobDetail extends React.Component {
               · {job.location}
             </span>
           </h2>
-          <button className="btn btn--apply">
+          <a
+            className="btn btn--apply"
+            href="mailto:c.c.green@outlook.com?subject=Jobstasy - job search portfolio app&body=Sadly you can't actually apply to jobs using this application as it's a portfolio project. You're more than welcome to send me a message to say hi, though! 👋"
+            style={{ textDecoration: "none" }}
+          >
             Apply
             <svg
               version="1.1"
@@ -82,7 +86,7 @@ class JobDetail extends React.Component {
               <g></g>
               <g></g>
             </svg>
-          </button>
+          </a>
         </div>
         <div className="container">
           <div className="job-detail-info">

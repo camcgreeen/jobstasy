@@ -117,19 +117,42 @@
       &__area {
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding-left: 10px;
         border: solid #ecedf3 1px;
         border-radius: 4px;
         input {
           border: none;
           margin-left: 10px;
           width: calc(100% - 8px);
+          height: 40px;
           &::placeholder {
             color: $color-placeholder;
             opacity: 0.75;
           }
           &:focus {
             outline: 0;
+          }
+        }
+      }
+      &__tags {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        // margin-top: 20px;
+        li {
+          cursor: pointer;
+          margin-right: 20px;
+          margin-top: 20px;
+          background-color: $color-bg-special;
+          border-radius: 8px;
+          padding: 4px 8px;
+          color: $color-action;
+          font-size: 0.75rem;
+          font-weight: 500;
+          svg {
+            margin-left: 10px;
           }
         }
       }
@@ -154,12 +177,11 @@
     }
   }
   &__submit {
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     // width: calc(100% - 160px);
     // width: calc(100% - 40px);
     border-radius: 0 0 24px 24px;
-    // padding: 20px;
     background-color: $color-bg-1;
     height: 10%;
     width: 100%;
@@ -167,7 +189,7 @@
     justify-content: flex-end;
     align-items: center;
     button {
-      margin-right: 60px;
+      margin-right: 20px;
     }
   }
 }
@@ -191,6 +213,7 @@
 
 .job-number {
   font-weight: 400;
+  color: $color-primary;
   // font-size: 1.25rem;
 }
 
@@ -198,19 +221,31 @@
   // opacity: 0;
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: white;
+  // background-color: $color-action;
   border-radius: 4px;
-  padding: 4px 8px;
+  // padding: 4px 8px;
+  padding: 8px 16px;
+  border: solid $color-action 1px;
   transition: background-color 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
     background-color: $color-bg-special;
   }
-  &__img {
+  // &__img {
+  //   path {
+  //     fill: white;
+  //   }
+  // }
+  svg path {
+    // fill: white;
+    fill: $color-action;
   }
   &__text {
     margin-left: 10px;
     color: $color-action;
+    // color: white;
   }
 }
 

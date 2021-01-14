@@ -67,8 +67,9 @@ body {
   color: white;
   // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
   //   box-shadow 0.2s ease-in-out;
-  &:hover {
-    background-color: darken($color-action, 4%);
+  &:hover,
+  &:focus {
+    background-color: darken($color-action, 10%);
   }
   &--authentication {
     margin-bottom: 40px;
@@ -88,14 +89,6 @@ body {
     font-weight: 500;
     padding: 16px 32px;
     // height: 100%;
-  }
-  &--apply-filter {
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    background-color: $color-action;
-    &:hover,
-    &:focus {
-      background-color: darken($color-action, 4%);
-    }
   }
   &--apply {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -127,6 +120,19 @@ body {
         fill: white;
       }
     }
+  }
+  &--clear-filter {
+    background-color: white;
+    border: solid $color-action 1px;
+    color: $color-action;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-bg-special;
+    }
+  }
+  &--apply-filter {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    background-color: $color-action;
   }
   &--like {
     background-color: white !important;

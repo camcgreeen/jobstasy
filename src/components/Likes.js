@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import Navbar from "./Navbar";
-import ListInformation from "./ListInformation";
+import Filters from "./Filters";
 import JobList from "./JobList";
 import Contact from "./Contact";
 import Footer from "./Footer";
@@ -21,7 +21,7 @@ class Likes extends React.Component {
           <h1 className="likes-bg__h1">X's Likes</h1>
         </div>
         <div className="container">
-          <ListInformation />
+          <Filters />
           <JobList />
         </div>
         <Contact />

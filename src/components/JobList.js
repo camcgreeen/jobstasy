@@ -60,7 +60,7 @@ class JobList extends React.Component {
     let salariedJobs = [];
     setTimeout(() => {
       salariedJobs = this.addSalary(this.props.defaultJobList);
-      console.log(salariedJobs);
+      // console.log(salariedJobs);
       this.setState({ jobs: salariedJobs });
     }, 2000);
     const jobs = [
@@ -171,15 +171,31 @@ class JobList extends React.Component {
       );
     });
   };
-  filterJobsByCompany = (jobs, searchTerm) => {
+  // filterJobsByCompany = (jobs, searchTerm) => {
+  //   return jobs.filter((job) => {
+  //     const keywords = job.company.toLowerCase().split(" ");
+  //     let matchFound = false;
+  //     keywords.forEach((keyword) => {
+  //       if (keyword === searchTerm.toLowerCase()) {
+  //         matchFound = true;
+  //         return;
+  //       }
+  //     });
+  //     return matchFound;
+  //   });
+  // };
+  filterJobsByCompany = (jobs, searchTerms) => {
     return jobs.filter((job) => {
       const keywords = job.company.toLowerCase().split(" ");
       let matchFound = false;
-      keywords.forEach((keyword) => {
-        if (keyword === searchTerm.toLowerCase()) {
-          matchFound = true;
-          return;
-        }
+      // nested loop mxn complexity, but m and n will always be very low
+      searchTerms.forEach((searchTerm) => {
+        keywords.forEach((keyword) => {
+          if (keyword === searchTerm.toLowerCase()) {
+            matchFound = true;
+            return;
+          }
+        });
       });
       return matchFound;
     });
@@ -206,7 +222,7 @@ class JobList extends React.Component {
       job.salary_min = 55000;
       job.salary_max = 65000;
     });
-    console.log(jobs);
+    // console.log(jobs);
     return jobs;
   };
 }

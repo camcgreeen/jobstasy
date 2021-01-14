@@ -10,6 +10,17 @@ function valuetext(value) {
 const muiTheme = createMuiTheme({
   overrides: {
     MuiSlider: {
+      root: {
+        // marginLeft: 20,
+        // marginRight: 20,
+        width: "95%",
+        display: "flex",
+        margin: "0 auto",
+      },
+      markLabel: {
+        marginTop: "10px",
+        marginRight: "10px",
+      },
       thumb: {
         color: "white",
         border: "solid #444cf4  1px",
@@ -36,15 +47,24 @@ const marks = [
   },
   {
     value: 150000,
-    label: "£150,000+",
+    label: "£150k",
   },
 ];
 
-export default function RangeSlider() {
-  const [value, setValue] = React.useState([25000, 50000]);
+export default function RangeSlider(props) {
+  const [value, setValue] = React.useState([0, 150000]);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    if (newValue[1] > newValue[0]) {
+      setValue(newValue);
+      props.handleChangeSlider(event, newValue);
+    }
+    // setValue(newValue);
+    // props.handleChangeSlider(event, newValue);
+  };
+
+  const resetValue = () => {
+    setValue([0, 150000]);
   };
 
   return (
@@ -53,13 +73,17 @@ export default function RangeSlider() {
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        valueLabelFormat={(x) => Math.round(x / 1000).toString() + "k"}
+        valueLabelFormat={(x) =>
+          x !== 0 ? Math.round(x / 1000).toString() + "k" : 0
+        }
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         color="primary"
         marks={marks}
         min={0}
         max={150000}
+        step={5000}
+        // onChange={(e, val) => console.log(val)}
       />
     </ThemeProvider>
   );

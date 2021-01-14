@@ -5,7 +5,7 @@ import "./main.scss";
 import "./Jobs.scss";
 import Navbar from "./Navbar";
 import SearchField from "./SearchField";
-import ListInformation from "./ListInformation";
+import Filters from "./Filters";
 import JobList from "./JobList";
 import Contact from "./Contact";
 import Footer from "./Footer";
@@ -30,7 +30,7 @@ class Jobs extends React.Component {
         <Navbar />
         <SearchField defaultJobList={this.state.companyNames} />
         <div className="container">
-          <ListInformation />
+          <Filters jobNumber={this.state.defaultJobs.length} />
           <JobList defaultJobList={this.state.defaultJobs} />
         </div>
         <Contact />
@@ -43,9 +43,7 @@ class Jobs extends React.Component {
     const defaultJobs = await this.getDefaultJobs();
     // console.log(defaultJobs);
     const companyNames = this.checkCompanyUrlExists(defaultJobs);
-    this.setState({ defaultJobs, companyNames }, () =>
-      console.log(this.state.defaultJobs)
-    );
+    this.setState({ defaultJobs, companyNames });
   };
   // THIS WILL NEED REVISION BEFORE DEPLOYMENT
   // USING CORS WORK-AROUND
@@ -77,7 +75,7 @@ class Jobs extends React.Component {
         count++;
       }
     });
-    console.log(result);
+    // console.log(result);
     return result;
   };
 }
