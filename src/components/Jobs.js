@@ -14,6 +14,13 @@ class Jobs extends React.Component {
   constructor() {
     super();
     this.state = {
+      jobs: [],
+      description: "",
+      location: "",
+      sort: "most recent",
+      salaryValue: [0, 150000],
+      fullTimeOnly: false,
+      companyTags: [],
       defaultJobs: [],
       companyNames: [
         { company: "", company_url: "" },
@@ -28,9 +35,9 @@ class Jobs extends React.Component {
     return (
       <>
         <Navbar />
-        <SearchField defaultJobList={this.state.companyNames} />
+        <SearchField defaultJobList={this.state.companyNames} updateSearchState={this.updateSearchState} />
         <div className="container">
-          <Filters jobNumber={this.state.defaultJobs.length} />
+          <Filters jobNumber={this.state.defaultJobs.length} updateFilterState={this.updateFilterState} />
           <JobList defaultJobList={this.state.defaultJobs} />
         </div>
         <Contact />
@@ -43,8 +50,38 @@ class Jobs extends React.Component {
     const defaultJobs = await this.getDefaultJobs();
     // console.log(defaultJobs);
     const companyNames = this.checkCompanyUrlExists(defaultJobs);
-    this.setState({ defaultJobs, companyNames });
+    const automaticJobs = await this.getJobs("automatic");
+    this.setState({ companyNames, jobs: automaticJobs });
   };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.description !== this.state.description || prevState.location !== this.state.location) {
+      console.log("Running new search with search terms: " + this.state.description + ", " + this.state.location);
+    }
+  }
+  updateSearchState = (searchState) => {
+    this.setState({description: searchState[0], location: searchState[1]});
+  }
+  updateFilterState = (filterState) => {
+    this.setState({sort: filterState[0], salaryValue: [...filterState[1]], fullTimeOnly: filterState[2], companyTags: [...filterState[3]]});
+  }
+  getJobs = async (searchType) => {
+    let jobs = [];
+    switch(searchType) {
+      case "automatic":
+        jobs = await axios("/positions.json");
+        break;
+      case "searched":
+        jobs = await axios(`/positions.json?description=${this.state.description}&location=${this.state.location}`);
+        break;
+      case "filtered":
+        //applyFilters() method here to update this.state.jobs
+        this.applyFilters();
+        break;
+      default:
+        break;
+    }
+    this.setState({ jobs });
+  }
   // THIS WILL NEED REVISION BEFORE DEPLOYMENT
   // USING CORS WORK-AROUND
   getDefaultJobs = async () => {
@@ -77,6 +114,72 @@ class Jobs extends React.Component {
     });
     // console.log(result);
     return result;
+  };
+  sortJobs = (jobs, sortBy) => {
+    switch (sortBy) {
+      case "most recent":
+        return jobs.sort(
+          (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+        );
+      case "salary (high to low)":
+        return jobs.sort((a, b) => Number(b.salary_max) - Number(a.salary_max));
+      case "salary (low to high)":
+        return jobs.sort((a, b) => Number(a.salary_min) - Number(b.salary_min));
+      default:
+        return [];
+    }
+  };
+  filterJobsByCompany = (jobs, searchTerms) => {
+    return jobs.filter((job) => {
+      const keywords = job.company.toLowerCase().split(" ");
+      let matchFound = false;
+      // nested loop mxn complexity, but m and n will always be very low
+      searchTerms.forEach((searchTerm) => {
+        keywords.forEach((keyword) => {
+          if (keyword === searchTerm.toLowerCase()) {
+            matchFound = true;
+            return;
+          }
+        });
+      });
+      return matchFound;
+    });
+  };
+  filterJobsBySalary = (jobs, userMin, userMax) => {
+    return jobs.filter((job) => {
+      return (
+        (job.salary_max >= userMin || job.salary_min >= userMin) &&
+        (job.salary_min <= userMax || job.salary_max <= userMax)
+      );
+    });
+  };
+  filterJobsByFullTime = (jobs) => {
+    return jobs.filter((job) => job.type === "Full Time");
+  };
+  applyFilters = () => {
+    let filteredJobs = [...this.state.jobs];
+    filteredJobs = this.sortJobs(filteredJobs, this.state.inputSort);
+    if (this.state.companyTags.length > 0) {
+      filteredJobs = this.filterJobsByCompany(
+        filteredJobs,
+        this.state.companyTags
+      );
+    }
+    filteredJobs = this.filterJobsBySalary(
+      filteredJobs,
+      this.state.inputSalaryValue[0],
+      this.state.inputSalaryValue[1]
+    );
+    filteredJobs = this.state.inputFullTimeOnly
+      ? this.filterJobsByFullTime(filteredJobs)
+      : filteredJobs;
+    // this.setState({ filteredJobs }, () => {
+    //   this.toggleFilters();
+    //   this.toggleNoScroll();
+    //   this.props.updateFilterState([this.state.inputSort, this.state.inputSalaryValue, this.state.inputFullTimeOnly, this.state.companyTags]);
+    //   console.log(filteredJobs);
+    // });
+    return filteredJobs;
   };
 }
 

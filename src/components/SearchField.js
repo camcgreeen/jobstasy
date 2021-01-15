@@ -83,7 +83,7 @@ class SearchField extends React.Component {
                   onKeyUp={(e) => this.handleUserInput("location", e)}
                 />
               </div>
-              <button className="btn btn--search">Search</button>
+              <button className="btn btn--search" onClick={() => this.props.updateSearchState([this.state.inputDescription, this.state.inputLocation])}>Search</button>
             </div>
           </div>
         </div>
@@ -196,13 +196,13 @@ class SearchField extends React.Component {
       case "description":
         this.setState({ inputDescription: e.target.value });
         e.keyCode === 13
-          ? this.searchJobs()
+          ? this.props.updateSearchState([this.state.inputDescription, this.state.inputLocation])
           : this.setState({ inputDescription: e.target.value });
         break;
       case "location":
         this.setState({ inputLocation: e.target.value });
         e.keyCode === 13
-          ? this.searchJobs()
+        ? this.props.updateSearchState([this.state.inputDescription, this.state.inputLocation])
           : this.setState({ inputLocation: e.target.value });
         break;
       default:
