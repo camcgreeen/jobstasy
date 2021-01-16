@@ -31,6 +31,7 @@ class JobList extends React.Component {
       // </>
 
       // FEED DETAILS INTO JOBCARD VIA PROPS
+      // <ul style={{ listStyle: "none" }} ref={this.props.ref}>
       <ul style={{ listStyle: "none" }}>
         {this.props.jobs.length > 0 ? (
           this.props.jobs.map((job) => {

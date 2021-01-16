@@ -14,6 +14,7 @@ import Footer from "./Footer";
 class Jobs extends React.Component {
   constructor() {
     super();
+    this.scrollDiv = React.createRef();
     this.state = {
       prevJobs: [],
       jobs: [],
@@ -36,6 +37,9 @@ class Jobs extends React.Component {
       jobsPerPage: 10,
     };
   }
+  // scrollToContent = () => {
+  //   this.jobListScroll.scrollIntoView({ behavior: "smooth" });
+  // };
   render() {
     // Get current posts
     const indexOfLastJob = this.state.currentPage * this.state.jobsPerPage;
@@ -53,9 +57,11 @@ class Jobs extends React.Component {
           updateSearchState={this.updateSearchState}
         />
         <div className="container">
+          <div id="scroll-to"></div>
           <Filters
             jobNumber={this.state.jobs.length}
             updateFilterState={this.updateFilterState}
+            ref={this.scrollDiv}
           />
           <JobList jobs={currentJobs} />
           <Pagination
@@ -124,8 +130,15 @@ class Jobs extends React.Component {
     //   this.getJobs(this.state.searchType);
     // }
   };
-  paginate = (pageNumber) => {
-    this.setState({ currentPage: pageNumber });
+  paginate = async (pageNumber) => {
+    await this.setState({ currentPage: pageNumber });
+    // const scrollTo = document.querySelector(".scroll-to");
+    // window.scrollTo({
+    //   behavior: "smooth",
+    //   // left: 0,
+    //   top: scrollTo.top,
+    // });
+    document.getElementById("scroll-to").scrollIntoView({ behavior: "smooth" });
   };
   updateSearchState = (searchState) => {
     this.setState({ description: searchState[0], location: searchState[1] });
@@ -181,7 +194,9 @@ class Jobs extends React.Component {
     jobs = this.addSalary(jobs.data);
     jobs = this.applyFilters(jobs);
     console.log(jobs);
-    this.setState({ jobs });
+    await this.setState({ currentPage: 1, jobs });
+    // this.scrollToContent();
+    // this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
   };
   // THIS WILL NEED REVISION BEFORE DEPLOYMENT
   // USING CORS WORK-AROUND
