@@ -140,7 +140,7 @@ class Filters extends React.Component {
           </div>
           <p className="job-number">
             {this.props.jobNumber +
-              (this.props.jobNumber > 1 ? " jobs" : " job")}
+              (this.props.jobNumber === 1 ? " job" : " jobs")}
           </p>
         </div>
         <div
@@ -424,12 +424,16 @@ class Filters extends React.Component {
   addCompanyTag = () => {
     document.getElementById("input-add-company-tag").value = "";
     let updatedCompanyTags = [...this.state.companyTags];
-    updatedCompanyTags.push(this.state.inputCompanyTag);
-    this.setState({
-      inputCompanyTag: "",
-      companyTags: [...updatedCompanyTags],
-    });
+    if (this.tagValid(this.state.inputCompanyTag)) {
+      updatedCompanyTags.push(this.state.inputCompanyTag);
+      this.setState({
+        inputCompanyTag: "",
+        companyTags: [...updatedCompanyTags],
+      });
+    }
   };
+  // make sure input isn't an empty string or a string that only contains spaces
+  tagValid = (txt) => txt && txt.replace(/\s/g, "").length;
   handleUserCheckbox = (e) => {
     this.setState({ inputFullTimeOnly: e.target.checked });
   };
@@ -498,7 +502,8 @@ class Filters extends React.Component {
       inputCompanyTag: "",
       inputFullTimeOnly: false,
       companyTags: [],
-    }, () => this.props.updateFilterState([this.state.inputSort, this.state.inputSalaryValue, this.state.inputFullTimeOnly, this.state.companyTags]));
+    });
+    //() => this.props.updateFilterState([this.state.inputSort, this.state.inputSalaryValue, this.state.inputFullTimeOnly, this.state.companyTags])
   };
   applyFilters = () => {
     // let filteredJobs = [];
@@ -525,9 +530,14 @@ class Filters extends React.Component {
     //   console.log(filteredJobs);
     // });
     this.toggleFilters();
-      this.toggleNoScroll();
-      this.props.updateFilterState([this.state.inputSort, this.state.inputSalaryValue, this.state.inputFullTimeOnly, this.state.companyTags]);
-      // console.log(filteredJobs);
+    this.toggleNoScroll();
+    this.props.updateFilterState([
+      this.state.inputSort,
+      this.state.inputSalaryValue,
+      this.state.inputFullTimeOnly,
+      this.state.companyTags,
+    ]);
+    // console.log(filteredJobs);
   };
 }
 

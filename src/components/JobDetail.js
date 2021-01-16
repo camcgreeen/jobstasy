@@ -247,6 +247,10 @@ class JobDetail extends React.Component {
             </div>
             <div className="job-detail-info__left">
               <div className="job-detail-info__left__about">
+                {/* <h2 className="job-detail-info__left__about__h2">
+                  Note that some of the information below is generated for
+                  demonstration purposes
+                </h2> */}
                 <h1 className="job-detail-info__left__about__h1">
                   About this role
                 </h1>
@@ -271,6 +275,11 @@ class JobDetail extends React.Component {
                   <li>GMT + 1</li>
                   <li>GMT + 2</li>
                 </ul>
+                <hr className="job-detail-info__left__about__line" />
+                <h2 className="job-detail-info__left__about__h2">
+                  Note that some of the information on this page is generated
+                  for the purpose of demonstration
+                </h2>
               </div>
             </div>
           </div>

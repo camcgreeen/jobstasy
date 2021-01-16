@@ -34,8 +34,14 @@
     // margin: 0 auto 40px auto;
     // margin: 0 auto;
     text-align: center;
-    color: $color-highlight;
+    // color: $color-highlight;
     font-weight: 400;
+    a {
+      color: $color-highlight;
+      &:hover {
+        color: darken($color-highlight, 10%);
+      }
+    }
     &__location {
       color: $color-secondary;
     }
@@ -68,6 +74,12 @@
         font-size: 1.5rem;
         margin-bottom: 40px;
         font-weight: 500;
+      }
+      &__h2 {
+        color: $color-highlight;
+        margin-top: 40px;
+        font-size: 1rem;
+        font-weight: 400;
       }
       &__line {
         margin: 40px 0;
@@ -115,6 +127,7 @@
     flex-direction: column;
     &__posted-applications {
       margin-bottom: 20px;
+      color: $color-primary;
     }
     &__description {
       // flex: 4 1 250px;
