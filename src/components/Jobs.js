@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import SearchField from "./SearchField";
 import Filters from "./Filters";
 import JobList from "./JobList";
+import Pagination from "./Pagination";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
@@ -31,9 +32,18 @@ class Jobs extends React.Component {
         { company: "", company_url: "" },
       ],
       searchedJobs: [],
+      currentPage: 1,
+      jobsPerPage: 10,
     };
   }
   render() {
+    // Get current posts
+    const indexOfLastJob = this.state.currentPage * this.state.jobsPerPage;
+    const indexOfFirstJob = indexOfLastJob - this.state.jobsPerPage;
+    const currentJobs = this.state.jobs.slice(indexOfFirstJob, indexOfLastJob);
+
+    // // Change page
+    // const paginate = pageNumber => setCurrentPage(pageNumber);
     // const {defaultJobs} = this.state
     return (
       <>
@@ -47,7 +57,13 @@ class Jobs extends React.Component {
             jobNumber={this.state.jobs.length}
             updateFilterState={this.updateFilterState}
           />
-          <JobList jobs={this.state.jobs} />
+          <JobList jobs={currentJobs} />
+          <Pagination
+            jobsPerPage={this.state.jobsPerPage}
+            totalJobs={this.state.jobs.length}
+            paginate={this.paginate}
+            currentPage={this.state.currentPage}
+          />
         </div>
         <Contact />
         <Footer />
@@ -108,7 +124,9 @@ class Jobs extends React.Component {
     //   this.getJobs(this.state.searchType);
     // }
   };
-
+  paginate = (pageNumber) => {
+    this.setState({ currentPage: pageNumber });
+  };
   updateSearchState = (searchState) => {
     this.setState({ description: searchState[0], location: searchState[1] });
   };
