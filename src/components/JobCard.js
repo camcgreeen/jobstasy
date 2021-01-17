@@ -102,7 +102,7 @@ class JobCard extends React.Component {
     //date = Sat Jan 16 00:00:00 UTC 2021
     // we'd like 12 hours ago
     const timeDifferenceMs = Date.now() - Date.parse(date);
-    console.log("timeDifferenceMs = " + timeDifferenceMs);
+    // console.log("timeDifferenceMs = " + timeDifferenceMs);
 
     //timeDifference = 157,773,614
     const minMs = 60000;

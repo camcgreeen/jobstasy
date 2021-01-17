@@ -18,6 +18,18 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+const firebase = require("firebase");
+require("firebase/firestore");
+
+firebase.initializeApp({
+  apiKey: "AIzaSyDSdLiJqn6nILt4u0pMB8L_UrAvgofINN0",
+  authDomain: "jobstasy.firebaseapp.com",
+  projectId: "jobstasy",
+  storageBucket: "jobstasy.appspot.com",
+  messagingSenderId: "550293971299",
+  appId: "1:550293971299:web:6decad660871b21790f356",
+});
+
 const routing = (
   <Router>
     <div id="routing-container">

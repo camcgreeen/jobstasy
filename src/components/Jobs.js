@@ -10,12 +10,15 @@ import JobList from "./JobList";
 import Pagination from "./Pagination";
 import Contact from "./Contact";
 import Footer from "./Footer";
+const firebase = require("firebase");
 
 class Jobs extends React.Component {
   constructor() {
     super();
     this.scrollDiv = React.createRef();
     this.state = {
+      email: "",
+      nickname: "",
       loaded: false,
       prevJobs: [],
       jobs: [],
@@ -36,6 +39,7 @@ class Jobs extends React.Component {
       searchedJobs: [],
       currentPage: 1,
       jobsPerPage: 10,
+      noJobsFound: false,
     };
   }
   // scrollToContent = () => {
@@ -52,7 +56,7 @@ class Jobs extends React.Component {
     // const {defaultJobs} = this.state
     return (
       <>
-        <Navbar />
+        <Navbar nickname={this.state.nickname} />
         <SearchField
           // defaultJobList={this.state.companyNames}
           companyNames={this.state.companyNames}
@@ -65,7 +69,11 @@ class Jobs extends React.Component {
             updateFilterState={this.updateFilterState}
             ref={this.scrollDiv}
           />
-          <JobList jobs={currentJobs} />
+          <JobList
+            jobs={currentJobs}
+            noJobsFound={this.state.noJobsFound}
+            email={this.state.email}
+          />
           {this.state.jobs.length > 0 && (
             <Pagination
               jobsPerPage={this.state.jobsPerPage}
@@ -81,6 +89,26 @@ class Jobs extends React.Component {
     );
   }
   componentDidMount = async () => {
+    setTimeout(() => {
+      firebase.auth().onAuthStateChanged(async (_usr) => {
+        if (!_usr) {
+          this.props.history.push("/login");
+        } else {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(_usr.email)
+            .get()
+            .then(async (doc) => {
+              const userData = doc.data();
+              await this.setState({
+                email: userData.email,
+                nickname: userData.nickname,
+              });
+            });
+        }
+      });
+    }, 500);
     // console.log(this.searchJobs("node"));
     const defaultJobs = await this.getDefaultJobs();
     // console.log(defaultJobs);
@@ -188,18 +216,25 @@ class Jobs extends React.Component {
   // };
   getJobs = async () => {
     let jobs = [];
-    console.log(
-      "getJobs called with following request: ",
-      `/positions.json?description=${this.state.description}&location=${this.state.location}`
-    );
-    await this.setState({ jobs });
-    jobs = await axios(
-      `/positions.json?description=${this.state.description}&location=${this.state.location}`
-    );
+    await this.setState({ jobs, noJobsFound: false });
+    try {
+      jobs = await axios(
+        `/positions.json?description=${this.state.description}&location=${this.state.location}`
+      );
+    } catch (err) {
+      console.log(err);
+      jobs = [];
+      await this.setState({ jobs, noJobsFound: true });
+      return;
+    }
     jobs = this.addAttributes(jobs.data);
     jobs = this.applyFilters(jobs);
     console.log(jobs);
-    await this.setState({ currentPage: 1, jobs });
+    await this.setState({
+      currentPage: 1,
+      jobs,
+      noJobsFound: jobs.length > 0 ? false : true,
+    });
     // this.scrollToContent();
     // this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
   };

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import JobCard from "./JobCard";
 import "./main.scss";
+import "./JobList.scss";
 
 class JobList extends React.Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class JobList extends React.Component {
       // FEED DETAILS INTO JOBCARD VIA PROPS
       // <ul style={{ listStyle: "none" }} ref={this.props.ref}>
       <ul style={{ listStyle: "none" }}>
-        {this.props.jobs.length > 0 ? (
+        {/* {this.props.jobs.length > 0 ? ( */}
+        {/* {this.props.jobs.length > 0 ? (
           this.props.jobs.map((job) => {
             return (
               <li key={job.id}>
@@ -54,6 +56,32 @@ class JobList extends React.Component {
           })
         ) : (
           <div className="lds-dual-ring"></div>
+        )} */}
+        {!this.props.noJobsFound ? (
+          this.props.jobs.length > 0 ? (
+            this.props.jobs.map((job) => {
+              return (
+                <li key={job.id}>
+                  <Link
+                    to={{
+                      pathname: `/jobs/${job.id}`,
+                      state: {
+                        details: job,
+                        email: this.state.email,
+                      },
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <JobCard job={job} />
+                  </Link>
+                </li>
+              );
+            })
+          ) : (
+            <div className="lds-dual-ring"></div>
+          )
+        ) : (
+          <h1 className="no-results">Sorry! No results found.</h1>
         )}
       </ul>
     );

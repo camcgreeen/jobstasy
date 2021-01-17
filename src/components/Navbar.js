@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import React from "react";
 import "./main.scss";
 import "./Navbar.scss";
+const firebase = require("firebase");
 
 class Navbar extends React.Component {
   constructor() {
@@ -141,7 +142,15 @@ class Navbar extends React.Component {
             <NavLink to="/jobs" style={{ textDecoration: "none" }}>
               <li className="mobile-menu__links__link">Jobs</li>
             </NavLink>
-            <NavLink to="/likes" style={{ textDecoration: "none" }}>
+            <NavLink
+              to={{
+                pathname: `/likes`,
+                state: {
+                  nickname: this.props.nickname,
+                },
+              }}
+              style={{ textDecoration: "none" }}
+            >
               <li className="mobile-menu__links__link">My Likes</li>
             </NavLink>
             <a
@@ -171,7 +180,10 @@ class Navbar extends React.Component {
                 Source
               </li>
             </a>
-            <li className="mobile-menu__links__link mobile-menu__links__link__logout">
+            <li
+              className="mobile-menu__links__link mobile-menu__links__link__logout"
+              onClick={this.logOut}
+            >
               <svg
                 width="20"
                 height="20"
@@ -205,6 +217,9 @@ class Navbar extends React.Component {
   };
   componentDidUpdate = () => {
     // console.log(this.state);
+  };
+  logOut = () => {
+    firebase.auth().signOut();
   };
 }
 

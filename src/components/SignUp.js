@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./FormAuthentication.scss";
 import "./main.scss";
-// import { generateRandomString, createDefaultNotes } from "../helpers";
-// const firebase = require("firebase");
+import { generateRandomString } from "../utilities/helper";
+const firebase = require("firebase");
 
 class SignUp extends React.Component {
   constructor() {
@@ -67,6 +67,75 @@ class SignUp extends React.Component {
       </div>
     );
   }
+  formIsValid = () => this.state.password === this.state.passwordConfirmation;
+  userTyping = (type, e) => {
+    switch (type) {
+      case "email":
+        this.setState({ email: e.target.value });
+        break;
+      case "password":
+        this.setState({ password: e.target.value });
+        break;
+      case "passwordConfirmation":
+        this.setState({ passwordConfirmation: e.target.value });
+        break;
+      case "nickname":
+        this.setState({ nickname: e.target.value });
+        break;
+      default:
+        break;
+    }
+  };
+  submitSignup = (e) => {
+    e.preventDefault();
+    if (!this.formIsValid()) {
+      this.setState({ signupError: "Passwords do not match" });
+      return;
+    }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(
+        this.state.email.toLowerCase(),
+        this.state.password
+      )
+      .then(
+        (authRes) => {
+          const userObj = {
+            email: authRes.user.email,
+            nickname: this.state.nickname,
+          };
+          // this is the bit where we add the user to our database
+          // this is separate to firebase authentication bit
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(this.state.email.toLowerCase())
+            .set(userObj)
+            .then(
+              async () => {
+                // this routes us to the dashboard once we've successfully signed up
+                const likedJobs = [];
+                await firebase
+                  .firestore()
+                  .collection("jobs")
+                  .doc(this.state.email)
+                  .set({
+                    likedJobs: [...likedJobs],
+                  });
+                this.props.history.push("/jobs");
+              },
+              (dbError) => {
+                console.log(dbError);
+                this.setState({ signupError: "Failed to add user" });
+              }
+            );
+        },
+        (authError) => {
+          console.log(authError);
+          this.setState({ signupError: authError.message });
+        }
+      );
+  };
 }
 
 export default SignUp;

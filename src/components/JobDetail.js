@@ -7,6 +7,8 @@ import "./JobDetail.scss";
 import Navbar from "./Navbar";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import { generateRandomString } from "../utilities/helper";
+const firebase = require("firebase");
 
 const parse = require("html-react-parser");
 
@@ -368,8 +370,42 @@ class JobDetail extends React.Component {
       default:
         break;
     }
-
-    // return date;
+  };
+  addJobToLiked = (job) => {
+    // const newNote = {
+    //   title: "",
+    //   body: "",
+    //   timestamp: Date.now(),
+    //   backgroundColor: colour,
+    //   id: generateRandomString(10),
+    // };
+    // this.setState(
+    //   (prevState) => ({
+    //     notes: [...prevState.notes, newNote],
+    //     visible: false,
+    //   }),
+    //   async () => {
+    //     if (this.props.email) {
+    //       await firebase
+    //         .firestore()
+    //         .collection("notes")
+    //         .doc(this.props.email)
+    //         .set({
+    //           savedNotes: [...this.state.notes],
+    //         });
+    //     }
+    //   }
+    // );
+    // ADDED FROM HERE
+    // if (this.props.email) {
+    //   await firebase
+    //     .firestore()
+    //     .collection("jobs")
+    //     .doc(this.props.email)
+    //     .set({
+    //       likedJobs: [...this.state.notes],
+    //     });
+    // }
   };
 }
 
