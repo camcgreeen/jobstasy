@@ -16,6 +16,7 @@ class Jobs extends React.Component {
     super();
     this.scrollDiv = React.createRef();
     this.state = {
+      loaded: false,
       prevJobs: [],
       jobs: [],
       prevSearchType: "automatic",
@@ -23,7 +24,7 @@ class Jobs extends React.Component {
       description: "",
       location: "",
       sort: "most recent",
-      salaryValue: [0, 150000],
+      salaryValue: [0, 80000],
       fullTimeOnly: false,
       companyTags: [],
       defaultJobs: [],
@@ -53,7 +54,8 @@ class Jobs extends React.Component {
       <>
         <Navbar />
         <SearchField
-          defaultJobList={this.state.companyNames}
+          // defaultJobList={this.state.companyNames}
+          companyNames={this.state.companyNames}
           updateSearchState={this.updateSearchState}
         />
         <div className="container">
@@ -64,12 +66,14 @@ class Jobs extends React.Component {
             ref={this.scrollDiv}
           />
           <JobList jobs={currentJobs} />
-          <Pagination
-            jobsPerPage={this.state.jobsPerPage}
-            totalJobs={this.state.jobs.length}
-            paginate={this.paginate}
-            currentPage={this.state.currentPage}
-          />
+          {this.state.jobs.length > 0 && (
+            <Pagination
+              jobsPerPage={this.state.jobsPerPage}
+              totalJobs={this.state.jobs.length}
+              paginate={this.paginate}
+              currentPage={this.state.currentPage}
+            />
+          )}
         </div>
         <Contact />
         <Footer />
@@ -191,7 +195,7 @@ class Jobs extends React.Component {
     jobs = await axios(
       `/positions.json?description=${this.state.description}&location=${this.state.location}`
     );
-    jobs = this.addSalary(jobs.data);
+    jobs = this.addAttributes(jobs.data);
     jobs = this.applyFilters(jobs);
     console.log(jobs);
     await this.setState({ currentPage: 1, jobs });
@@ -208,14 +212,72 @@ class Jobs extends React.Component {
     const response = await axios("/positions.json");
     return response.data;
   };
-  addSalary = (jobs) => {
-    jobs.forEach((job) => {
-      job.salary_min = 55000;
-      job.salary_max = 65000;
-    });
-    // console.log(jobs);
+  getRandom = (seed) => {
+    const x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+  convertJobIdToSeed = (id) => {
+    let result = 0;
+    id.split("").forEach((char) => (result += char.charCodeAt(0)));
+    return result;
+  };
+  convertToSalary = (random) => {
+    // generate salary between 25k and 75k
+    // const min = Math.floor(25 + randomNum * 50);
+    // const max = min + 5;
+    // return [min * 1000, max * 1000];
+    return Math.floor(45 + random * 15) * 1000;
+  };
+  addAttributes = (jobs) => {
+    jobs = this.addSalary(jobs);
+    jobs = this.addApplicants(jobs);
+    jobs = this.addApplyBefore(jobs);
+    // jobs = this.addTimezones(jobs);
     return jobs;
   };
+  generatePersistentSalary = (jobId) => {
+    const jobSeed = this.convertJobIdToSeed(jobId);
+    const random = this.getRandom(jobSeed);
+    return this.convertToSalary(random);
+  };
+  addSalary = (jobs) => {
+    jobs.forEach((job) => {
+      // const min = 35000 + this.getRandomInt(10) * 1000;
+      // const max = min + this.getRandomInt(10) * 1000;
+      const min = this.generatePersistentSalary(job.id);
+      const max = min + 5000;
+      job.salary_min = min;
+      job.salary_max = max;
+    });
+    return jobs;
+  };
+  addApplicants = (jobs) => {
+    // use getRandom to make persistent
+    jobs.forEach((job) => {
+      job.applicant_number = 172;
+    });
+    return jobs;
+  };
+  addApplyBefore = (jobs) => {
+    // always add a month onto the created_at property
+    jobs.forEach((job) => {
+      job.apply_before = "Mon Jan 18 00:00:00 UTC 2021";
+    });
+    return jobs;
+  };
+  // addTimezones = (jobs) => {
+  //   let timezones = ["GMT", "GMT + 1", "GMT + 2"];
+  //   // jobs.forEach((job) => {
+  //   //   job.timezones = timezones;
+  //   // });
+  //   // return jobs;
+
+  //   jobs.forEach((job) => {
+  //     // job.timezones = ["GMT", "GMT + 1", "GMT + 2"];
+  //     job.timezones = "GMT, GMT + 1, GMT + 2";
+  //   });
+  //   return jobs;
+  // };
   searchJobs = async (query) => {
     // console.log(query);
     // const response = await fetch(

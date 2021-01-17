@@ -45,8 +45,8 @@ const marks = [
     label: "£0",
   },
   {
-    value: 150000,
-    label: "£150k",
+    value: 80000,
+    label: "£80k",
   },
 ];
 
@@ -54,7 +54,7 @@ class SalarySlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: [0, 150000],
+      value: [0, 80000],
     };
   }
   // render() {
@@ -71,7 +71,7 @@ class SalarySlider extends React.Component {
   //     color="primary"
   //     marks={marks}
   //     min={0}
-  //     max={150000}
+  //     max={80000}
   //     step={5000}
   //   />
   // </ThemeProvider>
@@ -91,7 +91,7 @@ class Filters extends React.Component {
     this.state = {
       filtersOpen: false,
       inputSort: "most recent",
-      inputSalaryValue: [0, 150000],
+      inputSalaryValue: [0, 80000],
       inputCompanyTag: "",
       inputFullTimeOnly: false,
       companyTags: [],
@@ -104,39 +104,60 @@ class Filters extends React.Component {
     return (
       <>
         <div className="list-info" style={{ marginTop: this.props.marginTop }}>
-          <div
-            className="filters"
-            onClick={() => {
-              this.toggleFilters();
-              this.toggleNoScroll();
-            }}
-          >
-            {/* <img
+          <div className="filter-container">
+            <div
+              className="filter-container__filters"
+              onClick={() => {
+                this.toggleFilters();
+                this.toggleNoScroll();
+              }}
+            >
+              {/* <img
               className="filters__img"
               src="https://svgshare.com/i/SxK.svg"
               alt="filter"
             /> */}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0)">
-                <path
-                  d="M15.4055 0H0.65625C0.311035 0 0.03125 0.279785 0.03125 0.625C0.03125 2.36548 0.777344 4.0271 2.07825 5.18347L4.81543 7.61634C5.29004 8.03821 5.56226 8.64441 5.56226 9.27955V15.3743C5.56226 15.8723 6.1189 16.1709 6.53382 15.8942L10.2212 13.436C10.395 13.3201 10.4995 13.125 10.4995 12.916V9.27955C10.4995 8.64441 10.7717 8.03821 11.2463 7.61634L13.9834 5.18347C15.2843 4.0271 16.0304 2.36548 16.0304 0.625C16.0304 0.279785 15.7506 0 15.4055 0ZM13.153 4.24915L10.4159 6.68213C9.67469 7.34107 9.24951 8.28772 9.24951 9.27942V12.5815L6.81214 14.2064V9.27955C6.81214 8.28772 6.38697 7.34107 5.64575 6.68213L2.90869 4.24927C2.03149 3.46936 1.47156 2.40076 1.32166 1.24988H14.74C14.5901 2.40076 14.0303 3.46936 13.153 4.24915Z"
-                  fill="white"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0">
-                  <rect width="16" height="16" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0)">
+                  <path
+                    d="M15.4055 0H0.65625C0.311035 0 0.03125 0.279785 0.03125 0.625C0.03125 2.36548 0.777344 4.0271 2.07825 5.18347L4.81543 7.61634C5.29004 8.03821 5.56226 8.64441 5.56226 9.27955V15.3743C5.56226 15.8723 6.1189 16.1709 6.53382 15.8942L10.2212 13.436C10.395 13.3201 10.4995 13.125 10.4995 12.916V9.27955C10.4995 8.64441 10.7717 8.03821 11.2463 7.61634L13.9834 5.18347C15.2843 4.0271 16.0304 2.36548 16.0304 0.625C16.0304 0.279785 15.7506 0 15.4055 0ZM13.153 4.24915L10.4159 6.68213C9.67469 7.34107 9.24951 8.28772 9.24951 9.27942V12.5815L6.81214 14.2064V9.27955C6.81214 8.28772 6.38697 7.34107 5.64575 6.68213L2.90869 4.24927C2.03149 3.46936 1.47156 2.40076 1.32166 1.24988H14.74C14.5901 2.40076 14.0303 3.46936 13.153 4.24915Z"
+                    fill="white"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
 
-            <p className="filters__text">Filters</p>
+              <p className="filter-container__filters__text">Filters</p>
+            </div>
+            <div
+              // className="filter-container__clear"
+              className={
+                this.checkFiltersDefault()
+                  ? "filter-container__clear"
+                  : "filter-container__clear visible"
+              }
+              onClick={async () => {
+                await this.clearFilters();
+                this.props.updateFilterState([
+                  this.state.inputSort,
+                  this.state.inputSalaryValue,
+                  this.state.inputFullTimeOnly,
+                  this.state.companyTags,
+                ]);
+              }}
+            >
+              Clear Filters
+            </div>
           </div>
           <p className="job-number">
             {this.props.jobNumber +
@@ -270,7 +291,7 @@ class Filters extends React.Component {
                   color="primary"
                   marks={marks}
                   min={0}
-                  max={150000}
+                  max={80000}
                   step={5000}
                 />
               </ThemeProvider>
@@ -421,6 +442,15 @@ class Filters extends React.Component {
       ? this.addCompanyTag()
       : this.setState({ inputCompanyTag: e.target.value });
   };
+  checkFiltersDefault = () => {
+    return (
+      this.state.inputSort === "most recent" &&
+      JSON.stringify(this.state.inputSalaryValue) ===
+        JSON.stringify([0, 80000]) &&
+      this.state.inputFullTimeOnly === false &&
+      JSON.stringify(this.state.companyTags) === JSON.stringify([])
+    );
+  };
   addCompanyTag = () => {
     document.getElementById("input-add-company-tag").value = "";
     let updatedCompanyTags = [...this.state.companyTags];
@@ -498,7 +528,7 @@ class Filters extends React.Component {
   clearFilters = () => {
     this.setState({
       inputSort: "most recent",
-      inputSalaryValue: [0, 150000],
+      inputSalaryValue: [0, 80000],
       inputCompanyTag: "",
       inputFullTimeOnly: false,
       companyTags: [],

@@ -1,6 +1,8 @@
 @import "../utilities/variables.scss";
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap");
 
+$spinner-size: 60px;
+
 @font-face {
   font-family: "Euclid Circular A";
   src: url(../fonts/EuclidCircularA-Regular-WebTrial.woff) format("woff");
@@ -87,6 +89,7 @@ body {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     font-weight: 500;
     padding: 16px 32px;
+    // width: 100%;
     // height: 100%;
   }
   &--apply {
@@ -201,6 +204,44 @@ body {
     svg {
       margin-left: 10px;
     }
+  }
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  // width: $spinner-size;
+  // height: $spinner-size;
+  // width: 80px;
+  width: $spinner-size;
+  // height: 80px;
+  height: $spinner-size;
+  margin: 0px 0 200px 50%;
+  transform: translateX(-50%);
+  // opacity: 0.5;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  // width: calc(0.8 * $spinner-size);
+  // height: calc(0.8 * $spinner-size);
+  // width: 64px;
+  // height: 64px;
+  // width: calc(80px * 0.8);
+  width: #{$spinner-size * 0.8};
+  // height: calc(80px * 0.8);
+  height: #{$spinner-size * 0.8};
+  margin: #{$spinner-size / 10};
+  border-radius: 50%;
+  border: #{0.075 * $spinner-size} solid #a0a4be;
+  border-color: #a0a4be transparent #a0a4be transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

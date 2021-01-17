@@ -51,7 +51,8 @@ class JobCard extends React.Component {
               </div>
               <ul className="job-card__left__info__details__tags">
                 <li>{job.type}</li>
-                <li>{job.location.split(/\s|\,/gm)[0]}</li>
+                {/* <li>{job.location.split(/\s|\,/gm)[0]}</li> */}
+                <li>{job.location}</li>
               </ul>
             </div>
           </div>

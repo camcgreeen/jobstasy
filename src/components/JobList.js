@@ -8,6 +8,7 @@ class JobList extends React.Component {
     super(props);
     this.state = {
       jobs: [],
+      loading: false,
     };
   }
   render() {
@@ -52,7 +53,7 @@ class JobList extends React.Component {
             );
           })
         ) : (
-          <h1>Loading</h1>
+          <div className="lds-dual-ring"></div>
         )}
       </ul>
     );

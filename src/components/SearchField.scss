@@ -91,6 +91,27 @@
         outline: 0;
       }
     }
+    &__clear {
+      cursor: pointer;
+      animation: none !important;
+      -webkit-animation: none !important;
+      -moz-animation: none !important;
+      -o-animation: none !important;
+      -ms-animation: none !important;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out !important;
+      opacity: 0;
+      margin-right: 20px;
+      path {
+        transition: fill 0.2s ease-in-out;
+        fill: $color-secondary;
+      }
+      &:hover {
+        path {
+          fill: $color-highlight;
+        }
+      }
+    }
   }
   &__location {
     display: flex;
@@ -117,6 +138,27 @@
       }
       &:focus {
         outline: 0;
+      }
+    }
+    &__clear {
+      cursor: pointer;
+      animation: none !important;
+      -webkit-animation: none !important;
+      -moz-animation: none !important;
+      -o-animation: none !important;
+      -ms-animation: none !important;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out !important;
+      opacity: 0;
+      margin-right: 20px;
+      path {
+        transition: fill 0.2s ease-in-out;
+        fill: $color-secondary;
+      }
+      &:hover {
+        path {
+          fill: $color-highlight;
+        }
       }
     }
   }
@@ -159,20 +201,21 @@
     // align-items: center;
     // justify-content: space-between;
     // width: 100%;
-    transform: translateY(0%);
-    transform: translateY(50%);
+    // transform: translateY(0%);
+    transform: translateY(calc(50% - 15px));
     &__description {
       // width: 100%;
-      width: calc(100% - 40px);
-      display: flex;
-      flex-direction: row;
+      // width: calc(100% - 40px);
+      width: calc(100% - 20px);
+      // display: flex;
+      // flex-direction: row;
 
-      align-items: center;
-      justify-content: flex-start;
-      border-radius: 4px;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 4px 4px 59px #edeef4;
+      // align-items: center;
+      // justify-content: flex-start;
+      // border-radius: 4px;
+      // padding: 20px;
+      // background-color: white;
+      // box-shadow: 4px 4px 59px #edeef4;
       &__img {
         width: 24px;
         height: 24px;
@@ -193,7 +236,8 @@
     &__location {
       margin-top: 20px;
       // width: 100%;
-      width: calc(100% - 40px);
+      // width: calc(100% - 40px);
+      width: calc(100% - 20px);
       //   display: flex;
       //   flex-direction: row;
       //   align-items: center;
@@ -218,6 +262,14 @@
       //       outline: 0;
       //     }
       //   }
+    }
+  }
+  .btn {
+    &--search {
+      // width: 100px;
+      // padding: 0;
+      // width: 100%;
+      // margin-bottom: 20px;
     }
   }
 }

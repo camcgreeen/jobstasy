@@ -15,6 +15,8 @@ class JobDetail extends React.Component {
     this.state = {
       jobLiked: false,
       job: {},
+      createdAt: "",
+      applyBefore: "",
     };
   }
   render() {
@@ -92,7 +94,10 @@ class JobDetail extends React.Component {
           <div className="job-detail-info">
             <div className="job-detail-info__right">
               <div className="job-detail-info__right__posted-applications">
-                Posted X days ago · X applicants
+                {"Posted " + this.state.createdAt + " · "}
+                {job.applicant_number === 1
+                  ? job.applicant_number + " applicant"
+                  : job.applicant_number + " applicants"}
               </div>
               <button className="btn btn--like">
                 <svg
@@ -256,9 +261,9 @@ class JobDetail extends React.Component {
                 </h1>
                 <div className="job-detail-info__left__about__grid">
                   <p className="key">Apply before</p>
-                  <p className="value">February 18th, 2021</p>
+                  <p className="value">{this.state.applyBefore}</p>
                   <p className="key">Job posted on</p>
-                  <p className="value">{job.created_at + "FORMAT THIS"}</p>
+                  <p className="value">{this.state.createdAt}</p>
                   <p className="key">Job type</p>
                   <p className="value">{job.type}</p>
                   <p className="key">Salary</p>
@@ -271,6 +276,11 @@ class JobDetail extends React.Component {
                   Hiring timezones
                 </h1>
                 <ul className="job-detail-info__left__about__timezones">
+                  {/* {job.timezones.map((timezone) => {
+                    return <li>{timezone}</li>;
+                  })} */}
+                  {/* {job.timezones.length === 0 ? "hey" : job.timezones} */}
+                  {/* {job.timezones[0]} */}
                   <li>GMT</li>
                   <li>GMT + 1</li>
                   <li>GMT + 2</li>
@@ -292,9 +302,26 @@ class JobDetail extends React.Component {
   componentDidMount = () => {
     console.log(`Job ID = ${this.props.match.params.id}`);
     console.log("props", this.props.location.state.details);
-    this.setState({
-      job: this.props.location.state.details,
-    });
+    this.setState(
+      {
+        job: this.props.location.state.details,
+      },
+      () => {
+        const createdAt = this.convertDate(this.state.job.created_at);
+        const applyBefore = this.convertDate(this.state.job.apply_before);
+        this.setState({ createdAt, applyBefore });
+      }
+    );
+  };
+  convertDate = (date) => {
+    //date = Sat Jan 16 00:00:00 UTC 2021
+    // we'd like Jan 16 2021
+    console.log("called");
+    console.log(date);
+    const dateSplit = date.split(" ");
+    const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
+    // this.setState({ createdAt });
+    return res;
   };
 }
 
