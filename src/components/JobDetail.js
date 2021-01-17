@@ -95,7 +95,7 @@ class JobDetail extends React.Component {
           <div className="job-detail-info">
             <div className="job-detail-info__right">
               <div className="job-detail-info__right__posted-applications">
-                {"Posted " + this.state.createdAt + " · "}
+                {"Posted " + this.postedAt(this.state.createdAt) + " · "}
                 {job.applicant_number === 1
                   ? job.applicant_number + " applicant"
                   : job.applicant_number + " applicants"}
@@ -334,6 +334,42 @@ class JobDetail extends React.Component {
   postedAt = (date) => {
     //date = Sat Jan 16 00:00:00 UTC 2021
     // we'd like 12 hours ago
+    const timeDifferenceMs = Date.now() - Date.parse(date);
+    console.log("timeDifferenceMs = " + timeDifferenceMs);
+
+    //timeDifference = 157,773,614
+    const minMs = 60000;
+    const hourMs = 3600000;
+    const dayMs = 86400000;
+    const weekMs = 604800000;
+    const monthMs = 2629800000;
+    const yearMs = 31536000000;
+    switch (true) {
+      case timeDifferenceMs < hourMs:
+        const minutes = Math.floor(timeDifferenceMs / minMs);
+        return minutes === 1
+          ? minutes + "minute ago"
+          : minutes + " minutes ago";
+      case timeDifferenceMs < dayMs:
+        const hours = Math.floor(timeDifferenceMs / hourMs);
+        return hours === 1 ? hours + " hour ago" : hours + " hours ago";
+      case timeDifferenceMs < weekMs:
+        const days = Math.floor(timeDifferenceMs / dayMs);
+        return days === 1 ? days + " day ago" : days + " days ago";
+      case timeDifferenceMs < monthMs:
+        const weeks = Math.floor(timeDifferenceMs / weekMs);
+        return weeks === 1 ? weeks + " week ago" : weeks + " hours ago";
+      case timeDifferenceMs < yearMs:
+        const months = Math.floor(timeDifferenceMs / monthMs);
+        return months === 1 ? months + " month ago" : months + " months ago";
+      case timeDifferenceMs > yearMs:
+        const years = Math.floor(timeDifferenceMs / yearMs);
+        return years === 1 ? years + " year ago" : years + " years ago";
+      default:
+        break;
+    }
+
+    // return date;
   };
 }
 
