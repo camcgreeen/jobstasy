@@ -65,7 +65,7 @@ class Contact extends React.Component {
           <div className="contact-form__bottom">
             <a
               className="btn btn--contact"
-              href="mailto:c.c.green@outlook.com"
+              href="mailto:c.c.green@outlook.com?subject=Jobstasy - job search portfolio app"
               target="_blank"
               rel="noopener noreferrer"
             >

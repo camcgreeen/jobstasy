@@ -261,7 +261,8 @@
     -o-animation: none !important;
     -ms-animation: none !important;
     pointer-events: none;
-    transition: opacity 0.2s ease-in-out !important;
+    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out !important;
     opacity: 0;
     display: flex;
     flex-direction: row;
@@ -275,7 +276,9 @@
     margin-left: 40px;
     &:hover {
       cursor: pointer;
-      background-color: $color-bg-special;
+      // background-color: $color-bg-special;
+      color: $color-danger;
+      border-color: $color-danger;
     }
   }
 }

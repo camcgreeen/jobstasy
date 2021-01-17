@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { convertSalary } from "../utilities/helper";
 import "./main.scss";
 import "./Jobs.scss";
 import "./JobDetail.scss";
@@ -268,7 +269,8 @@ class JobDetail extends React.Component {
                   <p className="value">{job.type}</p>
                   <p className="key">Salary</p>
                   <p className="value">
-                    £{job.salary_min}-{job.salary_max} GBP
+                    £{convertSalary(job.salary_min)}-
+                    {convertSalary(job.salary_max)} GBP
                   </p>
                 </div>
                 <hr className="job-detail-info__left__about__line" />
@@ -287,8 +289,8 @@ class JobDetail extends React.Component {
                 </ul>
                 <hr className="job-detail-info__left__about__line" />
                 <h2 className="job-detail-info__left__about__h2">
-                  Note that some of the information on this page is generated
-                  for the purpose of demonstration
+                  Note that some of the information on this page has been
+                  generated for the purpose of demonstration
                 </h2>
               </div>
             </div>
@@ -307,21 +309,31 @@ class JobDetail extends React.Component {
         job: this.props.location.state.details,
       },
       () => {
-        const createdAt = this.convertDate(this.state.job.created_at);
-        const applyBefore = this.convertDate(this.state.job.apply_before);
+        const createdAt = this.convertCreatedDate(this.state.job.created_at);
+        const applyBefore = this.convertApplyDate(this.state.job.apply_before);
         this.setState({ createdAt, applyBefore });
       }
     );
   };
-  convertDate = (date) => {
+  convertCreatedDate = (date) => {
     //date = Sat Jan 16 00:00:00 UTC 2021
     // we'd like Jan 16 2021
-    console.log("called");
-    console.log(date);
     const dateSplit = date.split(" ");
     const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
-    // this.setState({ createdAt });
     return res;
+  };
+  convertApplyDate = (date) => {
+    //date = Tue Feb 16 2021 06:54:31 GMT+0000 (Greenwich Mean Time)
+    // we'd like Feb 16 2021
+    // console.log(date.toString());
+    // return date.toString();
+    const dateSplit = date.toString().split(" ");
+    const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[3];
+    return res;
+  };
+  postedAt = (date) => {
+    //date = Sat Jan 16 00:00:00 UTC 2021
+    // we'd like 12 hours ago
   };
 }
 

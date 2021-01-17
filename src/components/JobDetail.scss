@@ -76,9 +76,9 @@
         font-weight: 500;
       }
       &__h2 {
-        color: $color-highlight;
+        color: $color-primary;
         margin-top: 40px;
-        font-size: 1rem;
+        font-size: 0.8rem;
         font-weight: 400;
       }
       &__line {
@@ -139,6 +139,20 @@
         margin-top: 20px;
         margin-bottom: 20px;
         font-size: 1.5rem;
+        color: $color-primary;
+        font-weight: 400;
+      }
+      h2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 1.25rem;
+        color: $color-primary;
+        font-weight: 400;
+      }
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 1rem;
         color: $color-primary;
         font-weight: 400;
       }

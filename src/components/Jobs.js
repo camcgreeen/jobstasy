@@ -85,7 +85,8 @@ class Jobs extends React.Component {
     const defaultJobs = await this.getDefaultJobs();
     // console.log(defaultJobs);
     const companyNames = this.checkCompanyUrlExists(defaultJobs);
-    await this.setState({ companyNames, searchType: "automatic" });
+    // await this.setState({ companyNames, searchType: "automatic" });
+    await this.setState({ companyNames });
     // const automaticJobs = await this.getJobs(this.state.searchType);
     // let prevJobs = await this.getJobs(this.state.searchType);
     // await this.setState({prevJobs});
@@ -240,6 +241,11 @@ class Jobs extends React.Component {
     const random = this.getRandom(jobSeed);
     return this.convertToSalary(random);
   };
+  generatePersistentApplicantNumber = (jobId) => {
+    const jobSeed = this.convertJobIdToSeed(jobId);
+    const random = this.getRandom(jobSeed);
+    return Math.floor(4 + random * 58);
+  };
   addSalary = (jobs) => {
     jobs.forEach((job) => {
       // const min = 35000 + this.getRandomInt(10) * 1000;
@@ -252,16 +258,18 @@ class Jobs extends React.Component {
     return jobs;
   };
   addApplicants = (jobs) => {
-    // use getRandom to make persistent
     jobs.forEach((job) => {
-      job.applicant_number = 172;
+      job.applicant_number = this.generatePersistentApplicantNumber(job.id);
     });
     return jobs;
   };
   addApplyBefore = (jobs) => {
-    // always add a month onto the created_at property
+    const monthInMs = 2629800000;
+    const applyInterval = monthInMs * 2.5;
     jobs.forEach((job) => {
-      job.apply_before = "Mon Jan 18 00:00:00 UTC 2021";
+      const createdDate = Date.parse(job.created_at);
+      const applyBeforeDate = new Date(createdDate + applyInterval);
+      job.apply_before = applyBeforeDate;
     });
     return jobs;
   };
@@ -289,16 +297,38 @@ class Jobs extends React.Component {
       // console.log(response);
     });
   };
+  // checkCompanyUrlExists = (jobs) => {
+  //   let result = [];
+  //   let count = 0;
+  //   jobs.forEach((job) => {
+  //     if (
+  //       job.company_url !== null &&
+  //       !result.includes(job.company) &&
+  //       result.length < 3
+  //     ) {
+  //       result.push(job);
+  //       count++;
+  //     }
+  //   });
+  //   // console.log(result);
+  //   return result;
+  // };
   checkCompanyUrlExists = (jobs) => {
     let result = [];
-    let count = 0;
     jobs.forEach((job) => {
-      if (job.company_url !== null && count < 3) {
+      let companyAlreadyInList = false;
+      result.forEach(
+        (jobInList) =>
+          (companyAlreadyInList = jobInList.company === job.company)
+      );
+      if (
+        job.company_url !== null &&
+        !companyAlreadyInList &&
+        result.length < 3
+      ) {
         result.push(job);
-        count++;
       }
     });
-    // console.log(result);
     return result;
   };
   sortJobs = (jobs, sortBy) => {
