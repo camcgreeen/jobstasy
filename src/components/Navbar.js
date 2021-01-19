@@ -146,6 +146,7 @@ class Navbar extends React.Component {
               to={{
                 pathname: `/likes`,
                 state: {
+                  email: this.props.email,
                   nickname: this.props.nickname,
                 },
               }}

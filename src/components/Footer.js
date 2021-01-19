@@ -36,7 +36,16 @@ class Footer extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to="/likes" style={{ textDecoration: "none" }}>
+            <Link
+              to={{
+                pathname: `/likes`,
+                state: {
+                  email: this.props.email,
+                  nickname: this.props.nickname,
+                },
+              }}
+              style={{ textDecoration: "none" }}
+            >
               My Likes
             </Link>
           </li>

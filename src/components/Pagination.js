@@ -27,7 +27,7 @@ class Pagination extends React.Component {
             className="page-item"
             // onClick={() => this.props.paginate(this.props.currentPage + 1)}
             onClick={() => this.props.paginate(1)}
-            className="page-link"
+            className="page-link page-link--arrow-2"
           >
             {"<<"}
           </li>
@@ -39,7 +39,7 @@ class Pagination extends React.Component {
               this.props.currentPage - 1 > 0 &&
               this.props.paginate(this.props.currentPage - 1)
             }
-            className="page-link"
+            className="page-link page-link--arrow-1"
           >
             {"<"}
           </li>
@@ -74,7 +74,7 @@ class Pagination extends React.Component {
               this.props.currentPage + 1 < pageNumbers.length + 1 &&
               this.props.paginate(this.props.currentPage + 1)
             }
-            className="page-link"
+            className="page-link page-link--arrow-1"
           >
             {">"}
           </li>
@@ -83,7 +83,7 @@ class Pagination extends React.Component {
             className="page-item"
             // onClick={() => this.props.paginate(this.props.currentPage + 1)}
             onClick={() => this.props.paginate(pageNumbers.length)}
-            className="page-link"
+            className="page-link page-link--arrow-2"
           >
             {">>"}
           </li>

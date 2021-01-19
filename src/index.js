@@ -37,7 +37,7 @@ const routing = (
       <ScrollToTop>
         {/* <Navbar /> */}
         <Route exact path="/">
-          <Redirect to="/login" />
+          <Redirect to="/jobs" />
         </Route>
         <Route path="/login" component={LogIn}></Route>
         <Route path="/signup" component={SignUp}></Route>

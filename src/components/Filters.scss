@@ -295,4 +295,34 @@
   .list-info {
     margin-top: 20px;
   }
+  .filter-overlay {
+    width: 350px;
+    &__body {
+      padding: 0 20px;
+      h2 {
+        font-size: 1rem;
+      }
+      select {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  // .list-info {
+  //   margin-top: 20px;
+  // }
+  .filter-overlay {
+    width: 280px;
+    // &__body {
+    //   padding: 0 20px;
+    //   h2 {
+    //     font-size: 1rem;
+    //   }
+    //   select {
+    //     font-size: 1rem;
+    //   }
+    // }
+  }
 }

@@ -67,7 +67,8 @@ class JobList extends React.Component {
                       pathname: `/jobs/${job.id}`,
                       state: {
                         details: job,
-                        email: this.state.email,
+                        email: this.props.email,
+                        nickname: this.props.nickname,
                       },
                     }}
                     style={{ textDecoration: "none" }}
@@ -81,7 +82,11 @@ class JobList extends React.Component {
             <div className="lds-dual-ring"></div>
           )
         ) : (
-          <h1 className="no-results">Sorry! No results found.</h1>
+          <h1 className="no-results">
+            {this.props.type === "jobs"
+              ? "Sorry! No results found."
+              : "No results found. Like some jobs or clear any applied filters."}
+          </h1>
         )}
       </ul>
     );

@@ -19,14 +19,16 @@ class JobDetail extends React.Component {
       jobLiked: false,
       job: {},
       createdAt: "",
-      applyBefore: "",
+      // applyBefore: "",
+      email: null,
+      nickname: null,
     };
   }
   render() {
     const { job } = this.state;
     return (
       <>
-        <Navbar />
+        <Navbar email={this.state.email} nickname={this.state.nickname} />
         <div className="job-detail-bg">
           {/* <img
             className="job-detail-bg__img"
@@ -52,7 +54,7 @@ class JobDetail extends React.Component {
           </h2>
           <a
             className="btn btn--apply"
-            href="mailto:c.c.green@outlook.com?subject=Jobstasy - job search portfolio app&body=Sadly you can't actually apply to jobs using this application as it's a portfolio project. You're more than welcome to send me a message to say hi, though! 👋"
+            href="mailto:c.c.green@outlook.com?subject=Jobstasy - job search app&body=Hi, %0D%0A %0D%0A Sadly you can't actually apply to jobs using this application as the GitHub Jobs API provides no means to do this. %0D%0A %0D%0A You're more than welcome to send me a message on this email address to say hi, though! 👋 %0D%0A %0D%0A Thanks, %0D%0A Cameron"
             style={{ textDecoration: "none" }}
           >
             Apply
@@ -96,31 +98,43 @@ class JobDetail extends React.Component {
         <div className="container">
           <div className="job-detail-info">
             <div className="job-detail-info__right">
-              <div className="job-detail-info__right__posted-applications">
+              {/* <div className="job-detail-info__right__posted-applications">
                 {"Posted " + this.postedAt(this.state.createdAt) + " · "}
                 {job.applicant_number === 1
                   ? job.applicant_number + " applicant"
                   : job.applicant_number + " applicants"}
-              </div>
-              <button className="btn btn--like">
+              </div> */}
+              <button
+                className="btn btn--like"
+                onClick={() => this.toggleJobLiked(job)}
+                style={{
+                  backgroundColor: this.state.jobLiked ? "#444CF4" : "#4449B0",
+                }}
+              >
                 <svg
-                  width="24"
-                  height="22"
-                  viewBox="0 0 24 22"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M11.5948 3.18661L12 3.74685L12.4051 3.18663C12.8296 2.59975 13.3075 2.10173 13.8304 1.69723C14.8616 0.899833 16.0232 0.5 17.2956 0.5C19.0111 0.5 20.5819 1.18501 21.7285 2.42853C22.8632 3.65939 23.5 5.35416 23.5 7.21252C23.5 9.09882 22.8038 10.8477 21.2348 12.7408L21.2348 12.7408C19.8158 14.4531 17.7661 16.2019 15.3373 18.2717L15.3372 18.2717L15.3165 18.2894C14.4958 18.9889 13.5646 19.7826 12.5983 20.6276L12.598 20.6279C12.433 20.7723 12.2206 20.8523 12 20.8523C11.7794 20.8523 11.5671 20.7724 11.4016 20.6275L11.4013 20.6272C10.4279 19.7762 9.49075 18.9775 8.66603 18.2745L8.66332 18.2722L8.66329 18.2722C6.2341 16.2021 4.18441 14.4532 2.76535 12.741C1.19634 10.8477 0.5 9.09879 0.5 7.21271C0.5 5.35416 1.1368 3.65939 2.27135 2.42853C3.41786 1.18502 4.98889 0.5 6.70441 0.5C7.97679 0.5 9.1384 0.899836 10.1694 1.69721L10.1694 1.69723C10.6925 2.10171 11.1706 2.59991 11.5948 3.18661Z"
-                    stroke={this.state.jobLiked ? "none" : "black"}
-                    fill={this.state.jobLiked ? "black" : "none"}
-                    stroke-width="1px"
-                    style={{
-                      transition:
-                        "stroke 0.2s ease-in-out, fill 0.2s ease-in-out",
-                    }}
-                  />
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M2.61182 5.22656H0.522376C0.235125 5.22656 0 5.4605 0 5.74891V15.1515C0 15.4397 0.234094 15.6737 0.522376 15.6737H2.61182C2.9001 15.6737 3.13419 15.4397 3.13419 15.1515V5.74891C3.13419 5.4605 2.89904 5.22656 2.61182 5.22656Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M14.6966 5.22689C14.6125 5.21264 10.6735 5.22689 10.6735 5.22689L11.2237 3.72588C11.6033 2.68919 11.3575 1.10628 10.3042 0.543532C9.9612 0.360282 9.48201 0.268251 9.09567 0.365501C8.8741 0.421251 8.67939 0.567939 8.56332 0.76447C8.42985 0.990502 8.44363 1.25435 8.3961 1.50497C8.27557 2.14066 7.9752 2.74507 7.51004 3.19873C6.69904 3.9897 4.17969 6.27158 4.17969 6.27158V14.6294H12.8857C14.0605 14.6301 14.8304 13.3182 14.251 12.2935C14.9416 11.8511 15.1778 10.9194 14.7733 10.2041C15.464 9.76171 15.7002 8.82999 15.2957 8.11461C16.4874 7.35139 16.089 5.46239 14.6966 5.22689Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
                 </svg>
+                {this.state.jobLiked ? "Liked" : "Like"}
               </button>
               {/* <div className="job-detail-info__right__description"> */}
               {/* <h1>Job description</h1>
@@ -250,7 +264,9 @@ class JobDetail extends React.Component {
               {/* {job.description}
               </div> */}
               {parse(
-                `<div class='job-detail-info__right__description'>${job.description}</div>`
+                `<div class='job-detail-info__right__description'>
+                  ${job.description}
+                </div>`
               )}
             </div>
             <div className="job-detail-info__left">
@@ -263,8 +279,8 @@ class JobDetail extends React.Component {
                   About this role
                 </h1>
                 <div className="job-detail-info__left__about__grid">
-                  <p className="key">Apply before</p>
-                  <p className="value">{this.state.applyBefore}</p>
+                  {/* <p className="key">Apply before</p>
+                  <p className="value">{this.state.applyBefore}</p> */}
                   <p className="key">Job posted on</p>
                   <p className="value">{this.state.createdAt}</p>
                   <p className="key">Job type</p>
@@ -274,6 +290,8 @@ class JobDetail extends React.Component {
                     £{convertSalary(job.salary_min)}-
                     {convertSalary(job.salary_max)} GBP
                   </p>
+                  <p className="key">Applicants</p>
+                  <p className="value">{job.applicant_number}</p>
                 </div>
                 <hr className="job-detail-info__left__about__line" />
                 <h1 className="job-detail-info__left__about__h1">
@@ -299,23 +317,42 @@ class JobDetail extends React.Component {
           </div>
         </div>
         <Contact />
-        <Footer />
+        <Footer email={this.state.email} nickname={this.state.nickname} />
       </>
     );
   }
-  componentDidMount = () => {
+  componentDidMount = async () => {
     console.log(`Job ID = ${this.props.match.params.id}`);
     console.log("props", this.props.location.state.details);
-    this.setState(
-      {
-        job: this.props.location.state.details,
-      },
-      () => {
-        const createdAt = this.convertCreatedDate(this.state.job.created_at);
-        const applyBefore = this.convertApplyDate(this.state.job.apply_before);
-        this.setState({ createdAt, applyBefore });
-      }
-    );
+    // this.setState(
+    //   {
+    //     job: this.props.location.state.details,
+    //     email: this.props.location.state.email,
+    //   },
+    //   () => {
+    //     const createdAt = this.convertCreatedDate(this.state.job.created_at);
+    //     const applyBefore = this.convertApplyDate(this.state.job.apply_before);
+    //     this.setState({ createdAt, applyBefore });
+    //   }
+    // );
+    await this.setState({
+      job: this.props.location.state.details,
+      email: this.props.location.state.email,
+      nickname: this.props.location.state.nickname,
+    });
+    await this.getLikedJobs();
+    const checkAlreadyLiked = this.checkJobAlreadyLiked(this.state.job, [
+      ...this.state.likedJobs,
+    ]);
+    const createdAt = this.convertCreatedDate(this.state.job.created_at);
+    // const applyBefore = this.convertApplyDate(this.state.job.apply_before);
+    // const createdAt = this.convertDate(this.state.job.created_at);
+    // const applyBefore = this.convertDate(this.state.job.apply_before);
+    await this.setState({
+      createdAt,
+      // applyBefore,
+      jobLiked: checkAlreadyLiked.alreadyLiked,
+    });
   };
   convertCreatedDate = (date) => {
     //date = Sat Jan 16 00:00:00 UTC 2021
@@ -324,15 +361,23 @@ class JobDetail extends React.Component {
     const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
     return res;
   };
-  convertApplyDate = (date) => {
-    //date = Tue Feb 16 2021 06:54:31 GMT+0000 (Greenwich Mean Time)
-    // we'd like Feb 16 2021
-    // console.log(date.toString());
-    // return date.toString();
-    const dateSplit = date.toString().split(" ");
-    const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[3];
+  // convertApplyDate = (date) => {
+  //   //date = Tue Feb 16 2021 06:54:31 GMT+0000 (Greenwich Mean Time)
+  //   // we'd like Feb 16 2021
+  //   // console.log(date.toString());
+  //   // return date.toString();
+  //   const dateSplit = date.toString().split(" ");
+  //   const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[3];
+  //   return res;
+  // };
+  convertDate = (date) => {
+    //date = Sat Jan 16 00:00:00 UTC 2021
+    // we'd like Jan 16 2021
+    const dateSplit = date.split(" ");
+    const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
     return res;
   };
+  convert;
   postedAt = (date) => {
     //date = Sat Jan 16 00:00:00 UTC 2021
     // we'd like 12 hours ago
@@ -371,7 +416,46 @@ class JobDetail extends React.Component {
         break;
     }
   };
-  addJobToLiked = (job) => {
+  getLikedJobs = async () => {
+    if (this.state.email) {
+      let likedJobs;
+      await firebase
+        .firestore()
+        .collection("jobs")
+        .doc(this.state.email)
+        .get()
+        .then(async (res) => {
+          const data = res.data();
+          likedJobs = data.likedJobs;
+          this.setState({ likedJobs });
+        });
+    }
+  };
+  checkJobAlreadyLiked = (job, likedJobs) => {
+    let alreadyLiked = false;
+    let index = null;
+    console.log("likedJobs = ", likedJobs);
+    // likedJobs.every((likedJob, idx) => {
+    //   if (likedJob.id === job.id) {
+    //     console.log("aaaa");
+    //     alreadyLiked = true;
+    //     index = idx;
+    //     return;
+    //   }
+    // });
+    for (let i = 0; i < likedJobs.length; i++) {
+      if (likedJobs[i].id === job.id) {
+        alreadyLiked = true;
+        index = i;
+        break;
+      }
+    }
+    return {
+      alreadyLiked,
+      index,
+    };
+  };
+  toggleJobLiked = async (job) => {
     // const newNote = {
     //   title: "",
     //   body: "",
@@ -397,15 +481,28 @@ class JobDetail extends React.Component {
     //   }
     // );
     // ADDED FROM HERE
-    // if (this.props.email) {
-    //   await firebase
-    //     .firestore()
-    //     .collection("jobs")
-    //     .doc(this.props.email)
-    //     .set({
-    //       likedJobs: [...this.state.notes],
-    //     });
-    // }
+    if (this.state.email) {
+      let likedJobs = [...this.state.likedJobs];
+      const jobLiked = this.checkJobAlreadyLiked(job, [...likedJobs]);
+      if (jobLiked.alreadyLiked) {
+        likedJobs.splice(jobLiked.index, 1);
+        await this.setState({ jobLiked: false });
+      } else {
+        likedJobs.push(job);
+        await this.setState({ jobLiked: true });
+      }
+      // jobLiked.alreadyLiked
+      //   ? likedJobs.splice(jobLiked.index, 1)
+      //   : likedJobs.push(job);
+      await firebase
+        .firestore()
+        .collection("jobs")
+        .doc(this.state.email)
+        .set({
+          likedJobs: [...likedJobs],
+        });
+      this.getLikedJobs();
+    }
   };
 }
 

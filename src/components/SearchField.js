@@ -56,7 +56,7 @@ class SearchField extends React.Component {
                 {this.props.companyNames[2].company}
               </a>
             </h2>
-            <div className="inputs">
+            <div className="inputs" id="search-field-inputs">
               <div className="inputs__description">
                 <img
                   className="inputs__description__img"

@@ -137,38 +137,29 @@ body {
     background-color: $color-action;
   }
   &--like {
-    background-color: white !important;
+    background-color: $color-action;
+    color: white;
     // color: none !important;
-    margin: 20px 0;
+    margin: 0 0 40px 0;
     // background-color: white;
-    // width: 28px;
+    width: 128px;
+    // display: inline-block;
+    font-size: 1rem;
     // height: 28px;
     // padding: 0;
-    width: 36px;
-    height: 36px;
+    // width: 36px;
+    // height: 36px;
     // padding: 10px;
     svg {
-      width: 18px;
+      // width: 18px;
       // height: 16px;
+      margin-right: 20px;
     }
-    padding: 0;
-    border: solid $color-primary 1px;
+    padding: 10px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.2s ease-in-out;
-    svg path {
-      transition: fill 0.2s ease-in-out;
-    }
-    &:hover,
-    &:focus {
-      outline: 0;
-      border: solid $color-action 1px;
-      // background-color: $color-highlight;
-      svg path {
-        stroke: $color-action;
-      }
-    }
+    transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
     // &--liked {
     //   background-color: $color-action !important;
     //   svg path {

@@ -56,7 +56,7 @@ class Jobs extends React.Component {
     // const {defaultJobs} = this.state
     return (
       <>
-        <Navbar nickname={this.state.nickname} />
+        <Navbar email={this.state.email} nickname={this.state.nickname} />
         <SearchField
           // defaultJobList={this.state.companyNames}
           companyNames={this.state.companyNames}
@@ -73,6 +73,8 @@ class Jobs extends React.Component {
             jobs={currentJobs}
             noJobsFound={this.state.noJobsFound}
             email={this.state.email}
+            nickname={this.state.nickname}
+            type={"jobs"}
           />
           {this.state.jobs.length > 0 && (
             <Pagination
@@ -84,7 +86,7 @@ class Jobs extends React.Component {
           )}
         </div>
         <Contact />
-        <Footer />
+        <Footer email={this.state.email} nickname={this.state.nickname} />
       </>
     );
   }
@@ -108,7 +110,7 @@ class Jobs extends React.Component {
             });
         }
       });
-    }, 500);
+    }, 270);
     // console.log(this.searchJobs("node"));
     const defaultJobs = await this.getDefaultJobs();
     // console.log(defaultJobs);
@@ -154,6 +156,18 @@ class Jobs extends React.Component {
       console.log("change");
       this.getJobs();
     }
+
+    if (
+      (prevState.description !== this.state.description &&
+        this.state.description !== "") ||
+      (prevState.location !== this.state.location && this.state.location !== "")
+    ) {
+      document
+        // .getElementById("scroll-to")
+        // .scrollIntoView({ behavior: "smooth" });
+        .getElementById("search-field-inputs")
+        .scrollIntoView({ behavior: "smooth" });
+    }
     // if (
     //   prevState.description !== this.state.description ||
     //   prevState.location !== this.state.location
@@ -171,7 +185,10 @@ class Jobs extends React.Component {
     //   // left: 0,
     //   top: scrollTo.top,
     // });
-    document.getElementById("scroll-to").scrollIntoView({ behavior: "smooth" });
+    // document.getElementById("scroll-to").scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById("search-field-inputs")
+      .scrollIntoView({ behavior: "smooth" });
   };
   updateSearchState = (searchState) => {
     this.setState({ description: searchState[0], location: searchState[1] });
@@ -235,6 +252,7 @@ class Jobs extends React.Component {
       jobs,
       noJobsFound: jobs.length > 0 ? false : true,
     });
+    // document.getElementById("scroll-to").scrollIntoView({ behavior: "smooth" });
     // this.scrollToContent();
     // this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -267,7 +285,7 @@ class Jobs extends React.Component {
   addAttributes = (jobs) => {
     jobs = this.addSalary(jobs);
     jobs = this.addApplicants(jobs);
-    jobs = this.addApplyBefore(jobs);
+    // jobs = this.addApplyBefore(jobs);
     // jobs = this.addTimezones(jobs);
     return jobs;
   };
@@ -350,14 +368,22 @@ class Jobs extends React.Component {
   // };
   checkCompanyUrlExists = (jobs) => {
     let result = [];
+    const regex = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
     jobs.forEach((job) => {
       let companyAlreadyInList = false;
-      result.forEach(
-        (jobInList) =>
-          (companyAlreadyInList = jobInList.company === job.company)
+      result.every(
+        (jobInList) => {
+          if (jobInList.company === job.company) {
+            companyAlreadyInList = true;
+            // console.log(job.company + " was already in list");
+            return;
+          }
+        }
+        // (companyAlreadyInList = jobInList.company === job.company)
       );
       if (
         job.company_url !== null &&
+        regex.test(job.company_url) &&
         !companyAlreadyInList &&
         result.length < 3
       ) {
