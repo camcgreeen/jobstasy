@@ -73,7 +73,12 @@ class JobList extends React.Component {
                     }}
                     style={{ textDecoration: "none" }}
                   >
-                    <JobCard job={job} />
+                    <JobCard
+                      job={job}
+                      // onMouseDown={() => console.log("user clicked job card")}
+                      // onContextMenu={(e) => e.preventDefault()}
+                      onMouseDown={this.handleMouseDown}
+                    />
                   </Link>
                 </li>
               );
@@ -92,6 +97,14 @@ class JobList extends React.Component {
     );
     //should the pagination part go here or in a separate component?
   }
+  handleMouseDown = (e) => {
+    if (e.button === 1) {
+      e.preventDefault();
+      // do something on middle mouse button click
+      // like this.props.history.push('/card/new');
+      console.log("hey");
+    }
+  };
   componentDidMount = () => {
     // setTimeout(5000, () => console.log(this.props.jobs));
     // console.log(this.props.jobs);

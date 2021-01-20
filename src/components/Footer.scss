@@ -42,5 +42,11 @@
 @media only screen and (max-width: 1024px) {
   .footer {
     padding: 40px 10vw;
+    &__links__email {
+      a {
+        font-size: 1.25rem !important;
+        // color: red !important;
+      }
+    }
   }
 }

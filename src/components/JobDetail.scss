@@ -7,6 +7,11 @@
 }
 */
 
+.url {
+  &:hover {
+    color: darken($color-highlight, 10%);
+  }
+}
 .job-detail-bg {
   background: linear-gradient(180deg, $color-bg-1, $color-bg-2);
   border-radius: 0 0 42px 42px;
@@ -39,9 +44,9 @@
     font-weight: 400;
     a {
       color: $color-highlight;
-      &:hover {
-        color: darken($color-highlight, 10%);
-      }
+      // &:hover {
+      //   color: darken($color-highlight, 10%);
+      // }
     }
     &__location {
       color: $color-secondary;

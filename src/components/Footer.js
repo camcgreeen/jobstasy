@@ -16,7 +16,7 @@ class Footer extends React.Component {
         </Link>
         <ul className="footer__links">
           {/* <li className="footer__links__contact">Contact me</li> */}
-          <li>
+          <li className="footer__links__email">
             <a
               href="mailto:c.c.green@outlook.com"
               style={{

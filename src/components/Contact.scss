@@ -69,3 +69,15 @@
   opacity: 1;
   pointer-events: all;
 }
+
+@media only screen and (max-width: 650px) {
+  .contact-form {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .contact-form {
+    width: 225px;
+  }
+}

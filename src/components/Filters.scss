@@ -297,7 +297,9 @@
   }
   .filter-overlay {
     width: 350px;
+    // overflow-x: hidden !important;
     &__body {
+      overflow-x: hidden !important;
       padding: 0 20px;
       h2 {
         font-size: 1rem;
@@ -315,6 +317,15 @@
   // }
   .filter-overlay {
     width: 280px;
+    // &__title {
+    //   height: 20%;
+    // }
+    // &__body {
+    //   height: 60%;
+    // }
+    // &__submit {
+    //   height: 20%;
+    // }
     // &__body {
     //   padding: 0 20px;
     //   h2 {
@@ -324,5 +335,19 @@
     //     font-size: 1rem;
     //   }
     // }
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  .filter-overlay {
+    &__title {
+      height: 20%;
+    }
+    &__body {
+      height: 60%;
+    }
+    &__submit {
+      height: 20%;
+    }
   }
 }

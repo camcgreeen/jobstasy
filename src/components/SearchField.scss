@@ -79,6 +79,9 @@
       height: 24px;
     }
     &__input {
+      &::-ms-clear {
+        display: none;
+      }
       border: none;
       margin-left: 20px;
       width: calc(100% - 20px);
@@ -128,6 +131,9 @@
       height: 24px;
     }
     &__input {
+      &::-ms-clear {
+        display: none;
+      }
       border: none;
       margin-left: 20px;
       width: calc(100% - 20px);

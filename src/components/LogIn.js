@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { disableRightMiddleClick } from "../utilities/helper";
 import "./FormAuthentication.scss";
 import "./main.scss";
-import { generateRandomString } from "../utilities/helper";
 const firebase = require("firebase");
 
 class LogIn extends React.Component {
@@ -42,7 +42,6 @@ class LogIn extends React.Component {
           </span>
           <form onSubmit={(e) => this.submitLogin(e)}>
             <input
-              // autoFocus
               type="text"
               placeholder="Email"
               className="input input--email"
@@ -74,6 +73,9 @@ class LogIn extends React.Component {
       </div>
     );
   }
+  componentDidMount = () => {
+    disableRightMiddleClick();
+  };
   userTyping = (type, e) => {
     switch (type) {
       case "email":
@@ -108,8 +110,6 @@ class LogIn extends React.Component {
           email: authRes.user.email,
           nickname: this.state.nickname,
         };
-        // this is the bit where we add the user to our database
-        // this is separate to firebase authentication bit
         firebase
           .firestore()
           .collection("users")
@@ -137,7 +137,6 @@ class LogIn extends React.Component {
   };
   submitLogin = (e) => {
     e.preventDefault();
-
     firebase
       .auth()
       .signInWithEmailAndPassword(
@@ -146,19 +145,10 @@ class LogIn extends React.Component {
       )
       .then(
         () => {
-          // const user = firebase.auth().currentUser;
-          // user
-          //   .sendEmailVerification()
-          //   .then(() => {
-          //     // console.log("authRes", authRes);
-          //     console.log("Email verification link sent to");
-          //   })
-          //   .catch((err) => console.log(err));
           this.props.history.push("/jobs");
         },
         (err) => {
           this.setState({ loginError: err.message });
-          console.log(err);
         }
       );
   };

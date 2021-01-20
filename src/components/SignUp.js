@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { disableRightMiddleClick } from "../utilities/helper";
 import "./FormAuthentication.scss";
 import "./main.scss";
-import { generateRandomString } from "../utilities/helper";
 const firebase = require("firebase");
 
 class SignUp extends React.Component {
@@ -67,7 +67,20 @@ class SignUp extends React.Component {
       </div>
     );
   }
-  formIsValid = () => this.state.password === this.state.passwordConfirmation;
+  componentDidMount = () => {
+    disableRightMiddleClick();
+  };
+  checkNicknameValid = (nickname) => {
+    const regex = /^[a-zA-Z]+$/;
+    return regex.test(nickname);
+  };
+  formIsValid = () =>
+    this.state.password === this.state.passwordConfirmation &&
+    this.state.email !== null &&
+    this.state.password !== null &&
+    this.state.passwordConfirmation !== null &&
+    this.state.nickname !== null &&
+    this.checkNicknameValid(this.state.nickname);
   userTyping = (type, e) => {
     switch (type) {
       case "email":
@@ -89,7 +102,23 @@ class SignUp extends React.Component {
   submitSignup = (e) => {
     e.preventDefault();
     if (!this.formIsValid()) {
-      this.setState({ signupError: "Passwords do not match" });
+      switch (true) {
+        case this.state.email === null:
+          this.setState({ signupError: "You must enter an email address" });
+          return;
+        case this.state.password === null:
+          this.setState({ signupError: "You must enter a password" });
+          return;
+        case this.state.password !== this.state.passwordConfirmation:
+          this.setState({ signupError: "Passwords do not match" });
+          return;
+        case this.state.nickname === null:
+          this.setState({ signupError: "You must enter a nickname" });
+          return;
+        case !this.checkNicknameValid(this.state.nickname):
+          this.setState({ signupError: "Nickname must only include letters." });
+          return;
+      }
       return;
     }
     firebase
@@ -104,8 +133,6 @@ class SignUp extends React.Component {
             email: authRes.user.email,
             nickname: this.state.nickname,
           };
-          // this is the bit where we add the user to our database
-          // this is separate to firebase authentication bit
           firebase
             .firestore()
             .collection("users")
@@ -113,7 +140,6 @@ class SignUp extends React.Component {
             .set(userObj)
             .then(
               async () => {
-                // this routes us to the dashboard once we've successfully signed up
                 const likedJobs = [];
                 await firebase
                   .firestore()

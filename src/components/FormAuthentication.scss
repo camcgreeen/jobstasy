@@ -1,73 +1,5 @@
 @import "../utilities/variables.scss";
 
-$container-padding: 50px;
-$login-margin: 45px;
-$centre-margin: 50px;
-// $color-primary: #2e2e2e;
-// $color-secondary: #75e1c0;
-// $color-tertiary: #9c9fad;
-// $fade-duration: 0.4s;
-
-// *,
-// html,
-// body {
-//   margin: 0;
-//   padding: 0;
-//   font-family: "Manrope", sans-serif;
-//   color: $color-title;
-
-//   animation: fadeIn ease-in-out $fade-duration;
-//   -webkit-animation: fadeIn ease-in-out $fade-duration;
-//   -moz-animation: fadeIn ease-in-out $fade-duration;
-//   -o-animation: fadeIn ease-in-out $fade-duration;
-//   -ms-animation: fadeIn ease-in-out $fade-duration;
-// }
-
-// @keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// @-moz-keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// @-webkit-keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// @-o-keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// @-ms-keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
 .bg-authentication {
   background-color: $color-bg-1;
   width: 100vw;
@@ -78,34 +10,19 @@ $centre-margin: 50px;
   top: 0;
 }
 
-body {
-  // background-color: #f6f8f9;
-  // background-color: $bg-color-primary;
-  // overflow-x: hidden;
-}
-
 .container-authentication {
-  // z-index: 10;
   padding: $container-padding;
-
   width: 400px;
   position: absolute;
   top: 50%;
-  // top: 200px;
-  // margin-top: 50%;
-  // margin-top: 0px;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background-color: white;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-
   border-radius: 12px;
 }
 
 .logo-text {
-  // width: 100px;
-  // height: 100px;
-  // margin: 0;
   margin-bottom: $login-margin;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -119,7 +36,6 @@ body {
 
 .btn-authentication {
   margin-bottom: $login-margin;
-
   border-radius: 12px;
   border: none;
   color: white;
@@ -129,33 +45,26 @@ body {
   font-weight: medium;
   stroke: white;
   width: 100%;
-
   transition: background-color 0.2s ease-in-out;
-
   &--demo {
     width: 100%;
     background-color: $color-action;
-
     &:hover {
       cursor: pointer;
       background-color: darken($color-action, 4%);
     }
   }
-
   &--log-in {
     width: 100%;
     background-color: $color-supplemental;
-
     &:hover {
       cursor: pointer;
       background-color: darken($color-supplemental, 4%);
     }
   }
-
   &--sign-up {
     width: 100%;
     background-color: $color-action;
-
     &:hover {
       cursor: pointer;
       background-color: darken($color-action, 4%);
@@ -168,7 +77,6 @@ body {
   align-items: center;
   text-align: center;
   margin-bottom: $login-margin;
-
   &__horizontal-line {
     border-top: 1px solid #c7ccce;
     flex: 1 1 auto;
@@ -176,7 +84,6 @@ body {
     min-width: 1px;
     padding-top: 8px;
   }
-
   &__label {
     color: $color-placeholder !important;
     margin: 0 8px;
@@ -192,13 +99,10 @@ form {
   margin-bottom: $login-margin;
   width: 100%;
   padding: 10px;
-
   border-radius: 8px;
   box-sizing: border-box;
-
   border: 1px solid $color-primary;
   transition: all 0.2s ease-in-out;
-
   &:focus {
     outline: none !important;
     border: 1px solid $color-action;
@@ -242,7 +146,6 @@ form {
 }
 
 .h5-form {
-  // opacity: 0.5;
   color: $color-placeholder;
   font-weight: 400;
   text-align: center;
@@ -253,41 +156,28 @@ form {
   -o-animation: none !important;
   -ms-animation: none !important;
   &__link {
-    // color: $color-placeholder;
     font-size: 0.8rem;
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  $login-margin: 35px;
-  *,
-  html,
-  body {
-  }
+@media only screen and (max-width: 650px) {
   .container-authentication {
-    // width: calc(100vw - 2 * #{$container-padding});
-
     margin: 0;
+    width: calc(100vw - 2 * #{$container-padding});
     height: calc(100% - 2 * #{$container-padding});
     min-height: 600px;
     top: 0;
     left: 50%;
     transform: translateX(-50%) translateY(0%);
   }
-
   .logo-text {
-    // width: calc(35px * 0.9);
-    // height: calc(35px * 0.9);
     height: 30px;
   }
-
   input,
   input::-webkit-input-placeholder {
     font-size: 0.8rem;
   }
-
   .input,
-  // .btn,
   .logo-text,
   .h1-form,
   .h4-form,
@@ -296,16 +186,11 @@ form {
   }
 }
 
-@media only screen and (max-width: 650px) {
-  .container-authentication {
-    width: calc(100vw - 2 * #{$container-padding});
+@media only screen and (max-height: 700px) {
+  .bg-authentication {
+    height: 750px;
+  }
+  body {
+    overflow-x: hidden;
   }
 }
-
-// @media only screen and (max-height: 750px) {
-//   .container-authentication {
-//     top: 0;
-//     left: 50%;
-//     transform: translateX(-50%) translateY(0%);
-//   }
-// }

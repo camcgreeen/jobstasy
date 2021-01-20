@@ -1,8 +1,5 @@
-import { Link } from "react-router-dom";
 import React from "react";
 import axios from "axios";
-import "./main.scss";
-import "./Jobs.scss";
 import Navbar from "./Navbar";
 import SearchField from "./SearchField";
 import Filters from "./Filters";
@@ -10,6 +7,9 @@ import JobList from "./JobList";
 import Pagination from "./Pagination";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import { disableRightMiddleClick } from "../utilities/helper";
+import "./main.scss";
+import "./Jobs.scss";
 const firebase = require("firebase");
 
 class Jobs extends React.Component {
@@ -20,10 +20,7 @@ class Jobs extends React.Component {
       email: "",
       nickname: "",
       loaded: false,
-      prevJobs: [],
       jobs: [],
-      prevSearchType: "automatic",
-      searchType: "automatic",
       description: "",
       location: "",
       sort: "most recent",
@@ -42,23 +39,14 @@ class Jobs extends React.Component {
       noJobsFound: false,
     };
   }
-  // scrollToContent = () => {
-  //   this.jobListScroll.scrollIntoView({ behavior: "smooth" });
-  // };
   render() {
-    // Get current posts
     const indexOfLastJob = this.state.currentPage * this.state.jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - this.state.jobsPerPage;
     const currentJobs = this.state.jobs.slice(indexOfFirstJob, indexOfLastJob);
-
-    // // Change page
-    // const paginate = pageNumber => setCurrentPage(pageNumber);
-    // const {defaultJobs} = this.state
     return (
       <>
         <Navbar email={this.state.email} nickname={this.state.nickname} />
         <SearchField
-          // defaultJobList={this.state.companyNames}
           companyNames={this.state.companyNames}
           updateSearchState={this.updateSearchState}
         />
@@ -91,6 +79,7 @@ class Jobs extends React.Component {
     );
   }
   componentDidMount = async () => {
+    disableRightMiddleClick();
     setTimeout(() => {
       firebase.auth().onAuthStateChanged(async (_usr) => {
         if (!_usr) {
@@ -111,38 +100,11 @@ class Jobs extends React.Component {
         }
       });
     }, 270);
-    // console.log(this.searchJobs("node"));
-    const defaultJobs = await this.getDefaultJobs();
-    // console.log(defaultJobs);
-    const companyNames = this.checkCompanyUrlExists(defaultJobs);
-    // await this.setState({ companyNames, searchType: "automatic" });
+    await this.getJobs();
+    const companyNames = this.checkCompanyUrlExists(this.state.jobs);
     await this.setState({ companyNames });
-    // const automaticJobs = await this.getJobs(this.state.searchType);
-    // let prevJobs = await this.getJobs(this.state.searchType);
-    // await this.setState({prevJobs});
-    // await this.getInitialJobs();
-    // this.getJobs(this.state.searchType);
-    console.log("component mounted");
-    this.getJobs();
   };
   componentDidUpdate = async (prevProps, prevState) => {
-    // if (
-    //   prevState.description !== this.state.description ||
-    //   prevState.location !== this.state.location
-    // ) {
-    //   let prevSearchType = this.state.searchType;
-    //   await this.setState({ prevSearchType, searchType: "searched" });
-    //   this.getJobs(this.state.searchType);
-    // } else if (
-    //   prevState.sort !== this.state.sort ||
-    //   prevState.salaryValue !== this.state.salaryValue ||
-    //   prevState.fullTimeOnly !== this.state.fullTimeOnly ||
-    //   prevState.companyTags !== this.state.companyTags
-    // ) {
-    //   let prevSearchType = this.state.searchType;
-    //   await this.setState({ prevSearchType, searchType: "filtered" });
-    //   this.getJobs(this.state.searchType);
-    //   console.log("SOMETHING", this.state.companyTags);
     if (
       prevState.description !== this.state.description ||
       prevState.location !== this.state.location ||
@@ -153,39 +115,20 @@ class Jobs extends React.Component {
       JSON.stringify(prevState.companyTags) !==
         JSON.stringify(this.state.companyTags)
     ) {
-      console.log("change");
       this.getJobs();
     }
-
     if (
       (prevState.description !== this.state.description &&
         this.state.description !== "") ||
       (prevState.location !== this.state.location && this.state.location !== "")
     ) {
       document
-        // .getElementById("scroll-to")
-        // .scrollIntoView({ behavior: "smooth" });
         .getElementById("search-field-inputs")
         .scrollIntoView({ behavior: "smooth" });
     }
-    // if (
-    //   prevState.description !== this.state.description ||
-    //   prevState.location !== this.state.location
-    // ) {
-    //   let prevSearchType = this.state.searchType;
-    //   await this.setState({ prevSearchType, searchType: "searched" });
-    //   this.getJobs(this.state.searchType);
-    // }
   };
   paginate = async (pageNumber) => {
     await this.setState({ currentPage: pageNumber });
-    // const scrollTo = document.querySelector(".scroll-to");
-    // window.scrollTo({
-    //   behavior: "smooth",
-    //   // left: 0,
-    //   top: scrollTo.top,
-    // });
-    // document.getElementById("scroll-to").scrollIntoView({ behavior: "smooth" });
     document
       .getElementById("search-field-inputs")
       .scrollIntoView({ behavior: "smooth" });
@@ -201,36 +144,6 @@ class Jobs extends React.Component {
       companyTags: [...filterState[3]],
     });
   };
-  getInitialJobs = async () => {
-    let jobs = await axios("/positions.json");
-    jobs = this.addSalary(jobs.data);
-    this.setState({ prevJobs: jobs, jobs });
-  };
-  // getJobs = async (searchType) => {
-  //   let prevJobs = [...this.state.jobs];
-  //   let jobs = [];
-  //   switch (searchType) {
-  //     case "automatic":
-  //       await this.setState({ jobs });
-  //       jobs = await axios("/positions.json");
-  //       jobs = this.addSalary(jobs.data);
-  //       break;
-  //     case "searched":
-  //       await this.setState({ prevJobs, jobs });
-  //       jobs = await axios(
-  //         `/positions.json?description=${this.state.description}&location=${this.state.location}`
-  //       );
-  //       jobs = this.addSalary(jobs.data);
-  //       break;
-  //     case "filtered":
-  //       jobs = this.state.jobs;
-  //       jobs = this.applyFilters(jobs);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   this.setState({ jobs });
-  // };
   getJobs = async () => {
     let jobs = [];
     await this.setState({ jobs, noJobsFound: false });
@@ -407,11 +320,18 @@ class Jobs extends React.Component {
     }
   };
   filterJobsByCompany = (jobs, searchTerms) => {
+    console.log("searchTerms = ", searchTerms);
+    console.log("typeof searchTerms", typeof searchTerms);
+    let formattedSearchTerms = [...searchTerms];
+    for (let i = 0; i < formattedSearchTerms.length; i++) {
+      formattedSearchTerms[i] = formattedSearchTerms[i].split(" ");
+    }
+    const flattenedSearchTerms = formattedSearchTerms.flat();
     return jobs.filter((job) => {
       const keywords = job.company.toLowerCase().split(" ");
       let matchFound = false;
       // nested loop mxn complexity, but m and n will always be very low
-      searchTerms.forEach((searchTerm) => {
+      flattenedSearchTerms.forEach((searchTerm) => {
         keywords.forEach((keyword) => {
           if (keyword === searchTerm.toLowerCase()) {
             matchFound = true;

@@ -7,7 +7,7 @@ import "./JobDetail.scss";
 import Navbar from "./Navbar";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import { generateRandomString } from "../utilities/helper";
+import { disableRightMiddleClick } from "../utilities/helper";
 const firebase = require("firebase");
 
 const parse = require("html-react-parser");
@@ -40,9 +40,13 @@ class JobDetail extends React.Component {
           <h1 className="job-detail-bg__title">{job.title}</h1>
           <h2 className="job-detail-bg__company">
             <a
-              href={job.company_url}
+              href={this.checkUrlExists(job.company_url) && job.company_url}
               style={{ textDecoration: "none" }}
-              className="job-detail-bg__company"
+              className={
+                this.checkUrlExists(job.company_url)
+                  ? "job-detail-bg__company url"
+                  : "job-detail-bg__company"
+              }
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -322,6 +326,7 @@ class JobDetail extends React.Component {
     );
   }
   componentDidMount = async () => {
+    disableRightMiddleClick();
     console.log(`Job ID = ${this.props.match.params.id}`);
     console.log("props", this.props.location.state.details);
     // this.setState(
@@ -353,6 +358,10 @@ class JobDetail extends React.Component {
       // applyBefore,
       jobLiked: checkAlreadyLiked.alreadyLiked,
     });
+  };
+  checkUrlExists = (url) => {
+    const regex = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
+    return regex.test(url);
   };
   convertCreatedDate = (date) => {
     //date = Sat Jan 16 00:00:00 UTC 2021

@@ -9,6 +9,7 @@ import Pagination from "./Pagination";
 import "./main.scss";
 import "./Jobs.scss";
 import "./Likes.scss";
+import { disableRightMiddleClick } from "../utilities/helper";
 const firebase = require("firebase");
 
 class Likes extends React.Component {
@@ -41,7 +42,7 @@ class Likes extends React.Component {
         <div className="likes-bg">
           <div className="likes-bg__profile" id="likes-pp">
             <p className="likes-bg__profile__text">
-              {this.state.nickname.split("")[0]}
+              {String(this.state.nickname.split("")[0]).toUpperCase()}
             </p>
           </div>
           <h1 className="likes-bg__h1">{this.state.nickname}'s Likes</h1>
@@ -75,6 +76,7 @@ class Likes extends React.Component {
     );
   }
   componentDidMount = async () => {
+    disableRightMiddleClick();
     await this.setState({
       email: this.props.location.state.email,
       nickname: this.props.location.state.nickname,
