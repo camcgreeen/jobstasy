@@ -13,6 +13,10 @@ import {
   convertJobIdToSeed,
   convertToSalary,
   urlRegex,
+  sortJobs,
+  filterJobsByCompany,
+  filterJobsBySalary,
+  filterJobsByFullTime,
 } from "../utilities/helper";
 import "./main.scss";
 import "./Jobs.scss";
@@ -233,68 +237,19 @@ class Jobs extends React.Component {
     });
     return result;
   };
-  sortJobs = (jobs, sortBy) => {
-    switch (sortBy) {
-      case "most recent":
-        return jobs.sort(
-          (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
-        );
-      case "salary (high to low)":
-        return jobs.sort((a, b) => Number(b.salary_max) - Number(a.salary_max));
-      case "salary (low to high)":
-        return jobs.sort((a, b) => Number(a.salary_min) - Number(b.salary_min));
-      default:
-        return [];
-    }
-  };
-  filterJobsByCompany = (jobs, searchTerms) => {
-    let formattedSearchTerms = [...searchTerms];
-    for (let i = 0; i < formattedSearchTerms.length; i++) {
-      formattedSearchTerms[i] = formattedSearchTerms[i].split(" ");
-    }
-    const flattenedSearchTerms = formattedSearchTerms.flat();
-    return jobs.filter((job) => {
-      const keywords = job.company.toLowerCase().split(" ");
-      let matchFound = false;
-      // nested loop mxn complexity, but m and n will always be very low
-      flattenedSearchTerms.forEach((searchTerm) => {
-        keywords.forEach((keyword) => {
-          if (keyword === searchTerm.toLowerCase()) {
-            matchFound = true;
-            return;
-          }
-        });
-      });
-      return matchFound;
-    });
-  };
-  filterJobsBySalary = (jobs, userMin, userMax) => {
-    return jobs.filter((job) => {
-      return (
-        (job.salary_max >= userMin || job.salary_min >= userMin) &&
-        (job.salary_min <= userMax || job.salary_max <= userMax)
-      );
-    });
-  };
-  filterJobsByFullTime = (jobs) => {
-    return jobs.filter((job) => job.type === "Full Time");
-  };
   applyFilters = (jobs) => {
     let filteredJobs = [...jobs];
-    filteredJobs = this.sortJobs(filteredJobs, this.state.sort);
+    filteredJobs = sortJobs(filteredJobs, this.state.sort);
     if (this.state.companyTags.length > 0) {
-      filteredJobs = this.filterJobsByCompany(
-        filteredJobs,
-        this.state.companyTags
-      );
+      filteredJobs = filterJobsByCompany(filteredJobs, this.state.companyTags);
     }
-    filteredJobs = this.filterJobsBySalary(
+    filteredJobs = filterJobsBySalary(
       filteredJobs,
       this.state.salaryValue[0],
       this.state.salaryValue[1]
     );
     filteredJobs = this.state.fullTimeOnly
-      ? this.filterJobsByFullTime(filteredJobs)
+      ? filterJobsByFullTime(filteredJobs)
       : filteredJobs;
     return filteredJobs;
   };
