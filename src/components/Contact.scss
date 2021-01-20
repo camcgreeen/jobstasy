@@ -10,7 +10,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  // padding: 20px;
   width: 64px;
   height: 64px;
   z-index: 1000 !important;
@@ -20,7 +19,6 @@
 }
 
 .contact-form {
-  // z-index: 750;
   z-index: 1000 !important;
   animation: none !important;
   -webkit-animation: none !important;
@@ -31,13 +29,11 @@
   transition: opacity 0.2s ease-in-out;
   pointer-events: none;
   position: fixed;
-  // cursor: pointer;
   bottom: calc(20px + 64px + 20px);
   right: 20px;
   width: 350px;
   box-shadow: 0px 4px 19px rgba(64, 70, 104, 0.8);
   border-radius: 18px;
-  // padding: 40px;
   background-color: white;
   &__main {
     padding: 40px 40px 0 40px;
@@ -45,27 +41,20 @@
     h1 {
       color: $color-primary;
     }
-    // p {
-    //   text-align: justify;
-    // }
     h1,
     p {
       margin-bottom: 40px;
       font-weight: 400;
     }
-    // background-color: white;
   }
   &__bottom {
     padding: 40px;
     background-color: $color-bg-2;
     border-radius: 0 0 18px 18px;
-    // width: 100%;
   }
 }
 
 .visible {
-  // display: block;
-  // opacity: 1 !important;
   opacity: 1;
   pointer-events: all;
 }
