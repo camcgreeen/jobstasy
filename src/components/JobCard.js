@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import React from "react";
+import { convertSalary } from "../utilities/helper";
 import "./main.scss";
 import "./JobCard.scss";
-import { convertSalary } from "../utilities/helper";
 
 class JobCard extends React.Component {
   constructor(props) {
@@ -16,12 +15,7 @@ class JobCard extends React.Component {
     return (
       <div className="job-card">
         <div className="job-card__left">
-          <img
-            className="job-card__left__img"
-            // src="https://svgshare.com/i/Sxk.svg"
-            src={job.company_logo}
-            alt=""
-          />
+          <img className="job-card__left__img" src={job.company_logo} alt="" />
           <div className="job-card__left__info">
             <div className="job-card__left__info__title">{job.title}</div>
             <div className="job-card__left__info__details">
@@ -51,42 +45,12 @@ class JobCard extends React.Component {
               </div>
               <ul className="job-card__left__info__details__tags">
                 <li>{job.type}</li>
-                {/* <li>{job.location.split(/\s|\,/gm)[0]}</li> */}
                 <li>{job.location}</li>
               </ul>
             </div>
           </div>
         </div>
         <div className="job-card__right">
-          {/* <div
-            className="job-card__right__view"
-            onMouseEnter={() => this.setState({ viewJobHovered: true })}
-            onMouseLeave={() => this.setState({ viewJobHovered: false })}
-          >
-            <p
-              className="job-card__right__view__text"
-              style={{
-                color: this.state.viewJobHovered ? "#f7aeae" : "#7A80AA",
-              }}
-            >
-              View job
-            </p>
-            <svg
-              className="job-card__right__view__svg"
-              width="20"
-              height="12"
-              viewBox="0 0 20 12"
-              // fill={this.state.viewJobHovered ? "#7A80AA" : "#f7aeae"}
-              // fill="white"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.4108 0.180472C13.1471 -0.0601572 12.7083 -0.0601572 12.4355 0.180472C12.1718 0.412971 12.1718 0.799928 12.4355 1.03189L17.3809 5.39301H1.06169C0.681273 5.39355 0.378906 5.66019 0.378906 5.99567C0.378906 6.33114 0.681273 6.60645 1.06169 6.60645H17.3809L12.4355 10.9594C12.1718 11.2001 12.1718 11.5876 12.4355 11.8195C12.7083 12.0602 13.1477 12.0602 13.4108 11.8195L19.5269 6.42598C19.7998 6.19348 19.7998 5.80652 19.5269 5.57456L13.4108 0.180472Z"
-                fill={this.state.viewJobHovered ? "#f7aeae" : "#7A80AA"}
-                style={{ transition: "fill 0.2s ease-in-out" }}
-              />
-            </svg>
-          </div> */}
           <p className="job-card__right__timestamp">
             {this.postedAt(job.created_at)}
           </p>
@@ -94,17 +58,8 @@ class JobCard extends React.Component {
       </div>
     );
   }
-  componentDidMount = () => {
-    // console.log(this.state);
-    // console.log(this.state);
-  };
   postedAt = (date) => {
-    //date = Sat Jan 16 00:00:00 UTC 2021
-    // we'd like 12 hours ago
     const timeDifferenceMs = Date.now() - Date.parse(date);
-    // console.log("timeDifferenceMs = " + timeDifferenceMs);
-
-    //timeDifference = 157,773,614
     const minMs = 60000;
     const hourMs = 3600000;
     const dayMs = 86400000;
@@ -133,10 +88,8 @@ class JobCard extends React.Component {
         const years = Math.floor(timeDifferenceMs / yearMs);
         return years === 1 ? years + " year ago" : years + " years ago";
       default:
-        break;
+        return "";
     }
-
-    // return date;
   };
 }
 

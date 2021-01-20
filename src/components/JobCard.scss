@@ -9,7 +9,6 @@
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
-    // box-shadow: 4px 4px 24px #c9cad1;
     box-shadow: 0 4px 6px rgba(64, 70, 104, 0.03),
       0 10px 15px rgba(64, 70, 104, 0.05);
   }
@@ -23,7 +22,6 @@
       align-self: center;
       margin-right: 40px;
       width: 40px;
-      // height: 40px;
     }
     &__info {
       &__title {
@@ -34,24 +32,19 @@
         display: flex;
         flex-direction: row;
         margin-top: 20px;
-        // justify-content: center;
         align-items: center;
         &__company {
-          // margin-top: 20px;
           margin-right: 40px;
           color: $color-primary;
           font-weight: 500;
-          // font-size: 0.8rem;
         }
         &__salary {
-          // align-self: center;
           margin-right: 40px;
           &__coins {
             margin-right: 10px;
           }
         }
         &__tags {
-          // margin-top: 20px;
           list-style: none;
           display: flex;
           flex-direction: row;
@@ -78,12 +71,6 @@
         margin-right: 10px;
         color: $color-secondary;
         transition: color 0.2s ease-in-out;
-        // &:hover {
-        //   color: $color-accent;
-        // }
-      }
-      &__svg {
-        // transition: fill 0.2s ease-in-out;
       }
     }
   }
@@ -113,7 +100,6 @@
             margin-left: 0;
             margin-top: 20px;
             align-self: flex-start;
-            // margin-top: 10px;
           }
           &__salary {
             align-self: flex-start;
