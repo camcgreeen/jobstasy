@@ -2,7 +2,6 @@
 
 .footer {
   background-color: $color-bg-footer;
-  // width: 100%;
   margin-top: 80px;
   padding: 40px 7.5vw;
   &__img {
@@ -12,9 +11,6 @@
     list-style: none;
     &__contact {
       color: white !important;
-      // &:hover {
-      //   color: white !important;
-      // }
     }
     li {
       a {
@@ -27,11 +23,6 @@
       font-size: 1.25rem;
       color: white;
       margin-bottom: 16px;
-      // display: inline-block;
-      // a {
-      //   text-decoration: none;
-      //   font-size: 1.5rem;
-      // }
       &:hover {
         color: darken(white, 20%);
       }
@@ -45,7 +36,6 @@
     &__links__email {
       a {
         font-size: 1.25rem !important;
-        // color: red !important;
       }
     }
   }
