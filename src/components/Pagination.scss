@@ -1,15 +1,10 @@
 @import "../utilities/variables.scss";
 
 .nav-pagination {
-  // background-color: orange;
-  // margin-top: 20px;
-  // margin: 400px;
   margin: 0;
   padding: 0;
   padding-top: 40px;
-  // margin-top: 20px;
   .pagination {
-    // margin-top: 20px;
     margin: 0;
     display: flex;
     flex-direction: row;
@@ -22,14 +17,11 @@
         border-color 0.2s ease-in-out;
       color: $color-primary;
       background-color: white;
-      // width: 40px;
-      // height: 40px;
       padding: 10px;
       cursor: pointer;
       margin-right: 20px;
       border: solid $color-primary 1px;
       border-radius: 4px;
-      // padding: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,26 +33,15 @@
 }
 
 .page-selected {
-  // font-weight: 700;
-  // color: $color-highlight !important;
-  // border: solid $color-highlight 1px !important;
   background-color: $color-highlight !important;
   color: white !important;
   border: solid white 1px !important;
-  // .pagination {
-  //   li {
-  //     border: solid $color-highlight 1px;
-  //   }
-  // }
 }
 
 @media only screen and (max-width: 650px) {
   .nav-pagination {
     .pagination {
       li {
-        // width: 36px;
-        // height: 36px;
-        // padding: 20px;
         font-size: 0.8rem;
         padding: 10px;
       }
@@ -75,9 +56,6 @@
   .nav-pagination {
     .pagination {
       li {
-        // width: 36px;
-        // height: 36px;
-        // padding: 20px;
         font-size: 0.8rem;
         padding: 10px;
       }
