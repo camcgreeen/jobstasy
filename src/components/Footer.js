@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { emailAddress } from "../utilities/helper";
 import "./main.scss";
 import "./Footer.scss";
 
@@ -17,7 +18,7 @@ class Footer extends React.Component {
         <ul className="footer__links">
           <li className="footer__links__email">
             <a
-              href="mailto:c.c.green@outlook.com"
+              href={`mailto:${emailAddress}`}
               style={{
                 fontSize: "1.55rem",
                 textDecoration: "none",

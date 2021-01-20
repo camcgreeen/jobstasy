@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import React from "react";
+import { emailAddress } from "../utilities/helper";
 import "./main.scss";
 import "./Contact.scss";
 
@@ -65,7 +65,7 @@ class Contact extends React.Component {
           <div className="contact-form__bottom">
             <a
               className="btn btn--contact"
-              href="mailto:c.c.green@outlook.com?subject=Jobstasy - job search portfolio app"
+              href={`mailto:${emailAddress}?subject=Jobstasy - job search portfolio app`}
               target="_blank"
               rel="noopener noreferrer"
             >
