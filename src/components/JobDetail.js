@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
 import React from "react";
-import { convertSalary } from "../utilities/helper";
+import { disableRightMiddleClick, convertSalary } from "../utilities/helper";
 import "./main.scss";
 import "./Jobs.scss";
 import "./JobDetail.scss";
 import Navbar from "./Navbar";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import { disableRightMiddleClick } from "../utilities/helper";
 const firebase = require("firebase");
 
 const parse = require("html-react-parser");
@@ -19,7 +17,6 @@ class JobDetail extends React.Component {
       jobLiked: false,
       job: {},
       createdAt: "",
-      // applyBefore: "",
       email: null,
       nickname: null,
     };
@@ -30,11 +27,6 @@ class JobDetail extends React.Component {
       <>
         <Navbar email={this.state.email} nickname={this.state.nickname} />
         <div className="job-detail-bg">
-          {/* <img
-            className="job-detail-bg__img"
-            src="https://svgshare.com/i/Sxk.svg"
-            alt=""
-          /> */}
           <div className="container"></div>
           <img className="job-detail-bg__img" src={job.company_logo} alt="" />
           <h1 className="job-detail-bg__title">{job.title}</h1>
@@ -69,7 +61,6 @@ class JobDetail extends React.Component {
               x="0px"
               y="0px"
               viewBox="0 0 512 512"
-              // style="enable-background:new 0 0 512 512;"
             >
               <g>
                 <g>
@@ -81,33 +72,12 @@ class JobDetail extends React.Component {
                   />
                 </g>
               </g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
             </svg>
           </a>
         </div>
         <div className="container">
           <div className="job-detail-info">
             <div className="job-detail-info__right">
-              {/* <div className="job-detail-info__right__posted-applications">
-                {"Posted " + this.postedAt(this.state.createdAt) + " · "}
-                {job.applicant_number === 1
-                  ? job.applicant_number + " applicant"
-                  : job.applicant_number + " applicants"}
-              </div> */}
               <button
                 className="btn btn--like"
                 onClick={() => this.toggleJobLiked(job)}
@@ -140,133 +110,6 @@ class JobDetail extends React.Component {
                 </svg>
                 {this.state.jobLiked ? "Liked" : "Like"}
               </button>
-              {/* <div className="job-detail-info__right__description"> */}
-              {/* <h1>Job description</h1>
-                <br />
-                <p>
-                  Our Strategic Partnerships team is growing and our goal is to
-                  build the best partner programs and channels to reach out to
-                  more customers in more industries and more geographies.
-                </p>
-                <br />
-                <p>
-                  We are looking for a Sr. Global Alliance Manager who has
-                  extensive experience working with ecommerce system
-                  integrators, digital agencies and consulting providers.
-                </p>
-                <br />
-                <p>
-                  We deliver the largest menu of cannabis to Californians next
-                  day for half the price of a dispensary. We are live in Los
-                  Angeles, Long Beach, San Francisco, Peninsula, East Bay,
-                  Marin, Humboldt, Sacramento, and Vallejo. We're expanding
-                  quickly to cover all major California population centers in
-                  2021.{" "}
-                </p>
-                <br />
-                <p>
-                  Flower Company is backed by some of the best investors in
-                  Silicon Valley and cannabis industry insiders. We're building
-                  a world class delivery team and effecient and cannabis
-                  industry veterans.{" "}
-                </p>
-                <br />
-                <h1>What you’ll do:</h1>
-                <br />
-                <p>
-                  Reporting directly to the VP of Strategic Partnerships, you
-                  will have a unique opportunity to shape our channel strategy
-                  globally and impact Sift’s growth. You will be creating
-                  trusted relationships with key strategic partners, develop
-                  mutually beneficial go-to-market plans and ensure Sift is
-                  their preferred Digital Trust and Safety solution. You like to
-                  earn trust with your partners by leveraging your interpersonal
-                  skills, industry knowledge and curiosity. You have excellent
-                  businees planning skills and you are used to working with
-                  cross functional teams to ensure the success of your
-                  go-to-market plans with your partners.
-                </p>
-                <br />
-                <h1>Key responsibilities:</h1>
-                <br />
-                <p>
-                  Reporting directly to the VP of Strategic Partnerships, you
-                  will have a unique opportunity to shape our channel strategy
-                  globally and impact Sift’s growth. You will be creating
-                  trusted relationships with key strategic partners, develop
-                  mutually beneficial go-to-market plans and ensure Sift is
-                  their preferred Digital Trust and Safety solution. You like to
-                  earn trust with your partners by leveraging your interpersonal
-                  skills, industry knowledge and curiosity. You have excellent
-                  businees planning skills and you are used to working with
-                  cross functional teams to ensure the success of your
-                  go-to-market plans with your partners.
-                </p>
-                <br />
-                <h1>About us:</h1>
-                <br />
-                <ul>
-                  <li>
-                    We are moving faster than software can keep up, so your job
-                    is to help pick up the slack for what the product doesn't
-                    handle yet by building and opperating excel / google sheet
-                    tools so we can MVP as many things as possible{" "}
-                  </li>
-                  <li>
-                    Analyze customer data to inform next sets of MVP tests{" "}
-                  </li>
-                  <li>Lead special projects and initiatives </li>
-                  <li>
-                    Provide backup support when software changes require excel
-                    data manipulation for compliance information QA{" "}
-                  </li>
-                  <li>
-                    Create models with and on behalf of the CEO + leadership
-                    team{" "}
-                  </li>
-                </ul>
-                <br />
-                <h1>Requirements: </h1>
-                <br />
-                <ul>
-                  <li>
-                    2-4+ years experience at one or combo of top-tier strategy
-                    consulting, private equity (operator side), or in an
-                    operations role at a fast-growing startup{" "}
-                  </li>
-                  <li>Ability to juggle many projects at once </li>
-                  <li>
-                    Skills with quickly manipulating data (including Excel and
-                    Google Sheets, others tools a plus) and drawing insights
-                    (bottom line up front plz){" "}
-                  </li>
-                  <li>
-                    Amazing people skills and the ability to understand people's
-                    needs who don't have experience manipulating data (for tool
-                    building and data gathering)
-                  </li>
-                  <li>Distinguished performance at a top university </li>
-                </ul>
-                <br />
-                <h1>Additional info:</h1>
-                <br />
-                <p>
-                  We deliver the largest menu of cannabis to Californians next
-                  day for half the price of a dispensary. We are live in Los
-                  Angeles, Long Beach, San Francisco, Peninsula, East Bay,
-                  Marin, Humboldt, Sacramento, and Vallejo. We're expanding
-                  quickly to cover all major California population centers in
-                  2021.
-                </p>
-                <br />
-                <p>
-                  Flower Company is backed by some of the best investors in
-                  Silicon Valley and cannabis industry insiders. We're building
-                  a world class delivery team and effecient and cannabis
-                  industry veterans.{" "}
-                </p> */}
-              {/* {job.description}
-              </div> */}
               {parse(
                 `<div class='job-detail-info__right__description'>
                   ${job.description}
@@ -275,16 +118,10 @@ class JobDetail extends React.Component {
             </div>
             <div className="job-detail-info__left">
               <div className="job-detail-info__left__about">
-                {/* <h2 className="job-detail-info__left__about__h2">
-                  Note that some of the information below is generated for
-                  demonstration purposes
-                </h2> */}
                 <h1 className="job-detail-info__left__about__h1">
                   About this role
                 </h1>
                 <div className="job-detail-info__left__about__grid">
-                  {/* <p className="key">Apply before</p>
-                  <p className="value">{this.state.applyBefore}</p> */}
                   <p className="key">Job posted on</p>
                   <p className="value">{this.state.createdAt}</p>
                   <p className="key">Job type</p>
@@ -302,11 +139,6 @@ class JobDetail extends React.Component {
                   Hiring timezones
                 </h1>
                 <ul className="job-detail-info__left__about__timezones">
-                  {/* {job.timezones.map((timezone) => {
-                    return <li>{timezone}</li>;
-                  })} */}
-                  {/* {job.timezones.length === 0 ? "hey" : job.timezones} */}
-                  {/* {job.timezones[0]} */}
                   <li>GMT</li>
                   <li>GMT + 1</li>
                   <li>GMT + 2</li>
@@ -327,19 +159,6 @@ class JobDetail extends React.Component {
   }
   componentDidMount = async () => {
     disableRightMiddleClick();
-    console.log(`Job ID = ${this.props.match.params.id}`);
-    console.log("props", this.props.location.state.details);
-    // this.setState(
-    //   {
-    //     job: this.props.location.state.details,
-    //     email: this.props.location.state.email,
-    //   },
-    //   () => {
-    //     const createdAt = this.convertCreatedDate(this.state.job.created_at);
-    //     const applyBefore = this.convertApplyDate(this.state.job.apply_before);
-    //     this.setState({ createdAt, applyBefore });
-    //   }
-    // );
     await this.setState({
       job: this.props.location.state.details,
       email: this.props.location.state.email,
@@ -350,12 +169,8 @@ class JobDetail extends React.Component {
       ...this.state.likedJobs,
     ]);
     const createdAt = this.convertCreatedDate(this.state.job.created_at);
-    // const applyBefore = this.convertApplyDate(this.state.job.apply_before);
-    // const createdAt = this.convertDate(this.state.job.created_at);
-    // const applyBefore = this.convertDate(this.state.job.apply_before);
     await this.setState({
       createdAt,
-      // applyBefore,
       jobLiked: checkAlreadyLiked.alreadyLiked,
     });
   };
@@ -364,36 +179,17 @@ class JobDetail extends React.Component {
     return regex.test(url);
   };
   convertCreatedDate = (date) => {
-    //date = Sat Jan 16 00:00:00 UTC 2021
-    // we'd like Jan 16 2021
     const dateSplit = date.split(" ");
     const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
     return res;
   };
-  // convertApplyDate = (date) => {
-  //   //date = Tue Feb 16 2021 06:54:31 GMT+0000 (Greenwich Mean Time)
-  //   // we'd like Feb 16 2021
-  //   // console.log(date.toString());
-  //   // return date.toString();
-  //   const dateSplit = date.toString().split(" ");
-  //   const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[3];
-  //   return res;
-  // };
   convertDate = (date) => {
-    //date = Sat Jan 16 00:00:00 UTC 2021
-    // we'd like Jan 16 2021
     const dateSplit = date.split(" ");
     const res = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
     return res;
   };
-  convert;
   postedAt = (date) => {
-    //date = Sat Jan 16 00:00:00 UTC 2021
-    // we'd like 12 hours ago
     const timeDifferenceMs = Date.now() - Date.parse(date);
-    console.log("timeDifferenceMs = " + timeDifferenceMs);
-
-    //timeDifference = 157,773,614
     const minMs = 60000;
     const hourMs = 3600000;
     const dayMs = 86400000;
@@ -443,15 +239,6 @@ class JobDetail extends React.Component {
   checkJobAlreadyLiked = (job, likedJobs) => {
     let alreadyLiked = false;
     let index = null;
-    console.log("likedJobs = ", likedJobs);
-    // likedJobs.every((likedJob, idx) => {
-    //   if (likedJob.id === job.id) {
-    //     console.log("aaaa");
-    //     alreadyLiked = true;
-    //     index = idx;
-    //     return;
-    //   }
-    // });
     for (let i = 0; i < likedJobs.length; i++) {
       if (likedJobs[i].id === job.id) {
         alreadyLiked = true;
@@ -465,31 +252,6 @@ class JobDetail extends React.Component {
     };
   };
   toggleJobLiked = async (job) => {
-    // const newNote = {
-    //   title: "",
-    //   body: "",
-    //   timestamp: Date.now(),
-    //   backgroundColor: colour,
-    //   id: generateRandomString(10),
-    // };
-    // this.setState(
-    //   (prevState) => ({
-    //     notes: [...prevState.notes, newNote],
-    //     visible: false,
-    //   }),
-    //   async () => {
-    //     if (this.props.email) {
-    //       await firebase
-    //         .firestore()
-    //         .collection("notes")
-    //         .doc(this.props.email)
-    //         .set({
-    //           savedNotes: [...this.state.notes],
-    //         });
-    //     }
-    //   }
-    // );
-    // ADDED FROM HERE
     if (this.state.email) {
       let likedJobs = [...this.state.likedJobs];
       const jobLiked = this.checkJobAlreadyLiked(job, [...likedJobs]);
@@ -500,9 +262,6 @@ class JobDetail extends React.Component {
         likedJobs.push(job);
         await this.setState({ jobLiked: true });
       }
-      // jobLiked.alreadyLiked
-      //   ? likedJobs.splice(jobLiked.index, 1)
-      //   : likedJobs.push(job);
       await firebase
         .firestore()
         .collection("jobs")
