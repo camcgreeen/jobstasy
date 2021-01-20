@@ -151,13 +151,11 @@ class SignUp extends React.Component {
                 this.props.history.push("/jobs");
               },
               (dbError) => {
-                console.log(dbError);
                 this.setState({ signupError: "Failed to add user" });
               }
             );
         },
         (authError) => {
-          console.log(authError);
           this.setState({ signupError: authError.message });
         }
       );

@@ -105,7 +105,6 @@ class LogIn extends React.Component {
         this.state.password
       )
       .then((authRes) => {
-        console.log("authRes = ", authRes);
         const userObj = {
           email: authRes.user.email,
           nickname: this.state.nickname,
