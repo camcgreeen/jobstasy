@@ -1,7 +1,4 @@
 @import "../utilities/variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap");
-
-$spinner-size: 60px;
 
 @font-face {
   font-family: "Euclid Circular A";
@@ -22,15 +19,6 @@ $spinner-size: 60px;
   font-style: normal;
 }
 
-// *,
-// html,
-// body {
-//   margin: 0;
-//   padding: 0;
-//   font-family: "Manrope", sans-serif;
-//   color: $color-body;
-// }
-
 *,
 html,
 body {
@@ -38,7 +26,6 @@ body {
   padding: 0;
   font-family: "Euclid Circular A", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
-  // background-color: white;
   color: $color-secondary;
   animation: fadeIn ease-in-out $fade-duration;
   -webkit-animation: fadeIn ease-in-out $fade-duration;
@@ -67,8 +54,6 @@ body {
   padding: 10px 20px;
   background-color: $color-action;
   color: white;
-  // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
-  //   box-shadow 0.2s ease-in-out;
   &:hover {
     background-color: darken($color-action, 10%);
   }
@@ -89,8 +74,6 @@ body {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     font-weight: 500;
     padding: 16px 32px;
-    // width: 100%;
-    // height: 100%;
   }
   &--apply {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -100,10 +83,8 @@ body {
     transform: translateY(50%);
     font-size: 1.25rem;
     padding: 10px 75px;
-    // margin-top: -50%;
     margin-top: 24px;
     position: relative;
-    // transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     svg {
       width: 24px;
       position: absolute;
@@ -139,20 +120,10 @@ body {
   &--like {
     background-color: $color-action;
     color: white;
-    // color: none !important;
     margin: 0 0 40px 0;
-    // background-color: white;
     width: 128px;
-    // display: inline-block;
     font-size: 1rem;
-    // height: 28px;
-    // padding: 0;
-    // width: 36px;
-    // height: 36px;
-    // padding: 10px;
     svg {
-      // width: 18px;
-      // height: 16px;
       margin-right: 20px;
     }
     padding: 10px 20px;
@@ -160,37 +131,12 @@ body {
     justify-content: center;
     align-items: center;
     transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    // &--liked {
-    //   background-color: $color-action !important;
-    //   svg path {
-    //     fill: white !important;
-    //   }
-    // }
-    // padding: 20px;
-    // color: $color-action;
-    // svg rect {
-    //   stroke: $color-action;
-    // }
-    // svg path {
-    //   fill: $color-action;
-    // }
-    // &:hover {
-    //   // background-color: $color-highlight;
-    //   // color: white;
-    //   svg rect {
-    //     stroke: $color-highlight;
-    //   }
-    //   // svg path {
-    //   //   fill: $color-highlight;
-    //   // }
-    // }
   }
   &--contact {
     font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
-    // width: 100%;
     text-decoration: none;
     svg {
       margin-left: 10px;
@@ -200,26 +146,15 @@ body {
 
 .lds-dual-ring {
   display: inline-block;
-  // width: $spinner-size;
-  // height: $spinner-size;
-  // width: 80px;
   width: $spinner-size;
-  // height: 80px;
   height: $spinner-size;
   margin: 0px 0 200px 50%;
   transform: translateX(-50%);
-  // opacity: 0.5;
 }
 .lds-dual-ring:after {
   content: " ";
   display: block;
-  // width: calc(0.8 * $spinner-size);
-  // height: calc(0.8 * $spinner-size);
-  // width: 64px;
-  // height: 64px;
-  // width: calc(80px * 0.8);
   width: #{$spinner-size * 0.8};
-  // height: calc(80px * 0.8);
   height: #{$spinner-size * 0.8};
   margin: #{$spinner-size / 10};
   border-radius: 50%;
@@ -240,7 +175,6 @@ body {
   .btn {
     &--search {
       margin-top: 20px;
-      // margin-bottom: 120px;
       width: calc(100%);
     }
   }
