@@ -158,12 +158,12 @@ class Jobs extends React.Component {
     let jobs = [];
     await this.setState({ jobs, noJobsFound: false });
     try {
-      // jobs = await axios(
-      //   `/positions.json?description=${this.state.description}&location=${this.state.location}`
-      // );
       jobs = await axios(
-        `https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
+        `/positions.json?description=${this.state.description}&location=${this.state.location}`
       );
+      // jobs = await axios(
+      //   `https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
+      // );
     } catch (err) {
       jobs = [];
       await this.setState({ jobs, noJobsFound: true });
