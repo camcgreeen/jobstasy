@@ -164,13 +164,14 @@ class Jobs extends React.Component {
       // jobs = await axios(
       //   `https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
       // );
+      jobs = this.addAttributes(jobs.data);
+      jobs = this.applyFilters(jobs);
+      console.log("jobs = ", jobs);
     } catch (err) {
       jobs = [];
       await this.setState({ jobs, noJobsFound: true });
       return;
     }
-    jobs = this.addAttributes(jobs.data);
-    jobs = this.applyFilters(jobs);
 
     await this.setState({
       currentPage: 1,
