@@ -54,7 +54,7 @@ class JobDetail extends React.Component {
           </h2>
           <a
             className="btn btn--apply"
-            href={`mailto:${emailAddress}?subject=Jobstasy - job search app&body=Hi, %0D%0A %0D%0A Sadly you can't actually apply to jobs using this application as the GitHub Jobs API provides no means to do this. %0D%0A %0D%0A You're more than welcome to send me a message on this email address to say hi, though! 👋 %0D%0A %0D%0A Thanks, %0D%0A Cameron`}
+            href={`mailto:${emailAddress}?subject=Jobstasy - job search app&body=Hi, %0D%0A %0D%0A Sadly you can't actually apply to jobs using this application as the GitHub Jobs API provides no means to do this. %0D%0A %0D%0A You're more than welcome to send me a message on this email address to say hi, though! 👋 %0D%0A %0D%0A Thanks, %0D%0A Cam`}
             style={{ textDecoration: "none" }}
           >
             Apply

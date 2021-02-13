@@ -24,7 +24,7 @@ class Footer extends React.Component {
                 textDecoration: "none",
               }}
             >
-              c.c.green@outlook.com
+              {emailAddress}
             </a>
           </li>
           <br />
