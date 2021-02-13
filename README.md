@@ -4,8 +4,6 @@ Find your next job in software.
 
 ![Jobstasy - Home screen](https://i.imgur.com/vDmqfTF.png)
 
-![Jobstasy - Job detail](https://i.imgur.com/eIskQar.png)
-
 Jobstasy is a job search application with user authentication.
 
 Built with:
@@ -14,6 +12,8 @@ Built with:
 * [GitHub Jobs API](https://jobs.github.com/api)
 
 Design based on [himalayas.app](https://himalayas.app/jobs)
+
+![Jobstasy - Job detail](https://i.imgur.com/eIskQar.png)
 
 ## Getting Started
 1. Install dependencies
