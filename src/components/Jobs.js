@@ -159,14 +159,11 @@ class Jobs extends React.Component {
     await this.setState({ jobs, noJobsFound: false });
     try {
       jobs = await axios(
-        `/positions.json?description=${this.state.description}&location=${this.state.location}`
+        `https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
       );
-      // jobs = await axios(
-      //   `https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
-      // );
+
       jobs = this.addAttributes(jobs.data);
       jobs = this.applyFilters(jobs);
-      console.log("jobs = ", jobs);
     } catch (err) {
       jobs = [];
       await this.setState({ jobs, noJobsFound: true });
@@ -178,6 +175,7 @@ class Jobs extends React.Component {
       jobs,
       noJobsFound: jobs.length > 0 ? false : true,
     });
+    console.log("jobs were", this.state.jobs);
   };
   addAttributes = (jobs) => {
     jobs = this.addSalary(jobs);
