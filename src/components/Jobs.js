@@ -175,7 +175,6 @@ class Jobs extends React.Component {
       jobs,
       noJobsFound: jobs.length > 0 ? false : true,
     });
-    console.log("jobs were", this.state.jobs);
   };
   addAttributes = (jobs) => {
     jobs = this.addSalary(jobs);
