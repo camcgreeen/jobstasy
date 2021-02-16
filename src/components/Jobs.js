@@ -159,7 +159,7 @@ class Jobs extends React.Component {
     await this.setState({ jobs, noJobsFound: false });
     try {
       jobs = await axios(
-        `https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions.json?description=${this.state.description}&location=${this.state.location}`
+        `https://github-jobs-proxy.appspot.com/positions?description=${this.state.description}&location=${this.state.location}`
       );
 
       jobs = this.addAttributes(jobs.data);
